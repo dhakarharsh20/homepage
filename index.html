@@ -70,423 +70,185 @@
 </head>
 <body class="antialiased">
 
-  <!-- SKIPER38 APPLE-STYLE NAVBAR -->
-  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-black/60 backdrop-blur-2xl border-b border-white/10 py-3">
-    <div class="max-w-[1720px] mx-auto px-6 lg:px-12 w-full">
-      <nav class="flex items-center justify-between h-11" aria-label="Apple Style Navigation">
-        
+
+<!-- APPLE-STYLE NAVBAR + SKIPER35-INSPIRED PRODUCT HOVER EXPAND -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50">
+    <div class="border-b border-black/10 bg-white/90 backdrop-blur-2xl supports-[backdrop-filter]:bg-white/80">
+      <div class="max-w-[1720px] mx-auto px-6 lg:px-12">
+        <nav class="h-16 flex items-center justify-between" aria-label="Tempsens primary navigation">
         <!-- Logo -->
         <a href="https://tempsens.com/" class="flex items-center gap-2 text-white font-bold tracking-tight text-xl group">
-          <img src="logo.png" h=60px, w=auto">
+          <img src="logo.png" h=50px, w=auto>
         </a>
 
-        <!-- Desktop Nav Links -->
-        <div class="hidden lg:flex items-center gap-1 text-[13px] font-medium text-white/80">
-          <button class="nav-trigger px-4 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all" data-target="mega-company">Company</button>
-          <button class="nav-trigger px-4 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all font-semibold text-white bg-white/10" data-target="mega-products">Products</button>
-          <button class="nav-trigger px-4 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all" data-target="mega-industries">Industries</button>
-          <button class="nav-trigger px-4 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all" data-target="mega-investors">Investors</button>
-          <button class="nav-trigger px-4 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all" data-target="mega-resources">Resources</button>
-          <a href="https://tempsens.com/events/" class="px-4 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">Events</a>
-        </div>
-
-        <!-- Right CTAs -->
-        <div class="hidden lg:flex items-center gap-4">
-          <div class="relative group/lang">
-            <button class="text-xs font-mono text-white/70 hover:text-white px-2.5 py-1 rounded-full border border-white/20 hover:border-white/40 transition-colors">EN ▾</button>
-            <div class="hidden group-hover/lang:block absolute right-0 top-full mt-2 bg-neutral-900 border border-white/20 rounded-xl py-2 w-32 shadow-2xl text-xs text-white/80 z-50">
-              <a href="#" class="block px-3 py-1.5 hover:bg-white/10 hover:text-white">English (EN)</a>
-              <a href="#" class="block px-3 py-1.5 hover:bg-white/10 hover:text-white">Deutsch (DE)</a>
-              <a href="#" class="block px-3 py-1.5 hover:bg-white/10 hover:text-white">Français (FR)</a>
-              <a href="#" class="block px-3 py-1.5 hover:bg-white/10 hover:text-white">Español (ES)</a>
-            </div>
+          <div class="hidden lg:flex items-center justify-center gap-7 text-[12.5px] font-semibold text-black/70">
+            <button class="nav-trigger py-5 hover:text-black transition-colors" data-target="mega-company">Company</button>
+            <button class="nav-trigger py-5 text-black product-trigger" data-target="mega-products">Products</button>
+            <button class="nav-trigger py-5 hover:text-black transition-colors" data-target="mega-industries">Industries</button>
+            <button class="nav-trigger py-5 hover:text-black transition-colors" data-target="mega-investors">Investors</button>
+            <button class="nav-trigger py-5 hover:text-black transition-colors" data-target="mega-resources">Resources</button>
+            <a href="https://tempsens.com/events/" class="py-5 hover:text-black transition-colors">Events</a>
           </div>
-          <a href="https://tempsens.com/contact-us/" class="btn-dark text-[11px] py-2 px-4 rounded-full bg-white/95 text-black font-semibold uppercase tracking-wider hover:bg-accent-gold hover:text-black transition-all shadow-lg">Request Quote</a>
-        </div>
-      </nav>
+
+          <div class="hidden lg:flex items-center gap-3">
+            <a href="https://tempsens.com/contact-us/" class="px-4 py-2 rounded-full border border-black/15 text-[11px] font-semibold text-black hover:border-black/40 transition-colors">Contact</a>
+            <a href="https://tempsens.com/contact-us/" class="px-4 py-2 rounded-full bg-black text-white text-[11px] font-semibold hover:bg-accent-red transition-colors">Request Quote</a>
+          </div>
+
+          <button id="mobile-menu-btn" class="lg:hidden h-10 w-10 rounded-full border border-black/15 grid place-items-center" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="text-xl leading-none">≡</span>
+          </button>
+        </nav>
+      </div>
     </div>
 
-    <!-- Skiper38 Mega Overlay Panel -->
-    <div id="mega-dropdown" class="hidden absolute top-full left-0 right-0 bg-neutral-950/95 backdrop-blur-3xl border-b border-white/15 shadow-2xl overflow-hidden py-8 text-white">
-      <div class="max-w-[1720px] mx-auto px-6 lg:px-12 w-full">
+    <!-- Desktop mega dropdown -->
+    <div id="mega-dropdown" class="hidden absolute top-16 left-0 right-0 px-4 lg:px-8 pointer-events-none">
+      <div class="max-w-[1500px] mx-auto pointer-events-auto">
 
-        <!-- PRODUCTS MEGA DROPDOWN (Expanding Horizontal Category Strip — No 3x2 Matrix Card Stack) -->
-        <div id="mega-products" class="mega-content">
-          <!-- Horizontal Category Tabs Strip -->
-          <div class="flex flex-wrap items-center justify-center gap-3 pb-6 mb-6 border-b border-white/10">
-            <button onclick="switchCat('cat-1')" onmouseenter="switchCat('cat-1')" id="tab-cat-1" class="cat-pill active px-4 py-2.5 rounded-2xl border border-accent-gold bg-accent-gold text-black text-xs font-bold transition-all duration-300 flex items-center gap-2 shadow-lg shadow-accent-gold/20 scale-105">01 Contact Sensing →</button>
-            <button onclick="switchCat('cat-2')" onmouseenter="switchCat('cat-2')" id="tab-cat-2" class="cat-pill px-4 py-2.5 rounded-2xl border border-white/15 bg-white/5 hover:border-accent-gold text-xs text-white/80 hover:text-white transition-all duration-300 flex items-center gap-2">02 Non Contact Sensing →</button>
-            <button onclick="switchCat('cat-3')" onmouseenter="switchCat('cat-3')" id="tab-cat-3" class="cat-pill px-4 py-2.5 rounded-2xl border border-white/15 bg-white/5 hover:border-accent-gold text-xs text-white/80 hover:text-white transition-all duration-300 flex items-center gap-2">03 Electrical Heating →</button>
-            <button onclick="switchCat('cat-4')" onmouseenter="switchCat('cat-4')" id="tab-cat-4" class="cat-pill px-4 py-2.5 rounded-2xl border border-white/15 bg-white/5 hover:border-accent-gold text-xs text-white/80 hover:text-white transition-all duration-300 flex items-center gap-2">04 Cables & Alloys →</button>
-            <button onclick="switchCat('cat-5')" onmouseenter="switchCat('cat-5')" id="tab-cat-5" class="cat-pill px-4 py-2.5 rounded-2xl border border-white/15 bg-white/5 hover:border-accent-gold text-xs text-white/80 hover:text-white transition-all duration-300 flex items-center gap-2">05 Furnaces & Systems →</button>
-            <button onclick="switchCat('cat-6')" onmouseenter="switchCat('cat-6')" id="tab-cat-6" class="cat-pill px-4 py-2.5 rounded-2xl border border-white/15 bg-white/5 hover:border-accent-gold text-xs text-white/80 hover:text-white transition-all duration-300 flex items-center gap-2">06 Calibration & Services →</button>
+        <!-- Products: Skiper35 hover-expand interaction adapted into an Apple-style curved white card -->
+        <div id="mega-products" class="mega-content hidden nav-card bg-white rounded-[34px] border border-black/10 shadow-[0_28px_80px_rgba(0,0,0,0.16)] overflow-hidden">
+          <div class="px-8 pt-7 pb-4 border-b border-black/8">
+            <div class="flex items-center justify-between gap-4">
+              <span class="text-[10px] uppercase tracking-[0.18em] font-bold text-accent-red">Products</span>
+              <a href="https://tempsens.com/" class="text-[11px] font-semibold text-black/55 hover:text-accent-red transition-colors">View all products →</a>
+            </div>
+
+            <!-- Major categories: horizontal, hover to switch -->
+            <div class="product-category-row mt-5 flex items-center justify-between gap-1 overflow-x-auto" role="tablist" aria-label="Product categories">
+              <button class="product-cat active" data-product="contact" role="tab">Contact Sensing</button>
+              <button class="product-cat" data-product="noncontact" role="tab">Non-Contact Sensing</button>
+              <button class="product-cat" data-product="heating" role="tab">Electrical Heating</button>
+              <button class="product-cat" data-product="cables" role="tab">Cables & Alloys</button>
+              <button class="product-cat" data-product="furnaces" role="tab">Furnaces & Systems</button>
+              <button class="product-cat" data-product="calibration" role="tab">Calibration & Services</button>
+            </div>
           </div>
 
-          <!-- Expanded Content Container directly beneath horizontal category strip -->
-          <div class="rounded-3xl border border-white/15 bg-neutral-900/90 p-8 backdrop-blur-2xl transition-all duration-300 shadow-2xl">
-            <!-- Panel 01: Contact Sensing -->
-            <div id="panel-cat-1" class="cat-content-panel active">
-              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-4 border-r border-white/10 pr-6">
-                  <span class="text-[10px] font-mono text-accent-gold block tracking-widest uppercase mb-1">01 / THERMOCOUPLES & RTDS</span>
-                  <h3 class="text-2xl font-bold text-white mb-3">Contact Temperature Sensing</h3>
-                  <p class="text-xs text-white/70 leading-relaxed mb-6">High-precision contact sensors engineered for extreme temperature measurement across demanding industrial processes.</p>
-                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="inline-flex items-center gap-2 btn-dark text-xs py-2.5 px-5 rounded-full bg-white text-black hover:bg-accent-gold transition-colors font-semibold">Explore Contact Sensing →</a>
-                </div>
-                <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">01.1</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Thermocouples & RTDs</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">01.2</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Thermowells & Sheaths</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">01.3</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Temperature Gauges</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">01.4</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Transmitters & Indicators</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                </div>
+          <div class="relative min-h-[285px] px-8 pt-7 pb-8 bg-white">
+            <div class="product-panel active" data-panel="contact">
+              <div class="product-grid">
+                <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="product-tile"><span>Thermocouples & RTDs</span>→</a>
+                <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="product-tile"><span>Thermowells & Sheaths</span>→</a>
+                <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="product-tile"><span>Gauges</span>→</a>
+                <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="product-tile"><span>Transmitters & Indicators</span>→</a>
               </div>
             </div>
 
-            <!-- Panel 02: Non Contact Sensing -->
-            <div id="panel-cat-2" class="cat-content-panel">
-              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-4 border-r border-white/10 pr-6">
-                  <span class="text-[10px] font-mono text-accent-gold block tracking-widest uppercase mb-1">02 / PYROMETERS & IMAGERS</span>
-                  <h3 class="text-2xl font-bold text-white mb-3">Non-Contact Temperature Sensing</h3>
-                  <p class="text-xs text-white/70 leading-relaxed mb-6">Advanced infrared pyrometers and thermal imaging systems for molten metals and non-contact industrial monitoring.</p>
-                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="inline-flex items-center gap-2 btn-dark text-xs py-2.5 px-5 rounded-full bg-white text-black hover:bg-accent-gold transition-colors font-semibold">Explore Non-Contact →</a>
-                </div>
-                <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">02.1</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Fixed Infrared Pyrometers</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">02.2</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Portable Pyrometers</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">02.3</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Thermal Imagers</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">02.4</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Furnace Cameras</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                </div>
+            <div class="product-panel" data-panel="noncontact">
+              <div class="product-grid">
+                <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="product-tile"><span>Fixed Infrared Pyrometers</span><b>→</b></a>
+                <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="product-tile"><span>Portable Pyrometers</span><b>→</b></a>
+                <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="product-tile"><span>Thermal Imagers</span><b>→</b></a>
+                <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="product-tile"><span>Furnace Cameras</span><b>→</b></a>
               </div>
             </div>
 
-            <!-- Panel 03: Electrical Heating -->
-            <div id="panel-cat-3" class="cat-content-panel">
-              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-4 border-r border-white/10 pr-6">
-                  <span class="text-[10px] font-mono text-accent-gold block tracking-widest uppercase mb-1">03 / INDUSTRIAL HEATERS</span>
-                  <h3 class="text-2xl font-bold text-white mb-3">Electrical Heating Solutions</h3>
-                  <p class="text-xs text-white/70 leading-relaxed mb-6">Heavy-duty industrial heating elements, process heaters, and custom thermal solutions for demanding environments.</p>
-                  <a href="https://tempsens.com/ct/industrial-heaters/" class="inline-flex items-center gap-2 btn-dark text-xs py-2.5 px-5 rounded-full bg-white text-black hover:bg-accent-gold transition-colors font-semibold">Explore Heating →</a>
-                </div>
-                <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-                  <a href="https://tempsens.com/ct/industrial-heaters/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">03.1</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Component Heaters</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/industrial-heaters/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">03.2</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Tubular & Immersion</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/industrial-heaters/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">03.3</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Process & Air Heaters</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/industrial-heaters/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">03.4</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Heating Jackets & Tapes</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                </div>
+            <div class="product-panel" data-panel="heating">
+              <div class="product-grid">
+                <a href="https://tempsens.com/ct/industrial-heaters/" class="product-tile"><span>Component Heaters</span><b>→</b></a>
+                <a href="https://tempsens.com/ct/industrial-heaters/" class="product-tile"><span>Tubular & Immersion Heaters</span><b>→</b></a>
+                <a href="https://tempsens.com/ct/industrial-heaters/" class="product-tile"><span>Process & Air Heaters</span><b>→</b></a>
+                <a href="https://tempsens.com/ct/industrial-heaters/" class="product-tile"><span>Heating Jackets & Tapes</span><b>→</b></a>
               </div>
             </div>
 
-            <!-- Panel 04: Cables & Alloys -->
-            <div id="panel-cat-4" class="cat-content-panel">
-              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-4 border-r border-white/10 pr-6">
-                  <span class="text-[10px] font-mono text-accent-gold block tracking-widest uppercase mb-1">04 / MI & SPECIAL WIRES</span>
-                  <h3 class="text-2xl font-bold text-white mb-3">Cables & Special Alloys</h3>
-                  <p class="text-xs text-white/70 leading-relaxed mb-6">High-temperature thermocouple cables, mineral insulated (MI) cables, and nickel alloy conductors.</p>
-                  <a href="https://tempsens.com/ct/cables/" class="inline-flex items-center gap-2 btn-dark text-xs py-2.5 px-5 rounded-full bg-white text-black hover:bg-accent-gold transition-colors font-semibold">Explore Cables →</a>
-                </div>
-                <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-                  <a href="https://tempsens.com/ct/cables/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">04.1</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Thermocouple Cables</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/cables/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">04.2</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Extension Wires</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/cables/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">04.3</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">MI Insulated Cables</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/cables/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">04.4</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Nickel & Special Alloys</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                </div>
+            <div class="product-panel" data-panel="cables">
+              <div class="product-grid">
+                <a href="https://tempsens.com/ct/cables/" class="product-tile"><span>Thermocouple Cables</span><b>→</b></a>
+                <a href="https://tempsens.com/ct/cables/" class="product-tile"><span>Extension Wires</span><b>→</b></a>
+                <a href="https://tempsens.com/ct/cables/" class="product-tile"><span>MI Insulated Cables</span><b>→</b></a>
+                <a href="https://tempsens.com/ct/cables/nickel-thermocouple-alloy/" class="product-tile"><span>Nickel & Special Alloys</span><b>→</b></a>
               </div>
             </div>
 
-            <!-- Panel 05: Furnaces & Systems -->
-            <div id="panel-cat-5" class="cat-content-panel">
-              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-4 border-r border-white/10 pr-6">
-                  <span class="text-[10px] font-mono text-accent-gold block tracking-widest uppercase mb-1">05 / PROCESS & LAB FURNACES</span>
-                  <h3 class="text-2xl font-bold text-white mb-3">Furnaces & Thermal Systems</h3>
-                  <p class="text-xs text-white/70 leading-relaxed mb-6">Laboratory R&D furnaces, industrial heat treatment systems, vacuum kilns, and thermal chambers.</p>
-                  <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="inline-flex items-center gap-2 btn-dark text-xs py-2.5 px-5 rounded-full bg-white text-black hover:bg-accent-gold transition-colors font-semibold">Explore Furnaces →</a>
-                </div>
-                <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-                  <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">05.1</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Laboratory Furnaces</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">05.2</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Box & Tube Furnaces</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">05.3</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Heat Treatment Units</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">05.4</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Vacuum & Pit Furnaces</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                </div>
+            <div class="product-panel" data-panel="furnaces">
+              <div class="product-grid">
+                <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="product-tile"><span>Laboratory Furnaces</span><b>→</b></a>
+                <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="product-tile"><span>Box & Tube Furnaces</span><b>→</b></a>
+                <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="product-tile"><span>Heat Treatment Units</span><b>→</b></a>
+                <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="product-tile"><span>Vacuum & Pit Furnaces</span><b>→</b></a>
               </div>
             </div>
 
-            <!-- Panel 06: Calibration & Services -->
-            <div id="panel-cat-6" class="cat-content-panel">
-              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-4 border-r border-white/10 pr-6">
-                  <span class="text-[10px] font-mono text-accent-gold block tracking-widest uppercase mb-1">06 / CALIBRATION SOURCES</span>
-                  <h3 class="text-2xl font-bold text-white mb-3">Calibration & NABL Services</h3>
-                  <p class="text-xs text-white/70 leading-relaxed mb-6">Thermal calibrators, dry block units, reference standards, and accredited NABL calibration laboratories.</p>
-                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="inline-flex items-center gap-2 btn-dark text-xs py-2.5 px-5 rounded-full bg-white text-black hover:bg-accent-gold transition-colors font-semibold">Explore Calibration →</a>
-                </div>
-                <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">06.1</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Temperature Calibrators</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">06.2</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Dry Block Calibrators</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">06.3</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Reference Standards</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
-                    <div>
-                      <span class="text-accent-gold text-[10px] font-mono block mb-1">06.4</span>
-                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">NABL Calibration</h4>
-                    </div>
-                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
-                  </a>
-                </div>
+            <div class="product-panel" data-panel="calibration">
+              <div class="product-grid">
+                <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="product-tile"><span>Temperature Calibrators</span><b>→</b></a>
+                <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="product-tile"><span>Dry Block Calibrators</span><b>→</b></a>
+                <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="product-tile"><span>Reference Standards</span><b>→</b></a>
+                <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="product-tile"><span>NABL Calibration</span><b>→</b></a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- COMPANY MEGA DROPDOWN -->
-        <div id="mega-company" class="mega-content hidden">
-          <div class="text-center pb-4 mb-6 border-b border-white/10">
-            <span class="text-xs font-mono uppercase tracking-widest text-accent-gold">About Tempsens Group</span>
-            <h3 class="text-xl font-light text-white mt-1">Thermal Engineering Pioneers Since 1976</h3>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <a href="https://tempsens.com/about-us/" class="rounded-2xl bg-neutral-900/70 border border-white/10 p-5 hover:border-accent-gold hover:bg-neutral-900 transition-all block group">
-              <h4 class="text-sm font-semibold text-white group-hover:text-accent-gold transition-colors">About Tempsens</h4>
-              <p class="text-xs text-white/60 mt-2 leading-relaxed">35+ years of thermal engineering excellence</p>
-            </a>
-            <a href="https://tempsens.com/about-us/" class="rounded-2xl bg-neutral-900/70 border border-white/10 p-5 hover:border-accent-gold hover:bg-neutral-900 transition-all block group">
-              <h4 class="text-sm font-semibold text-white group-hover:text-accent-gold transition-colors">Manufacturing Facilities</h4>
-              <p class="text-xs text-white/60 mt-2 leading-relaxed">11 backward-integrated global units</p>
-            </a>
-            <a href="https://tempsens.com/about-us/" class="rounded-2xl bg-neutral-900/70 border border-white/10 p-5 hover:border-accent-gold hover:bg-neutral-900 transition-all block group">
-              <h4 class="text-sm font-semibold text-white group-hover:text-accent-gold transition-colors">Quality & Certifications</h4>
-              <p class="text-xs text-white/60 mt-2 leading-relaxed">ISO 9001, NABL, CE & ATEX certified</p>
-            </a>
-          </div>
+        <div id="mega-company" class="mega-content hidden nav-card simple-mega">
+          <div><span class="mega-label">Company</span></div>
+          <div class="simple-links"><a href="https://tempsens.com/about-us/">About Tempsens →</a><a href="https://tempsens.com/about-us/">Manufacturing Facilities →</a><a href="https://tempsens.com/award-and-accreditation/">Quality & Certifications →</a></div>
         </div>
-
-        <!-- INDUSTRIES MEGA DROPDOWN (ONLY THE 7 SPECIFIED INDUSTRIES) -->
-        <div id="mega-industries" class="mega-content hidden">
-          <div class="text-center pb-4 mb-6 border-b border-white/10">
-            <span class="text-xs font-mono uppercase tracking-widest text-accent-gold">Industrial Applications</span>
-            <h3 class="text-xl font-light text-white mt-1">Engineered for Critical Environments</h3>
-          </div>
-          <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
-            <a href="https://tempsens.com/industry/steel-industry/" class="rounded-xl bg-neutral-900/60 border border-white/10 p-4 hover:border-accent-gold hover:bg-neutral-900 text-xs font-semibold text-white/90 hover:text-accent-gold flex items-center justify-between group transition-all">
-              <span>Steel</span><span class="text-accent-gold group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-            <a href="https://tempsens.com/industry/cement-industry/" class="rounded-xl bg-neutral-900/60 border border-white/10 p-4 hover:border-accent-gold hover:bg-neutral-900 text-xs font-semibold text-white/90 hover:text-accent-gold flex items-center justify-between group transition-all">
-              <span>Cement</span><span class="text-accent-gold group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-            <a href="https://tempsens.com/industry/oil-gas/" class="rounded-xl bg-neutral-900/60 border border-white/10 p-4 hover:border-accent-gold hover:bg-neutral-900 text-xs font-semibold text-white/90 hover:text-accent-gold flex items-center justify-between group transition-all">
-              <span>Petrochemical</span><span class="text-accent-gold group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-            <a href="https://tempsens.com/industry/power-industry/" class="rounded-xl bg-neutral-900/60 border border-white/10 p-4 hover:border-accent-gold hover:bg-neutral-900 text-xs font-semibold text-white/90 hover:text-accent-gold flex items-center justify-between group transition-all">
-              <span>Power</span><span class="text-accent-gold group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-            <a href="https://tempsens.com/industry/defence/" class="rounded-xl bg-neutral-900/60 border border-white/10 p-4 hover:border-accent-gold hover:bg-neutral-900 text-xs font-semibold text-white/90 hover:text-accent-gold flex items-center justify-between group transition-all">
-              <span>Nuclear & Defence</span><span class="text-accent-gold group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-            <a href="https://tempsens.com/industry/glass-industry/" class="rounded-xl bg-neutral-900/60 border border-white/10 p-4 hover:border-accent-gold hover:bg-neutral-900 text-xs font-semibold text-white/90 hover:text-accent-gold flex items-center justify-between group transition-all">
-              <span>Glass</span><span class="text-accent-gold group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-            <a href="https://tempsens.com/industry/pharmaceutical-industry/" class="rounded-xl bg-neutral-900/60 border border-white/10 p-4 hover:border-accent-gold hover:bg-neutral-900 text-xs font-semibold text-white/90 hover:text-accent-gold flex items-center justify-between group transition-all">
-              <span>Plastic & Pharma</span><span class="text-accent-gold group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-          </div>
+        <div id="mega-industries" class="mega-content hidden nav-card simple-mega">
+          <div><span class="mega-label">Industries</span></div>
+          <div class="simple-links"><a href="https://tempsens.com/industry/steel-industry/">Steel →</a><a href="https://tempsens.com/industry/cement-industry/">Cement →</a><a href="https://tempsens.com/industry/oil-gas/">Petrochemical →</a><a href="https://tempsens.com/industry/power-industry/">Power →</a><a href="https://tempsens.com/industry/defence/">Nuclear & Defence →</a><a href="https://tempsens.com/industry/glass-industry/">Glass →</a></div>
         </div>
-
-        <!-- INVESTORS MEGA DROPDOWN -->
-        <div id="mega-investors" class="mega-content hidden">
-          <div class="text-center pb-4 mb-6 border-b border-white/10">
-            <span class="text-xs font-mono uppercase tracking-widest text-accent-gold">Investor Relations</span>
-            <h3 class="text-xl font-light text-white mt-1">Financial Transparency & Corporate Governance</h3>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <div class="rounded-2xl bg-neutral-900/80 border border-white/10 p-6">
-              <div class="text-center pb-3 border-b border-white/10 mb-3"><h4 class="text-sm font-semibold text-accent-gold uppercase tracking-wider">Financial Performance</h4></div>
-              <ul class="space-y-2 text-xs text-white/70">
-                <li><a href="https://tempsens.com/investors/" class="hover:text-white block py-1">Annual Reports & Financials</a></li>
-                <li><a href="https://tempsens.com/investors/" class="hover:text-white block py-1">Quarterly Performance Highlights</a></li>
-              </ul>
-            </div>
-            <div class="rounded-2xl bg-neutral-900/80 border border-white/10 p-6">
-              <div class="text-center pb-3 border-b border-white/10 mb-3"><h4 class="text-sm font-semibold text-accent-gold uppercase tracking-wider">Governance</h4></div>
-              <ul class="space-y-2 text-xs text-white/70">
-                <li><a href="https://tempsens.com/investors/" class="hover:text-white block py-1">Board of Directors</a></li>
-                <li><a href="https://tempsens.com/investors/" class="hover:text-white block py-1">Corporate Policies</a></li>
-              </ul>
-            </div>
-            <div class="rounded-2xl bg-neutral-900/80 border border-white/10 p-6">
-              <div class="text-center pb-3 border-b border-white/10 mb-3"><h4 class="text-sm font-semibold text-accent-gold uppercase tracking-wider">Disclosures</h4></div>
-              <ul class="space-y-2 text-xs text-white/70">
-                <li><a href="https://tempsens.com/investors/" class="hover:text-white block py-1">Shareholder Notices & Filings</a></li>
-                <li><a href="https://tempsens.com/investors/" class="hover:text-white block py-1">Investor Contacts</a></li>
-              </ul>
-            </div>
-          </div>
+        <div id="mega-investors" class="mega-content hidden nav-card simple-mega">
+          <div><span class="mega-label">Investors</span></div>
+          <div class="simple-links"><a href="https://tempsens.com/investors/">Annual Reports →</a><a href="https://tempsens.com/investors/">Corporate Governance →</a><a href="https://tempsens.com/investors/">Shareholder Disclosures →</a></div>
         </div>
-
-        <!-- RESOURCES MEGA DROPDOWN -->
-        <div id="mega-resources" class="mega-content hidden">
-          <div class="text-center pb-4 mb-6 border-b border-white/10">
-            <span class="text-xs font-mono uppercase tracking-widest text-accent-gold">Knowledge & Literature</span>
-            <h3 class="text-xl font-light text-white mt-1">Technical Resources & Thermal Engineering Guides</h3>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            <a href="https://tempsens.com/literature/" class="rounded-2xl bg-neutral-900/70 border border-white/10 p-5 hover:border-accent-gold transition-all block text-center">
-              <span class="text-2xl block mb-2">📄</span><h4 class="text-sm font-semibold text-white">Product Catalogues</h4>
-            </a>
-            <a href="https://tempsens.com/literature/" class="rounded-2xl bg-neutral-900/70 border border-white/10 p-5 hover:border-accent-gold transition-all block text-center">
-              <span class="text-2xl block mb-2">⚙️</span><h4 class="text-sm font-semibold text-white">Application Notes</h4>
-            </a>
-            <a href="https://tempsens.com/blog/" class="rounded-2xl bg-neutral-900/70 border border-white/10 p-5 hover:border-accent-gold transition-all block text-center">
-              <span class="text-2xl block mb-2">📰</span><h4 class="text-sm font-semibold text-white">Technical Blog</h4>
-            </a>
-            <a href="https://tempsens.com/literature/" class="rounded-2xl bg-neutral-900/70 border border-white/10 p-5 hover:border-accent-gold transition-all block text-center">
-              <span class="text-2xl block mb-2">🔬</span><h4 class="text-sm font-semibold text-white">Whitepapers</h4>
-            </a>
-          </div>
+        <div id="mega-resources" class="mega-content hidden nav-card simple-mega">
+          <div><span class="mega-label">Resources</span></div>
+          <div class="simple-links"><a href="https://tempsens.com/literature/">Product Catalogues →</a><a href="https://tempsens.com/literature/">Application Notes →</a><a href="https://tempsens.com/blog/">Technical Blog →</a><a href="https://tempsens.com/videos/">Videos →</a></div>
         </div>
+      </div>
+    </div>
 
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-black/10 px-6 py-5 shadow-xl">
+      <div class="grid gap-3 text-sm font-semibold">
+        <a href="https://tempsens.com/about-us/">Company</a><a href="https://tempsens.com/">Products</a><a href="#industries">Industries</a><a href="https://tempsens.com/investors/">Investors</a><a href="https://tempsens.com/blog/">Resources</a><a href="https://tempsens.com/events/">Events</a><a href="https://tempsens.com/contact-us/" class="mt-2 rounded-full bg-black text-white text-center py-3">Request Quote</a>
       </div>
     </div>
   </header>
+
+  <style>
+    /* Navbar interaction is Skiper35-inspired: horizontal items expand/switch on hover,
+       adapted for this standalone HTML/Tailwind page rather than React + Framer Motion. */
+    #mega-dropdown { padding-top: 10px; }
+    .nav-card { animation: navCardIn .28s cubic-bezier(.16,1,.3,1) both; }
+    @keyframes navCardIn { from { opacity:0; transform:translateY(-8px) scale(.985); } to { opacity:1; transform:none; } }
+
+    .product-category-row { scrollbar-width:none; }
+    .product-category-row::-webkit-scrollbar { display:none; }
+    .product-cat {
+      position:relative; flex:1 0 auto; min-width:max-content; padding:10px 14px 13px;
+      border-radius:999px; color:rgba(0,0,0,.58); font-size:11.5px; font-weight:600;
+      transition:color .25s ease, background .25s ease, transform .25s ease;
+    }
+    .product-cat::after { content:""; position:absolute; left:18px; right:18px; bottom:5px; height:2px; border-radius:10px; background:#ED3237; transform:scaleX(0); transition:transform .25s cubic-bezier(.16,1,.3,1); }
+    .product-cat:hover { color:#000; background:#FFF8EC; transform:translateY(-1px); }
+    .product-cat.active { color:#000; background:#FFF8EC; }
+    .product-cat.active::after { transform:scaleX(1); }
+
+    .product-panel { display:none; opacity:0; transform:translateY(8px); }
+    .product-panel.active { display:block; animation:productPanelIn .32s cubic-bezier(.16,1,.3,1) forwards; }
+    @keyframes productPanelIn { to { opacity:1; transform:none; } }
+    .product-panel-title { text-align:center; font-size:25px; line-height:1.15; font-weight:600; letter-spacing:-.025em; color:#000; }
+    .product-panel-kicker { text-align:center; margin-top:7px; font-size:11px; color:rgba(0,0,0,.52); }
+    .product-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-top:26px; }
+    .product-tile { min-height:112px; border:1px solid rgba(0,0,0,.09); border-radius:24px; padding:18px; display:flex; align-items:flex-end; justify-content:space-between; gap:14px; background:#fff; font-size:12px; font-weight:600; color:#000; transition:all .3s cubic-bezier(.16,1,.3,1); }
+    .product-tile b { color:#ED3237; font-size:18px; font-weight:400; transition:transform .3s cubic-bezier(.16,1,.3,1); }
+    .product-tile:hover { background:#FBB12F; border-color:#FBB12F; transform:translateY(-5px); box-shadow:0 14px 30px rgba(0,0,0,.10); }
+    .product-tile:hover b { color:#000; transform:translateX(4px); }
+
+    .simple-mega { background:#fff; border:1px solid rgba(0,0,0,.1); border-radius:30px; box-shadow:0 28px 80px rgba(0,0,0,.16); padding:28px 32px; display:grid; grid-template-columns:1fr 2fr; gap:36px; }
+    .simple-mega.hidden { display:none; }
+    .mega-label { color:#ED3237; text-transform:uppercase; letter-spacing:.16em; font-size:10px; font-weight:700; }
+    .simple-mega h3 { margin-top:7px; font-size:22px; font-weight:600; letter-spacing:-.02em; }
+    .simple-links { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; align-content:center; }
+    .simple-links a { padding:15px 16px; border-radius:18px; border:1px solid rgba(0,0,0,.08); font-size:11px; font-weight:600; transition:all .25s ease; }
+    .simple-links a:hover { background:#FFF8EC; border-color:#FBB12F; transform:translateY(-2px); }
+
+    @media (max-width:1100px) { .product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  </style>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -494,27 +256,46 @@
       const triggers = document.querySelectorAll('.nav-trigger');
       const megaDropdown = document.getElementById('mega-dropdown');
       const megaContents = document.querySelectorAll('.mega-content');
+      const productCats = document.querySelectorAll('.product-cat');
+      const productPanels = document.querySelectorAll('.product-panel');
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      let closeTimer;
+
+      function openMega(targetId) {
+        clearTimeout(closeTimer);
+        megaContents.forEach(content => content.classList.toggle('hidden', content.id !== targetId));
+        megaDropdown.classList.remove('hidden');
+      }
+      function scheduleClose() {
+        closeTimer = setTimeout(() => megaDropdown.classList.add('hidden'), 120);
+      }
 
       triggers.forEach(trigger => {
-        trigger.addEventListener('mouseenter', () => {
-          const targetId = trigger.getAttribute('data-target');
-          megaContents.forEach(content => {
-            if (content.id === targetId) {
-              content.classList.remove('hidden');
-            } else {
-              content.classList.add('hidden');
-            }
-          });
-          megaDropdown.classList.remove('hidden');
-        });
+        trigger.addEventListener('mouseenter', () => openMega(trigger.dataset.target));
+        trigger.addEventListener('focus', () => openMega(trigger.dataset.target));
+      });
+      navbar.addEventListener('mouseleave', scheduleClose);
+      megaDropdown.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+
+      function switchProduct(name) {
+        productCats.forEach(cat => cat.classList.toggle('active', cat.dataset.product === name));
+        productPanels.forEach(panel => panel.classList.toggle('active', panel.dataset.panel === name));
+      }
+      productCats.forEach(cat => {
+        cat.addEventListener('mouseenter', () => switchProduct(cat.dataset.product));
+        cat.addEventListener('focus', () => switchProduct(cat.dataset.product));
+        cat.addEventListener('click', () => switchProduct(cat.dataset.product));
       });
 
-      navbar.addEventListener('mouseleave', () => {
-        megaDropdown.classList.add('hidden');
+      mobileBtn.addEventListener('click', () => {
+        const isOpen = !mobileMenu.classList.contains('hidden');
+        mobileMenu.classList.toggle('hidden', isOpen);
+        mobileBtn.setAttribute('aria-expanded', String(!isOpen));
       });
     });
   </script>
-
+  
   <!-- UNCHANGED HERO -->
   <section class="relative min-h-[90vh] lg:min-h-screen flex items-end bg-bg-dark overflow-hidden pt-28 pb-12 md:pb-16">
     <div class="absolute inset-0 z-0">
