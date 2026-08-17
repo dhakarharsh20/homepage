@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en-US" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tempsens — Thermal Engineering Solutions</title>
+  <meta name="description" content="From sensing and measurement to heating, specialised cables and thermal processing, Tempsens engineers solutions for the temperatures that keep industries moving.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'bg-primary': '#FAFAF8',
+            'bg-dark': '#1A1A1A',
+            'bg-charcoal': '#2A2A2A',
+            'bg-warm': '#F5F3EF',
+            'text-primary': '#1A1A1A',
+            'text-secondary': '#6B6B6B',
+            'text-muted': '#9A9A9A',
+            'accent-red': '#C42B2B',
+            'accent-gold': '#C4891A',
+            'rule': '#E0E0E0',
+            'rule-dark': '#333333',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #FAFAF8; color: #1A1A1A; overflow-x: hidden; }
+    .text-micro { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; }
+    .text-stat { font-size: clamp(48px, 6vw, 96px); font-weight: 200; line-height: 1.0; letter-spacing: -0.04em; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; padding: 12px 28px; background-color: #1A1A1A; color: #FAFAF8; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .btn-primary:hover { background-color: #C42B2B; transform: translateY(-1px); }
+    .btn-dark { display: inline-flex; align-items: center; gap: 10px; padding: 12px 28px; background-color: #FAFAF8; color: #1A1A1A; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .btn-dark:hover { background-color: #C4891A; color: #1A1A1A; transform: translateY(-1px); }
+    
+    .pill-card { flex: 1; transition: flex 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+    .pill-container:hover .pill-card { flex: 0.6; }
+    .pill-container .pill-card:hover { flex: 3 !important; }
+    .pill-card .expanded-content { opacity: 0; transform: translateY(10px); transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+    .pill-card:hover .expanded-content { opacity: 1; transform: translateY(0); }
+    .pill-card .collapsed-title { opacity: 1; transition: opacity 0.25s ease; }
+    .pill-card:hover .collapsed-title { opacity: 0; }
+
+    .ind-pill-card { flex: 1; transition: flex 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+    .ind-pill-container:hover .ind-pill-card { flex: 0.6; }
+    .ind-pill-container .ind-pill-card:hover { flex: 4.5 !important; }
+    .ind-pill-card .expanded-content { opacity: 0; transform: translateY(10px); transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+    .ind-pill-card:hover .expanded-content { opacity: 1; transform: translateY(0); }
+    .ind-pill-card .collapsed-title { opacity: 1; transition: opacity 0.25s ease; }
+    .ind-pill-card:hover .collapsed-title { opacity: 0; }
+
+    .cat-content-panel { display: none; }
+    .cat-content-panel.active { display: block; }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- SKIPER38 APPLE-STYLE NAVBAR -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-black/60 backdrop-blur-2xl border-b border-white/10 py-3">
+    <div class="max-w-[1720px] mx-auto px-6 lg:px-12 w-full">
+      <nav class="flex items-center justify-between h-11" aria-label="Apple Style Navigation">
+        
+        <!-- Logo -->
+        <a href="https://tempsens.com/" class="flex items-center gap-2 text-white font-bold tracking-tight text-xl group">
+          <span class="text-accent-gold group-hover:rotate-12 transition-transform duration-300">◆</span>
+          <span class="tracking-widest">TEMPSENS</span>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <div class="hidden lg:flex items-center gap-1 text-[13px] font-medium text-white/80">
+          <button class="nav-trigger px-4 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all" data-target="mega-company">Company</button>
+          <button class="nav-trigger px-4 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all font-semibold text-white bg-white/10" data-target="mega-products">Products</button>
+          <button class="nav-trigger px-4 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all" data-target="mega-industries">Industries</button>
+          <button class="nav-trigger px-4 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all" data-target="mega-investors">Investors</button>
+          <button class="nav-trigger px-4 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all" data-target="mega-resources">Resources</button>
+          <a href="https://tempsens.com/events/" class="px-4 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all">Events</a>
+        </div>
+
+        <!-- Right CTAs -->
+        <div class="hidden lg:flex items-center gap-4">
+          <div class="relative group/lang">
+            <button class="text-xs font-mono text-white/70 hover:text-white px-2.5 py-1 rounded-full border border-white/20 hover:border-white/40 transition-colors">EN ▾</button>
+            <div class="hidden group-hover/lang:block absolute right-0 top-full mt-2 bg-neutral-900 border border-white/20 rounded-xl py-2 w-32 shadow-2xl text-xs text-white/80 z-50">
+              <a href="#" class="block px-3 py-1.5 hover:bg-white/10 hover:text-white">English (EN)</a>
+              <a href="#" class="block px-3 py-1.5 hover:bg-white/10 hover:text-white">Deutsch (DE)</a>
+              <a href="#" class="block px-3 py-1.5 hover:bg-white/10 hover:text-white">Français (FR)</a>
+              <a href="#" class="block px-3 py-1.5 hover:bg-white/10 hover:text-white">Español (ES)</a>
+            </div>
+          </div>
+          <a href="https://tempsens.com/contact-us/" class="btn-dark text-[11px] py-2 px-4 rounded-full bg-white/95 text-black font-semibold uppercase tracking-wider hover:bg-accent-gold hover:text-black transition-all shadow-lg">Request Quote</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Skiper38 Mega Overlay Panel -->
+    <div id="mega-dropdown" class="hidden absolute top-full left-0 right-0 bg-neutral-950/95 backdrop-blur-3xl border-b border-white/15 shadow-2xl overflow-hidden py-8 text-white">
+      <div class="max-w-[1720px] mx-auto px-6 lg:px-12 w-full">
+
+        <!-- PRODUCTS MEGA DROPDOWN (Expanding Horizontal Category Strip — No 3x2 Matrix Card Stack) -->
+        <div id="mega-products" class="mega-content">
+          <!-- Horizontal Category Tabs Strip -->
+          <div class="flex flex-wrap items-center justify-center gap-3 pb-6 mb-6 border-b border-white/10">
+            <button onclick="switchCat('cat-1')" onmouseenter="switchCat('cat-1')" id="tab-cat-1" class="cat-pill active px-4 py-2.5 rounded-2xl border border-accent-gold bg-accent-gold text-black text-xs font-bold transition-all duration-300 flex items-center gap-2 shadow-lg shadow-accent-gold/20 scale-105">01 Contact Sensing →</button>
+            <button onclick="switchCat('cat-2')" onmouseenter="switchCat('cat-2')" id="tab-cat-2" class="cat-pill px-4 py-2.5 rounded-2xl border border-white/15 bg-white/5 hover:border-accent-gold text-xs text-white/80 hover:text-white transition-all duration-300 flex items-center gap-2">02 Non Contact Sensing →</button>
+            <button onclick="switchCat('cat-3')" onmouseenter="switchCat('cat-3')" id="tab-cat-3" class="cat-pill px-4 py-2.5 rounded-2xl border border-white/15 bg-white/5 hover:border-accent-gold text-xs text-white/80 hover:text-white transition-all duration-300 flex items-center gap-2">03 Electrical Heating →</button>
+            <button onclick="switchCat('cat-4')" onmouseenter="switchCat('cat-4')" id="tab-cat-4" class="cat-pill px-4 py-2.5 rounded-2xl border border-white/15 bg-white/5 hover:border-accent-gold text-xs text-white/80 hover:text-white transition-all duration-300 flex items-center gap-2">04 Cables & Alloys →</button>
+            <button onclick="switchCat('cat-5')" onmouseenter="switchCat('cat-5')" id="tab-cat-5" class="cat-pill px-4 py-2.5 rounded-2xl border border-white/15 bg-white/5 hover:border-accent-gold text-xs text-white/80 hover:text-white transition-all duration-300 flex items-center gap-2">05 Furnaces & Systems →</button>
+            <button onclick="switchCat('cat-6')" onmouseenter="switchCat('cat-6')" id="tab-cat-6" class="cat-pill px-4 py-2.5 rounded-2xl border border-white/15 bg-white/5 hover:border-accent-gold text-xs text-white/80 hover:text-white transition-all duration-300 flex items-center gap-2">06 Calibration & Services →</button>
+          </div>
+
+          <!-- Expanded Content Container directly beneath horizontal category strip -->
+          <div class="rounded-3xl border border-white/15 bg-neutral-900/90 p-8 backdrop-blur-2xl transition-all duration-300 shadow-2xl">
+            <!-- Panel 01: Contact Sensing -->
+            <div id="panel-cat-1" class="cat-content-panel active">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-4 border-r border-white/10 pr-6">
+                  <span class="text-[10px] font-mono text-accent-gold block tracking-widest uppercase mb-1">01 / THERMOCOUPLES & RTDS</span>
+                  <h3 class="text-2xl font-bold text-white mb-3">Contact Temperature Sensing</h3>
+                  <p class="text-xs text-white/70 leading-relaxed mb-6">High-precision contact sensors engineered for extreme temperature measurement across demanding industrial processes.</p>
+                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="inline-flex items-center gap-2 btn-dark text-xs py-2.5 px-5 rounded-full bg-white text-black hover:bg-accent-gold transition-colors font-semibold">Explore Contact Sensing →</a>
+                </div>
+                <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">01.1</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Thermocouples & RTDs</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">01.2</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Thermowells & Sheaths</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">01.3</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Temperature Gauges</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">01.4</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Transmitters & Indicators</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 02: Non Contact Sensing -->
+            <div id="panel-cat-2" class="cat-content-panel">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-4 border-r border-white/10 pr-6">
+                  <span class="text-[10px] font-mono text-accent-gold block tracking-widest uppercase mb-1">02 / PYROMETERS & IMAGERS</span>
+                  <h3 class="text-2xl font-bold text-white mb-3">Non-Contact Temperature Sensing</h3>
+                  <p class="text-xs text-white/70 leading-relaxed mb-6">Advanced infrared pyrometers and thermal imaging systems for molten metals and non-contact industrial monitoring.</p>
+                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="inline-flex items-center gap-2 btn-dark text-xs py-2.5 px-5 rounded-full bg-white text-black hover:bg-accent-gold transition-colors font-semibold">Explore Non-Contact →</a>
+                </div>
+                <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">02.1</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Fixed Infrared Pyrometers</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">02.2</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Portable Pyrometers</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">02.3</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Thermal Imagers</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">02.4</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Furnace Cameras</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 03: Electrical Heating -->
+            <div id="panel-cat-3" class="cat-content-panel">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-4 border-r border-white/10 pr-6">
+                  <span class="text-[10px] font-mono text-accent-gold block tracking-widest uppercase mb-1">03 / INDUSTRIAL HEATERS</span>
+                  <h3 class="text-2xl font-bold text-white mb-3">Electrical Heating Solutions</h3>
+                  <p class="text-xs text-white/70 leading-relaxed mb-6">Heavy-duty industrial heating elements, process heaters, and custom thermal solutions for demanding environments.</p>
+                  <a href="https://tempsens.com/ct/industrial-heaters/" class="inline-flex items-center gap-2 btn-dark text-xs py-2.5 px-5 rounded-full bg-white text-black hover:bg-accent-gold transition-colors font-semibold">Explore Heating →</a>
+                </div>
+                <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                  <a href="https://tempsens.com/ct/industrial-heaters/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">03.1</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Component Heaters</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/industrial-heaters/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">03.2</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Tubular & Immersion</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/industrial-heaters/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">03.3</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Process & Air Heaters</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/industrial-heaters/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">03.4</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Heating Jackets & Tapes</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 04: Cables & Alloys -->
+            <div id="panel-cat-4" class="cat-content-panel">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-4 border-r border-white/10 pr-6">
+                  <span class="text-[10px] font-mono text-accent-gold block tracking-widest uppercase mb-1">04 / MI & SPECIAL WIRES</span>
+                  <h3 class="text-2xl font-bold text-white mb-3">Cables & Special Alloys</h3>
+                  <p class="text-xs text-white/70 leading-relaxed mb-6">High-temperature thermocouple cables, mineral insulated (MI) cables, and nickel alloy conductors.</p>
+                  <a href="https://tempsens.com/ct/cables/" class="inline-flex items-center gap-2 btn-dark text-xs py-2.5 px-5 rounded-full bg-white text-black hover:bg-accent-gold transition-colors font-semibold">Explore Cables →</a>
+                </div>
+                <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                  <a href="https://tempsens.com/ct/cables/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">04.1</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Thermocouple Cables</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/cables/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">04.2</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Extension Wires</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/cables/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">04.3</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">MI Insulated Cables</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/cables/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">04.4</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Nickel & Special Alloys</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 05: Furnaces & Systems -->
+            <div id="panel-cat-5" class="cat-content-panel">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-4 border-r border-white/10 pr-6">
+                  <span class="text-[10px] font-mono text-accent-gold block tracking-widest uppercase mb-1">05 / PROCESS & LAB FURNACES</span>
+                  <h3 class="text-2xl font-bold text-white mb-3">Furnaces & Thermal Systems</h3>
+                  <p class="text-xs text-white/70 leading-relaxed mb-6">Laboratory R&D furnaces, industrial heat treatment systems, vacuum kilns, and thermal chambers.</p>
+                  <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="inline-flex items-center gap-2 btn-dark text-xs py-2.5 px-5 rounded-full bg-white text-black hover:bg-accent-gold transition-colors font-semibold">Explore Furnaces →</a>
+                </div>
+                <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                  <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">05.1</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Laboratory Furnaces</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">05.2</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Box & Tube Furnaces</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">05.3</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Heat Treatment Units</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">05.4</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Vacuum & Pit Furnaces</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 06: Calibration & Services -->
+            <div id="panel-cat-6" class="cat-content-panel">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-4 border-r border-white/10 pr-6">
+                  <span class="text-[10px] font-mono text-accent-gold block tracking-widest uppercase mb-1">06 / CALIBRATION SOURCES</span>
+                  <h3 class="text-2xl font-bold text-white mb-3">Calibration & NABL Services</h3>
+                  <p class="text-xs text-white/70 leading-relaxed mb-6">Thermal calibrators, dry block units, reference standards, and accredited NABL calibration laboratories.</p>
+                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="inline-flex items-center gap-2 btn-dark text-xs py-2.5 px-5 rounded-full bg-white text-black hover:bg-accent-gold transition-colors font-semibold">Explore Calibration →</a>
+                </div>
+                <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">06.1</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Temperature Calibrators</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">06.2</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Dry Block Calibrators</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">06.3</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">Reference Standards</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                  <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-accent-gold hover:bg-white/10 transition-all group flex flex-col justify-between">
+                    <div>
+                      <span class="text-accent-gold text-[10px] font-mono block mb-1">06.4</span>
+                      <h4 class="text-xs font-semibold text-white group-hover:text-accent-gold transition-colors">NABL Calibration</h4>
+                    </div>
+                    <span class="mt-3 text-[10px] font-mono text-accent-gold opacity-0 group-hover:opacity-100 transition-opacity">Explore item →</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPANY MEGA DROPDOWN -->
+        <div id="mega-company" class="mega-content hidden">
+          <div class="text-center pb-4 mb-6 border-b border-white/10">
+            <span class="text-xs font-mono uppercase tracking-widest text-accent-gold">About Tempsens Group</span>
+            <h3 class="text-xl font-light text-white mt-1">Thermal Engineering Pioneers Since 1976</h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a href="https://tempsens.com/about-us/" class="rounded-2xl bg-neutral-900/70 border border-white/10 p-5 hover:border-accent-gold hover:bg-neutral-900 transition-all block group">
+              <h4 class="text-sm font-semibold text-white group-hover:text-accent-gold transition-colors">About Tempsens</h4>
+              <p class="text-xs text-white/60 mt-2 leading-relaxed">48+ years of thermal engineering excellence</p>
+            </a>
+            <a href="https://tempsens.com/about-us/" class="rounded-2xl bg-neutral-900/70 border border-white/10 p-5 hover:border-accent-gold hover:bg-neutral-900 transition-all block group">
+              <h4 class="text-sm font-semibold text-white group-hover:text-accent-gold transition-colors">Manufacturing Facilities</h4>
+              <p class="text-xs text-white/60 mt-2 leading-relaxed">11 backward-integrated global units</p>
+            </a>
+            <a href="https://tempsens.com/about-us/" class="rounded-2xl bg-neutral-900/70 border border-white/10 p-5 hover:border-accent-gold hover:bg-neutral-900 transition-all block group">
+              <h4 class="text-sm font-semibold text-white group-hover:text-accent-gold transition-colors">Quality & Certifications</h4>
+              <p class="text-xs text-white/60 mt-2 leading-relaxed">ISO 9001, NABL, CE & ATEX certified</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- INDUSTRIES MEGA DROPDOWN (ONLY THE 7 SPECIFIED INDUSTRIES) -->
+        <div id="mega-industries" class="mega-content hidden">
+          <div class="text-center pb-4 mb-6 border-b border-white/10">
+            <span class="text-xs font-mono uppercase tracking-widest text-accent-gold">Industrial Applications</span>
+            <h3 class="text-xl font-light text-white mt-1">Engineered for Critical Environments</h3>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+            <a href="https://tempsens.com/industry/steel-industry/" class="rounded-xl bg-neutral-900/60 border border-white/10 p-4 hover:border-accent-gold hover:bg-neutral-900 text-xs font-semibold text-white/90 hover:text-accent-gold flex items-center justify-between group transition-all">
+              <span>Steel</span><span class="text-accent-gold group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="https://tempsens.com/industry/cement-industry/" class="rounded-xl bg-neutral-900/60 border border-white/10 p-4 hover:border-accent-gold hover:bg-neutral-900 text-xs font-semibold text-white/90 hover:text-accent-gold flex items-center justify-between group transition-all">
+              <span>Cement</span><span class="text-accent-gold group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="https://tempsens.com/industry/oil-gas/" class="rounded-xl bg-neutral-900/60 border border-white/10 p-4 hover:border-accent-gold hover:bg-neutral-900 text-xs font-semibold text-white/90 hover:text-accent-gold flex items-center justify-between group transition-all">
+              <span>Petrochemical</span><span class="text-accent-gold group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="https://tempsens.com/industry/power-industry/" class="rounded-xl bg-neutral-900/60 border border-white/10 p-4 hover:border-accent-gold hover:bg-neutral-900 text-xs font-semibold text-white/90 hover:text-accent-gold flex items-center justify-between group transition-all">
+              <span>Power</span><span class="text-accent-gold group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="https://tempsens.com/industry/defence/" class="rounded-xl bg-neutral-900/60 border border-white/10 p-4 hover:border-accent-gold hover:bg-neutral-900 text-xs font-semibold text-white/90 hover:text-accent-gold flex items-center justify-between group transition-all">
+              <span>Nuclear & Defence</span><span class="text-accent-gold group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="https://tempsens.com/industry/glass-industry/" class="rounded-xl bg-neutral-900/60 border border-white/10 p-4 hover:border-accent-gold hover:bg-neutral-900 text-xs font-semibold text-white/90 hover:text-accent-gold flex items-center justify-between group transition-all">
+              <span>Glass</span><span class="text-accent-gold group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+            <a href="https://tempsens.com/industry/pharmaceutical-industry/" class="rounded-xl bg-neutral-900/60 border border-white/10 p-4 hover:border-accent-gold hover:bg-neutral-900 text-xs font-semibold text-white/90 hover:text-accent-gold flex items-center justify-between group transition-all">
+              <span>Plastic & Pharma</span><span class="text-accent-gold group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- INVESTORS MEGA DROPDOWN -->
+        <div id="mega-investors" class="mega-content hidden">
+          <div class="text-center pb-4 mb-6 border-b border-white/10">
+            <span class="text-xs font-mono uppercase tracking-widest text-accent-gold">Investor Relations</span>
+            <h3 class="text-xl font-light text-white mt-1">Financial Transparency & Corporate Governance</h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div class="rounded-2xl bg-neutral-900/80 border border-white/10 p-6">
+              <div class="text-center pb-3 border-b border-white/10 mb-3"><h4 class="text-sm font-semibold text-accent-gold uppercase tracking-wider">Financial Performance</h4></div>
+              <ul class="space-y-2 text-xs text-white/70">
+                <li><a href="https://tempsens.com/investors/" class="hover:text-white block py-1">Annual Reports & Financials</a></li>
+                <li><a href="https://tempsens.com/investors/" class="hover:text-white block py-1">Quarterly Performance Highlights</a></li>
+              </ul>
+            </div>
+            <div class="rounded-2xl bg-neutral-900/80 border border-white/10 p-6">
+              <div class="text-center pb-3 border-b border-white/10 mb-3"><h4 class="text-sm font-semibold text-accent-gold uppercase tracking-wider">Governance</h4></div>
+              <ul class="space-y-2 text-xs text-white/70">
+                <li><a href="https://tempsens.com/investors/" class="hover:text-white block py-1">Board of Directors</a></li>
+                <li><a href="https://tempsens.com/investors/" class="hover:text-white block py-1">Corporate Policies</a></li>
+              </ul>
+            </div>
+            <div class="rounded-2xl bg-neutral-900/80 border border-white/10 p-6">
+              <div class="text-center pb-3 border-b border-white/10 mb-3"><h4 class="text-sm font-semibold text-accent-gold uppercase tracking-wider">Disclosures</h4></div>
+              <ul class="space-y-2 text-xs text-white/70">
+                <li><a href="https://tempsens.com/investors/" class="hover:text-white block py-1">Shareholder Notices & Filings</a></li>
+                <li><a href="https://tempsens.com/investors/" class="hover:text-white block py-1">Investor Contacts</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESOURCES MEGA DROPDOWN -->
+        <div id="mega-resources" class="mega-content hidden">
+          <div class="text-center pb-4 mb-6 border-b border-white/10">
+            <span class="text-xs font-mono uppercase tracking-widest text-accent-gold">Knowledge & Literature</span>
+            <h3 class="text-xl font-light text-white mt-1">Technical Resources & Thermal Engineering Guides</h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <a href="https://tempsens.com/literature/" class="rounded-2xl bg-neutral-900/70 border border-white/10 p-5 hover:border-accent-gold transition-all block text-center">
+              <span class="text-2xl block mb-2">📄</span><h4 class="text-sm font-semibold text-white">Product Catalogues</h4>
+            </a>
+            <a href="https://tempsens.com/literature/" class="rounded-2xl bg-neutral-900/70 border border-white/10 p-5 hover:border-accent-gold transition-all block text-center">
+              <span class="text-2xl block mb-2">⚙️</span><h4 class="text-sm font-semibold text-white">Application Notes</h4>
+            </a>
+            <a href="https://tempsens.com/blog/" class="rounded-2xl bg-neutral-900/70 border border-white/10 p-5 hover:border-accent-gold transition-all block text-center">
+              <span class="text-2xl block mb-2">📰</span><h4 class="text-sm font-semibold text-white">Technical Blog</h4>
+            </a>
+            <a href="https://tempsens.com/literature/" class="rounded-2xl bg-neutral-900/70 border border-white/10 p-5 hover:border-accent-gold transition-all block text-center">
+              <span class="text-2xl block mb-2">🔬</span><h4 class="text-sm font-semibold text-white">Whitepapers</h4>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const navbar = document.getElementById('navbar');
+      const triggers = document.querySelectorAll('.nav-trigger');
+      const megaDropdown = document.getElementById('mega-dropdown');
+      const megaContents = document.querySelectorAll('.mega-content');
+
+      triggers.forEach(trigger => {
+        trigger.addEventListener('mouseenter', () => {
+          const targetId = trigger.getAttribute('data-target');
+          megaContents.forEach(content => {
+            if (content.id === targetId) {
+              content.classList.remove('hidden');
+            } else {
+              content.classList.add('hidden');
+            }
+          });
+          megaDropdown.classList.remove('hidden');
+        });
+      });
+
+      navbar.addEventListener('mouseleave', () => {
+        megaDropdown.classList.add('hidden');
+      });
+    });
+  </script>
+
+  <!-- UNCHANGED HERO -->
+  <section class="relative min-h-[90vh] lg:min-h-screen flex items-end bg-bg-dark overflow-hidden pt-28 pb-12 md:pb-16">
+    <div class="absolute inset-0 z-0">
+      <img src="Thermal.png" alt="Thermal Engineering" class="w-full h-full object-cover object-left opacity-100">
+    </div>
+    <div class="relative z-10 max-w-[1720px] mx-auto px-6 lg:px-12 w-full">
+      <div class="flex flex-col md:flex-row items-end justify-between gap-8">
+        <div class="flex flex-wrap gap-4 items-center">
+          <a href="https://tempsens.com/contact-us/" class="btn-dark shadow-2xl backdrop-blur-md bg-white/95 text-bg-dark hover:bg-accent-gold">Request Quote</a>
+          <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="px-6 py-3 border border-white/40 bg-black/40 backdrop-blur-md text-white text-[12px] font-medium uppercase tracking-wider hover:border-white hover:bg-black/60 transition-all shadow-2xl">Explore Catalogue →</a>
+        </div>
+        <div class="w-full md:w-auto flex justify-end ml-auto">
+          <div class="pill-container flex gap-2 md:gap-3 h-[520px] md:h-[calc(100vh-180px)] max-h-[800px] w-full md:w-[380px] lg:w-[420px] xl:w-[460px]">
+            <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="pill-card relative overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/20 shadow-2xl block group backdrop-blur-md">
+              <img src="Contact Sensing.jpeg" class="absolute inset-0 w-full h-full object-cover group-hover:object-contain group-hover:p-1.5 transition-all duration-500 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/85"></div>
+              <div class="absolute inset-0 p-4 md:p-5 flex flex-col justify-between z-10">
+                <span class="text-[10px] font-mono text-white/90 bg-black/40 px-2.5 py-0.5 rounded-full border border-white/20 w-max">01</span>
+                <div class="expanded-content"><span class="text-micro text-accent-gold block mb-0.5">Thermocouples & RTDs</span><h3 class="text-white text-base md:text-lg font-light">Contact Sensing</h3></div>
+                <div class="collapsed-title absolute bottom-6 left-0 right-0 text-center"><span class="text-white/90 text-[11px] font-medium tracking-wider uppercase drop-shadow" style="writing-mode: vertical-rl; transform: rotate(180deg);">Contact Sensing</span></div>
+              </div>
+            </a>
+            <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="pill-card relative overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/20 shadow-2xl block group backdrop-blur-md">
+              <img src="Non Contact Sensing.jpeg" class="absolute inset-0 w-full h-full object-cover group-hover:object-contain group-hover:p-1.5 transition-all duration-500 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/85"></div>
+              <div class="absolute inset-0 p-4 md:p-5 flex flex-col justify-between z-10">
+                <span class="text-[10px] font-mono text-white/90 bg-black/40 px-2.5 py-0.5 rounded-full border border-white/20 w-max">02</span>
+                <div class="expanded-content"><span class="text-micro text-accent-gold block mb-0.5">Pyrometers & Imagers</span><h3 class="text-white text-base md:text-lg font-light">Non Contact Sensing</h3></div>
+                <div class="collapsed-title absolute bottom-6 left-0 right-0 text-center"><span class="text-white/90 text-[11px] font-medium tracking-wider uppercase drop-shadow" style="writing-mode: vertical-rl; transform: rotate(180deg);">Non Contact Sensing</span></div>
+              </div>
+            </a>
+            <a href="https://tempsens.com/ct/industrial-heaters/" class="pill-card relative overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/20 shadow-2xl block group backdrop-blur-md">
+              <img src="Electric Heating Solutions.jpeg" class="absolute inset-0 w-full h-full object-cover group-hover:object-contain group-hover:p-1.5 transition-all duration-500 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/85"></div>
+              <div class="absolute inset-0 p-4 md:p-5 flex flex-col justify-between z-10">
+                <span class="text-[10px] font-mono text-white/90 bg-black/40 px-2.5 py-0.5 rounded-full border border-white/20 w-max">03</span>
+                <div class="expanded-content"><span class="text-micro text-accent-gold block mb-0.5">Industrial Heaters</span><h3 class="text-white text-base md:text-lg font-light">Electrical Heating Solutions</h3></div>
+                <div class="collapsed-title absolute bottom-6 left-0 right-0 text-center"><span class="text-white/90 text-[11px] font-medium tracking-wider uppercase drop-shadow" style="writing-mode: vertical-rl; transform: rotate(180deg);">Electrical Heating Solutions</span></div>
+              </div>
+            </a>
+            <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="pill-card relative overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/20 shadow-2xl block group backdrop-blur-md">
+              <img src="Lab & Ind Furnace.jpeg" class="absolute inset-0 w-full h-full object-cover group-hover:object-contain group-hover:p-1.5 transition-all duration-500 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/85"></div>
+              <div class="absolute inset-0 p-4 md:p-5 flex flex-col justify-between z-10">
+                <span class="text-[10px] font-mono text-white/90 bg-black/40 px-2.5 py-0.5 rounded-full border border-white/20 w-max">04</span>
+                <div class="expanded-content"><span class="text-micro text-accent-gold block mb-0.5">Process & Lab Furnaces</span><h3 class="text-white text-base md:text-lg font-light">Lab & Ind Furnace</h3></div>
+                <div class="collapsed-title absolute bottom-6 left-0 right-0 text-center"><span class="text-white/90 text-[11px] font-medium tracking-wider uppercase drop-shadow" style="writing-mode: vertical-rl; transform: rotate(180deg);">Lab & Ind Furnace</span></div>
+              </div>
+            </a>
+            <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="pill-card relative overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/20 shadow-2xl block group backdrop-blur-md">
+              <img src="temperature calibrator.jpeg" class="absolute inset-0 w-full h-full object-cover group-hover:object-contain group-hover:p-1.5 transition-all duration-500 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/85"></div>
+              <div class="absolute inset-0 p-4 md:p-5 flex flex-col justify-between z-10">
+                <span class="text-[10px] font-mono text-white/90 bg-black/40 px-2.5 py-0.5 rounded-full border border-white/20 w-max">05</span>
+                <div class="expanded-content"><span class="text-micro text-accent-gold block mb-0.5">Calibration Sources</span><h3 class="text-white text-base md:text-lg font-light">Temp Calibrator</h3></div>
+                <div class="collapsed-title absolute bottom-6 left-0 right-0 text-center"><span class="text-white/90 text-[11px] font-medium tracking-wider uppercase drop-shadow" style="writing-mode: vertical-rl; transform: rotate(180deg);">Temp Calibrator</span></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 — THE OPENING STATEMENT -->
+  <section class="py-24 bg-bg-primary border-b border-rule">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-16">
+      <span class="text-micro text-accent-gold">THERMAL ENGINEERING</span>
+      <h2 class="mt-6 text-[36px] sm:text-[54px] lg:text-[72px] font-light leading-[1.08] text-text-primary max-w-5xl tracking-tight">
+        When temperature matters, precision matters more.
+      </h2>
+      <p class="mt-8 text-xl text-text-secondary max-w-3xl font-light">
+        From sensing and measurement to heating, specialised cables and thermal processing, Tempsens engineers solutions for the temperatures that keep industries moving.
+      </p>
+      <div class="mt-8 space-y-1 text-sm font-mono text-text-muted">
+        <p>Built around engineering expertise.</p>
+        <p>Designed around the process.</p>
+        <p>Made for the conditions that matter.</p>
+      </div>
+      <div class="mt-12">
+        <a href="#verticals" class="btn-primary">Explore our capabilities →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 — WHAT TEMPSENS ACTUALLY DOES -->
+  <section class="py-24 bg-bg-primary" id="verticals">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-16">
+      <span class="text-micro text-accent-gold">ONE ENGINEERING PARTNER</span>
+      <h2 class="mt-4 text-4xl sm:text-5xl font-light text-text-primary">
+        We don't just measure temperature.<br>
+        <span class="text-text-secondary font-light">We engineer the systems around it.</span>
+      </h2>
+      <p class="mt-8 text-text-secondary max-w-3xl leading-relaxed">
+        Temperature sits at the heart of thousands of industrial processes. Getting it right means more than selecting a sensor. It means understanding the application, the material, the environment, the heat, the process — and what happens when any of them change. That is where Tempsens comes in.
+      </p>
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-bg-warm p-8 border border-rule hover:border-accent-red transition-colors flex flex-col justify-between">
+          <div>
+            <span class="text-micro text-accent-red font-bold">01 — TEMPERATURE SENSING</span>
+            <h3 class="mt-4 text-xl font-light">Know what is happening.</h3>
+            <p class="mt-3 text-text-muted text-sm leading-relaxed">Contact and non-contact temperature measurement for demanding industrial and research applications.</p>
+          </div>
+          <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="mt-8 text-micro text-accent-red font-bold inline-block">Explore temperature sensing →</a>
+        </div>
+        <div class="bg-bg-warm p-8 border border-rule hover:border-accent-red transition-colors flex flex-col justify-between">
+          <div>
+            <span class="text-micro text-accent-red font-bold">02 — ELECTRICAL HEATING</span>
+            <h3 class="mt-4 text-xl font-light">Control what happens next.</h3>
+            <p class="mt-3 text-text-muted text-sm leading-relaxed">Industrial heating solutions engineered around the process, application and operating environment.</p>
+          </div>
+          <a href="https://tempsens.com/ct/industrial-heaters/" class="mt-8 text-micro text-accent-red font-bold inline-block">Explore heating solutions →</a>
+        </div>
+        <div class="bg-bg-warm p-8 border border-rule hover:border-accent-red transition-colors flex flex-col justify-between">
+          <div>
+            <span class="text-micro text-accent-red font-bold">03 — SPECIALISED CABLES</span>
+            <h3 class="mt-4 text-xl font-light">Make the signal travel.</h3>
+            <p class="mt-3 text-text-muted text-sm leading-relaxed">Specialised cables, conductors and thermocouple alloys engineered for reliable temperature measurement and electrical applications.</p>
+          </div>
+          <a href="https://tempsens.com/ct/cables/" class="mt-8 text-micro text-accent-red font-bold inline-block">Explore cables →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- 04 — THE CUSTOM ENGINEERING SECTION -->
+  <section class="py-24 bg-bg-warm">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-16">
+      <span class="text-micro text-accent-gold">WHEN STANDARD ISN'T ENOUGH</span>
+      <h2 class="mt-4 text-4xl sm:text-6xl font-light text-text-primary">
+        Your process isn't standard.<br>
+        <span class="text-accent-red">Your solution shouldn't be either.</span>
+      </h2>
+      <p class="mt-6 text-text-secondary max-w-3xl leading-relaxed">
+        Industrial environments rarely follow a catalogue. Temperature, pressure, vibration, material, space, installation and process conditions can all change what the right solution looks like. Tempsens works with customers to develop thermal solutions around those realities.
+      </p>
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 border border-rule shadow-sm">
+          <span class="text-micro text-accent-gold block mb-1">01</span>
+          <h3 class="text-2xl font-bold">UNDERSTAND</h3>
+          <p class="text-xs text-text-muted mt-1">The application.</p>
+        </div>
+        <div class="bg-white p-6 border border-rule shadow-sm">
+          <span class="text-micro text-accent-gold block mb-1">02</span>
+          <h3 class="text-2xl font-bold">ENGINEER</h3>
+          <p class="text-xs text-text-muted mt-1">The solution.</p>
+        </div>
+        <div class="bg-white p-6 border border-rule shadow-sm">
+          <span class="text-micro text-accent-gold block mb-1">03</span>
+          <h3 class="text-2xl font-bold">DELIVER</h3>
+          <p class="text-xs text-text-muted mt-1">For the process.</p>
+        </div>
+      </div>
+      <div class="mt-10">
+        <a href="https://tempsens.com/contact-us/" class="btn-primary">Talk to an engineer →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 — MANUFACTURING / BACKWARD INTEGRATION -->
+  <section class="py-24 bg-bg-primary border-t border-rule">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="text-micro text-accent-gold">BUILT FROM WITHIN</span>
+        <h2 class="mt-4 text-4xl sm:text-5xl font-light text-text-primary">
+          More control.<br>
+          <span class="text-text-secondary font-light">Fewer compromises.</span>
+        </h2>
+        <p class="mt-6 text-text-secondary leading-relaxed">
+          Some of the most critical parts of a thermal solution are made long before the finished product reaches the customer. Tempsens' backward-integrated manufacturing capabilities give the company control across key stages of production — from alloy melting and wire drawing to fabrication, assembly and calibration.
+        </p>
+        <div class="mt-8 p-6 bg-bg-dark text-white rounded-lg inline-block">
+          <span class="text-micro text-accent-gold block mb-1">CAPABILITY</span>
+          <span class="text-xl font-bold tracking-wider">FROM MATERIAL TO MEASUREMENT.</span>
+        </div>
+        <div class="mt-8">
+          <a href="https://tempsens.com/about-us/" class="btn-primary">See how we manufacture →</a>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="p-6 bg-bg-warm border border-rule rounded">
+          <span class="text-micro text-accent-red font-bold">ALLOY</span>
+          <p class="mt-2 text-xs text-text-secondary">Control begins with the material.</p>
+        </div>
+        <div class="p-6 bg-bg-warm border border-rule rounded">
+          <span class="text-micro text-accent-red font-bold">WIRE</span>
+          <p class="mt-2 text-xs text-text-secondary">Precision continues through manufacturing.</p>
+        </div>
+        <div class="p-6 bg-bg-warm border border-rule rounded">
+          <span class="text-micro text-accent-red font-bold">ASSEMBLY</span>
+          <p class="mt-2 text-xs text-text-secondary">Components become application-ready solutions.</p>
+        </div>
+        <div class="p-6 bg-bg-warm border border-rule rounded">
+          <span class="text-micro text-accent-red font-bold">CALIBRATION</span>
+          <p class="mt-2 text-xs text-text-secondary">Performance is verified before it reaches the process.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 — INDUSTRIES (Skiper35 UI Hover Expand Component) -->
+  <section class="py-24 bg-bg-dark text-white overflow-hidden" id="industries">
+    <div class="max-w-[1720px] mx-auto px-6 lg:px-12">
+      <span class="text-micro text-accent-gold">BUILT FOR REAL PROCESSES</span>
+      <h2 class="mt-4 text-4xl sm:text-5xl font-light text-white">
+        Different industries. Different temperatures. One demand for precision.
+      </h2>
+      <p class="mt-6 text-text-muted max-w-3xl leading-relaxed font-light mb-12">
+        From extreme heat in steel and glass to controlled environments in pharmaceuticals and research, thermal conditions change from process to process. Tempsens develops solutions across industries where temperature affects safety, quality, efficiency and performance.
+      </p>
+
+      <!-- Skiper35 Hover Expand Stack Container -->
+      <div class="ind-pill-container flex gap-2 h-[480px] md:h-[560px] w-full overflow-hidden border-y border-white/10 py-3">
+        
+        <!-- Industry 01: STEEL -->
+        <a href="https://tempsens.com/industry/steel-industry/" class="ind-pill-card relative overflow-hidden rounded-3xl border border-white/15 shadow-2xl block group backdrop-blur-md bg-neutral-900">
+          <img src="Thermal.png" alt="Steel Industry" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/90"></div>
+          <div class="absolute inset-0 p-6 flex flex-col justify-between z-10">
+            <span class="text-[10px] font-mono text-accent-gold bg-black/60 px-2.5 py-1 rounded border border-white/15 w-max">01</span>
+            <div class="expanded-content">
+              <span class="text-micro text-accent-gold block mb-1 font-bold">BUILT FOR REAL PROCESSES</span>
+              <h3 class="text-white text-2xl md:text-3xl font-light">STEEL</h3>
+              <p class="mt-2 text-xs md:text-sm text-text-muted leading-relaxed max-w-md">Extreme heat thermal measurement and process monitoring through steelmaking conditions.</p>
+              <span class="mt-4 inline-block text-xs font-mono text-accent-gold font-bold">Explore Steel Solutions →</span>
+            </div>
+            <div class="collapsed-title absolute bottom-6 left-0 right-0 text-center">
+              <span class="text-white/80 text-[12px] font-mono tracking-wider uppercase whitespace-nowrap drop-shadow" style="writing-mode: vertical-rl; transform: rotate(180deg);">01 — STEEL</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Industry 02: CEMENT -->
+        <a href="https://tempsens.com/industry/cement-industry/" class="ind-pill-card relative overflow-hidden rounded-3xl border border-white/15 shadow-2xl block group backdrop-blur-md bg-neutral-900">
+          <img src="Lab & Ind Furnace.jpeg" alt="Cement Industry" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/90"></div>
+          <div class="absolute inset-0 p-6 flex flex-col justify-between z-10">
+            <span class="text-[10px] font-mono text-accent-gold bg-black/60 px-2.5 py-1 rounded border border-white/15 w-max">02</span>
+            <div class="expanded-content">
+              <span class="text-micro text-accent-gold block mb-1 font-bold">BUILT FOR REAL PROCESSES</span>
+              <h3 class="text-white text-2xl md:text-3xl font-light">CEMENT</h3>
+              <p class="mt-2 text-xs md:text-sm text-text-muted leading-relaxed max-w-md">Thermal measurement and profiling across rotary kilns and energy-intensive processes.</p>
+              <span class="mt-4 inline-block text-xs font-mono text-accent-gold font-bold">Explore Cement Solutions →</span>
+            </div>
+            <div class="collapsed-title absolute bottom-6 left-0 right-0 text-center">
+              <span class="text-white/80 text-[12px] font-mono tracking-wider uppercase whitespace-nowrap drop-shadow" style="writing-mode: vertical-rl; transform: rotate(180deg);">02 — CEMENT</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Industry 03: PETROCHEMICAL -->
+        <a href="https://tempsens.com/industry/oil-gas/" class="ind-pill-card relative overflow-hidden rounded-3xl border border-white/15 shadow-2xl block group backdrop-blur-md bg-neutral-900">
+          <img src="Electric Heating Solutions.jpeg" alt="Petrochemical Industry" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/90"></div>
+          <div class="absolute inset-0 p-6 flex flex-col justify-between z-10">
+            <span class="text-[10px] font-mono text-accent-gold bg-black/60 px-2.5 py-1 rounded border border-white/15 w-max">03</span>
+            <div class="expanded-content">
+              <span class="text-micro text-accent-gold block mb-1 font-bold">BUILT FOR REAL PROCESSES</span>
+              <h3 class="text-white text-2xl md:text-3xl font-light">PETROCHEMICAL</h3>
+              <p class="mt-2 text-xs md:text-sm text-text-muted leading-relaxed max-w-md">High-reliability sensing and heating solutions for demanding chemical process environments.</p>
+              <span class="mt-4 inline-block text-xs font-mono text-accent-gold font-bold">Explore Petrochemical Solutions →</span>
+            </div>
+            <div class="collapsed-title absolute bottom-6 left-0 right-0 text-center">
+              <span class="text-white/80 text-[12px] font-mono tracking-wider uppercase whitespace-nowrap drop-shadow" style="writing-mode: vertical-rl; transform: rotate(180deg);">03 — PETROCHEMICAL</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Industry 04: POWER -->
+        <a href="https://tempsens.com/industry/power-industry/" class="ind-pill-card relative overflow-hidden rounded-3xl border border-white/15 shadow-2xl block group backdrop-blur-md bg-neutral-900">
+          <img src="Contact Sensing.jpeg" alt="Power Generation" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/90"></div>
+          <div class="absolute inset-0 p-6 flex flex-col justify-between z-10">
+            <span class="text-[10px] font-mono text-accent-gold bg-black/60 px-2.5 py-1 rounded border border-white/15 w-max">04</span>
+            <div class="expanded-content">
+              <span class="text-micro text-accent-gold block mb-1 font-bold">BUILT FOR REAL PROCESSES</span>
+              <h3 class="text-white text-2xl md:text-3xl font-light">POWER</h3>
+              <p class="mt-2 text-xs md:text-sm text-text-muted leading-relaxed max-w-md">Precision sensing and monitoring across power generation and thermal plant operations.</p>
+              <span class="mt-4 inline-block text-xs font-mono text-accent-gold font-bold">Explore Power Solutions →</span>
+            </div>
+            <div class="collapsed-title absolute bottom-6 left-0 right-0 text-center">
+              <span class="text-white/80 text-[12px] font-mono tracking-wider uppercase whitespace-nowrap drop-shadow" style="writing-mode: vertical-rl; transform: rotate(180deg);">04 — POWER</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Industry 05: NUCLEAR & DEFENCE -->
+        <a href="https://tempsens.com/industry/defence/" class="ind-pill-card relative overflow-hidden rounded-3xl border border-white/15 shadow-2xl block group backdrop-blur-md bg-neutral-900">
+          <img src="Non Contact Sensing.jpeg" alt="Nuclear & Defence" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/90"></div>
+          <div class="absolute inset-0 p-6 flex flex-col justify-between z-10">
+            <span class="text-[10px] font-mono text-accent-gold bg-black/60 px-2.5 py-1 rounded border border-white/15 w-max">05</span>
+            <div class="expanded-content">
+              <span class="text-micro text-accent-gold block mb-1 font-bold">BUILT FOR REAL PROCESSES</span>
+              <h3 class="text-white text-2xl md:text-3xl font-light">NUCLEAR & DEFENCE</h3>
+              <p class="mt-2 text-xs md:text-sm text-text-muted leading-relaxed max-w-md">Specialised high-specification sensors and systems for critical aerospace and nuclear reactors.</p>
+              <span class="mt-4 inline-block text-xs font-mono text-accent-gold font-bold">Explore Defence Solutions →</span>
+            </div>
+            <div class="collapsed-title absolute bottom-6 left-0 right-0 text-center">
+              <span class="text-white/80 text-[12px] font-mono tracking-wider uppercase whitespace-nowrap drop-shadow" style="writing-mode: vertical-rl; transform: rotate(180deg);">05 — NUCLEAR & DEFENCE</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Industry 06: GLASS -->
+        <a href="https://tempsens.com/industry/glass-industry/" class="ind-pill-card relative overflow-hidden rounded-3xl border border-white/15 shadow-2xl block group backdrop-blur-md bg-neutral-900">
+          <img src="Non Contact Sensing.jpeg" alt="Glass Industry" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/90"></div>
+          <div class="absolute inset-0 p-6 flex flex-col justify-between z-10">
+            <span class="text-[10px] font-mono text-accent-gold bg-black/60 px-2.5 py-1 rounded border border-white/15 w-max">06</span>
+            <div class="expanded-content">
+              <span class="text-micro text-accent-gold block mb-1 font-bold">BUILT FOR REAL PROCESSES</span>
+              <h3 class="text-white text-2xl md:text-3xl font-light">GLASS</h3>
+              <p class="mt-2 text-xs md:text-sm text-text-muted leading-relaxed max-w-md">Non-contact pyrometry and high-temperature sensing for molten glass manufacturing.</p>
+              <span class="mt-4 inline-block text-xs font-mono text-accent-gold font-bold">Explore Glass Solutions →</span>
+            </div>
+            <div class="collapsed-title absolute bottom-6 left-0 right-0 text-center">
+              <span class="text-white/80 text-[12px] font-mono tracking-wider uppercase whitespace-nowrap drop-shadow" style="writing-mode: vertical-rl; transform: rotate(180deg);">06 — GLASS</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Industry 07: PLASTIC & PHARMA -->
+        <a href="https://tempsens.com/industry/pharmaceutical-industry/" class="ind-pill-card relative overflow-hidden rounded-3xl border border-white/15 shadow-2xl block group backdrop-blur-md bg-neutral-900">
+          <img src="temperature calibrator.jpeg" alt="Plastic & Pharma" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/90"></div>
+          <div class="absolute inset-0 p-6 flex flex-col justify-between z-10">
+            <span class="text-[10px] font-mono text-accent-gold bg-black/60 px-2.5 py-1 rounded border border-white/15 w-max">07</span>
+            <div class="expanded-content">
+              <span class="text-micro text-accent-gold block mb-1 font-bold">BUILT FOR REAL PROCESSES</span>
+              <h3 class="text-white text-2xl md:text-3xl font-light">PLASTIC & PHARMA</h3>
+              <p class="mt-2 text-xs md:text-sm text-text-muted leading-relaxed max-w-md">Precise thermal control and calibration for hygienic, pharma and polymer processing.</p>
+              <span class="mt-4 inline-block text-xs font-mono text-accent-gold font-bold">Explore Pharma Solutions →</span>
+            </div>
+            <div class="collapsed-title absolute bottom-6 left-0 right-0 text-center">
+              <span class="text-white/80 text-[12px] font-mono tracking-wider uppercase whitespace-nowrap drop-shadow" style="writing-mode: vertical-rl; transform: rotate(180deg);">07 — PLASTIC & PHARMA</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+      <div class="mt-10 text-center">
+        <a href="https://tempsens.com/industry/steel-industry/" class="btn-dark">Explore all industries →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 — THE GLOBAL SECTION -->
+  <section class="py-24 bg-bg-dark text-white">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="text-micro text-accent-gold">GLOBAL BY DESIGN</span>
+        <h2 class="mt-4 text-4xl sm:text-5xl font-light">Engineered in one place. Supporting processes everywhere.</h2>
+        <p class="mt-6 text-text-muted leading-relaxed font-light">
+          Tempsens has built a global manufacturing and operating presence to support customers across markets and applications. With manufacturing facilities across India, Indonesia, UAE, South Korea and other global locations, the organisation combines local support with international reach.
+        </p>
+        <div class="mt-8">
+          <a href="https://tempsens.com/about-us/" class="btn-dark">Explore our global presence →</a>
+        </div>
+      </div>
+      <div class="space-y-6">
+        <div class="p-6 bg-bg-charcoal border border-white/10 rounded flex items-center gap-6">
+          <div class="text-stat text-accent-gold">75+</div>
+          <div><h3 class="text-xs font-mono font-bold">COUNTRIES EXPORTED TO</h3><p class="text-xs text-text-muted mt-0.5">April 2022 – March 2025</p></div>
+        </div>
+        <div class="p-6 bg-bg-charcoal border border-white/10 rounded flex items-center gap-6">
+          <div class="text-stat text-accent-gold">11</div>
+          <div><h3 class="text-xs font-mono font-bold">MANUFACTURING UNITS</h3><p class="text-xs text-text-muted mt-0.5">Across the global Tempsens group</p></div>
+        </div>
+        <div class="p-6 bg-bg-charcoal border border-white/10 rounded flex items-center gap-6">
+          <div class="text-stat text-accent-gold text-3xl font-bold">GLOBAL</div>
+          <div><h3 class="text-xs font-mono font-bold">LOCAL APPLICATION SUPPORT</h3><p class="text-xs text-text-muted mt-0.5">Across key markets</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 — THE NUMBERS -->
+  <section class="py-20 bg-bg-primary border-y border-rule">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-16">
+      <span class="text-micro text-accent-gold">BUILT OVER TIME</span>
+      <h2 class="mt-4 text-4xl font-light text-text-primary mb-12">Experience is measured in more than years.</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="p-6 bg-bg-warm border border-rule rounded">
+          <div class="text-stat">48+</div>
+          <span class="text-micro text-accent-red font-bold block mt-2">YEARS EXPERIENCE</span>
+          <p class="text-xs text-text-muted mt-2">Decades spent understanding temperature, materials, processes and industrial applications.</p>
+        </div>
+        <div class="p-6 bg-bg-warm border border-rule rounded">
+          <div class="text-stat">12</div>
+          <span class="text-micro text-accent-red font-bold block mt-2">PATENTS</span>
+          <p class="text-xs text-text-muted mt-2">A continuing investment in engineering and innovation.</p>
+        </div>
+        <div class="p-6 bg-bg-warm border border-rule rounded">
+          <div class="text-stat">4,500+</div>
+          <span class="text-micro text-accent-red font-bold block mt-2">CUSTOMERS WORLDWIDE</span>
+          <p class="text-xs text-text-muted mt-2">Trusted across industrial and technical applications.</p>
+        </div>
+        <div class="p-6 bg-bg-warm border border-rule rounded">
+          <div class="text-stat">75+</div>
+          <span class="text-micro text-accent-red font-bold block mt-2">COUNTRIES</span>
+          <p class="text-xs text-text-muted mt-2">A growing global footprint serving customers across markets.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 — THE DIFFERENCE -->
+  <section class="py-24 bg-bg-primary">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-16">
+      <span class="text-micro text-accent-gold">WHY TEMPSENS</span>
+      <h2 class="mt-4 text-4xl sm:text-5xl font-light text-text-primary max-w-4xl">
+        The difference is what happens between the specification and the solution.
+      </h2>
+      <p class="mt-6 text-text-secondary max-w-3xl leading-relaxed">
+        A catalogue can tell you what a product is. Engineering tells you whether it will work. Tempsens combines manufacturing capability, application knowledge and thermal expertise to move from a requirement to a solution built around the process.
+      </p>
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="p-6 bg-bg-warm border border-rule rounded">
+          <span class="text-micro text-accent-red font-bold block mb-2">01</span>
+          <h3 class="font-bold text-base">ENGINEERING DEPTH</h3>
+          <p class="text-xs text-text-muted mt-2">Technical expertise across temperature sensing, heating, cables and thermal systems.</p>
+        </div>
+        <div class="p-6 bg-bg-warm border border-rule rounded">
+          <span class="text-micro text-accent-red font-bold block mb-2">02</span>
+          <h3 class="font-bold text-base">MANUFACTURING CONTROL</h3>
+          <p class="text-xs text-text-muted mt-2">Key manufacturing capabilities brought closer together under one organisation.</p>
+        </div>
+        <div class="p-6 bg-bg-warm border border-rule rounded">
+          <span class="text-micro text-accent-red font-bold block mb-2">03</span>
+          <h3 class="font-bold text-base">APPLICATION UNDERSTANDING</h3>
+          <p class="text-xs text-text-muted mt-2">Solutions shaped around actual operating environments, not just product specifications.</p>
+        </div>
+        <div class="p-6 bg-bg-warm border border-rule rounded">
+          <span class="text-micro text-accent-red font-bold block mb-2">04</span>
+          <h3 class="font-bold text-base">GLOBAL REACH</h3>
+          <p class="text-xs text-text-muted mt-2">International manufacturing and customer support across multiple markets.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 — CALIBRATION / PRECISION -->
+  <section class="py-24 bg-bg-warm">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="text-micro text-accent-gold">MEASURE WITH CONFIDENCE</span>
+        <h2 class="mt-4 text-4xl sm:text-5xl font-light text-text-primary">
+          Precision doesn't end when the sensor is installed.
+        </h2>
+        <p class="mt-6 text-text-secondary leading-relaxed">
+          Reliable temperature measurement depends on more than the instrument itself. Calibration, reference standards, thermal profiling and verification help ensure that what the process measures is what the process is actually experiencing.
+        </p>
+        <div class="mt-8">
+          <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="btn-primary">Explore calibration & services →</a>
+        </div>
+      </div>
+      <div class="bg-white p-8 border border-rule rounded shadow-sm">
+        <span class="text-micro text-accent-red font-bold block mb-4">SERVICE LIST</span>
+        <div class="grid grid-cols-2 gap-3 text-xs font-mono text-text-primary">
+          <div class="p-3 bg-bg-warm rounded">• Temperature Calibrators</div>
+          <div class="p-3 bg-bg-warm rounded">• Reference Sensors</div>
+          <div class="p-3 bg-bg-warm rounded">• Precision Thermometers</div>
+          <div class="p-3 bg-bg-warm rounded">• Reference Units</div>
+          <div class="p-3 bg-bg-warm rounded">• Thermal Profiling</div>
+          <div class="p-3 bg-bg-warm rounded">• Calibration Services</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 — BLOG & TECHNICAL ARTICLES SECTION -->
+  <section class="py-24 bg-bg-primary border-t border-rule" id="blog-section">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-16">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div>
+          <span class="text-micro text-accent-gold">INSIGHTS & ENGINEERING BLOG</span>
+          <h2 class="mt-4 text-4xl sm:text-5xl font-light text-text-primary">
+            Perspectives on thermal innovation.
+          </h2>
+          <p class="mt-4 text-text-secondary max-w-2xl leading-relaxed">
+            Discover the latest technical articles, industrial application guides, and thermal engineering breakthroughs from Tempsens R&D labs.
+          </p>
+        </div>
+        <div>
+          <a href="https://tempsens.com/blog/" class="btn-primary">Browse All Articles →</a>
+        </div>
+      </div>
+
+      <!-- Blog Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Blog Card 1 -->
+        <article class="bg-bg-warm border border-rule hover:border-accent-gold rounded-2xl overflow-hidden group transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-xl">
+          <div>
+            <div class="relative h-56 overflow-hidden bg-neutral-900">
+              <img src="Non Contact Sensing.jpeg" alt="Pyrometry in Molten Glass" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <span class="absolute top-4 left-4 bg-accent-gold text-black text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow">
+                APPLICATION NOTE
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="text-[11px] font-mono text-text-muted mb-2">5 MIN READ • AUG 2026</div>
+              <h3 class="text-xl font-semibold text-text-primary group-hover:text-accent-red transition-colors leading-snug">
+                Optimizing Infrared Pyrometry in Molten Glass & Steel Processing
+              </h3>
+              <p class="mt-3 text-xs text-text-secondary leading-relaxed">
+                How non-contact infrared thermal imaging eliminates signal drift and improves accuracy across extreme 1600°C furnace environments.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2">
+            <a href="https://tempsens.com/blog/" class="text-xs font-mono font-bold text-accent-red group-hover:text-accent-gold transition-colors inline-flex items-center gap-1">
+              Read Technical Article →
+            </a>
+          </div>
+        </article>
+
+        <!-- Blog Card 2 -->
+        <article class="bg-bg-warm border border-rule hover:border-accent-gold rounded-2xl overflow-hidden group transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-xl">
+          <div>
+            <div class="relative h-56 overflow-hidden bg-neutral-900">
+              <img src="temperature calibrator.jpeg" alt="Thermocouple Calibration" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <span class="absolute top-4 left-4 bg-accent-gold text-black text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow">
+                CALIBRATION GUIDE
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="text-[11px] font-mono text-text-muted mb-2">7 MIN READ • JUL 2026</div>
+              <h3 class="text-xl font-semibold text-text-primary group-hover:text-accent-red transition-colors leading-snug">
+                NABL & ISO/IEC 17025 Standard Calibration for Thermocouples
+              </h3>
+              <p class="mt-3 text-xs text-text-secondary leading-relaxed">
+                A comprehensive breakdown of primary reference standards, dry-block calibrators, and error margins in process temperature measurement.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2">
+            <a href="https://tempsens.com/blog/" class="text-xs font-mono font-bold text-accent-red group-hover:text-accent-gold transition-colors inline-flex items-center gap-1">
+              Read Calibration Guide →
+            </a>
+          </div>
+        </article>
+
+        <!-- Blog Card 3 -->
+        <article class="bg-bg-warm border border-rule hover:border-accent-gold rounded-2xl overflow-hidden group transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-xl">
+          <div>
+            <div class="relative h-56 overflow-hidden bg-neutral-900">
+              <img src="Thermal.png" alt="MI Cables in Aerospace" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <span class="absolute top-4 left-4 bg-accent-gold text-black text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow">
+                MATERIAL SCIENCE
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="text-[11px] font-mono text-text-muted mb-2">6 MIN READ • JUN 2026</div>
+              <h3 class="text-xl font-semibold text-text-primary group-hover:text-accent-red transition-colors leading-snug">
+                Mineral Insulated (MI) Cables for High-Vibration Defense Applications
+              </h3>
+              <p class="mt-3 text-xs text-text-secondary leading-relaxed">
+                Engineering high-purity MgO insulated thermocouple cables that survive severe mechanical vibration and nuclear radiation environments.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2">
+            <a href="https://tempsens.com/blog/" class="text-xs font-mono font-bold text-accent-red group-hover:text-accent-gold transition-colors inline-flex items-center gap-1">
+              Read Engineering Study →
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 — NEWS / LATEST -->
+  <section class="py-24 bg-bg-warm">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-16">
+      <span class="text-micro text-accent-gold">FROM TEMPSENS</span>
+      <h2 class="mt-4 text-4xl font-light text-text-primary">What we're working on.</h2>
+      <p class="mt-2 text-text-secondary text-sm">New technologies. New applications. New markets. New ways of solving old thermal problems.</p>
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="https://tempsens.com/blog/" class="bg-white p-6 border border-rule rounded hover:border-accent-red block group">
+          <div class="flex justify-between text-micro text-accent-red font-mono"><span>TECHNOLOGY</span><span>AUG 2026</span></div>
+          <h3 class="mt-3 text-base font-light group-hover:text-accent-red">High-Temperature Sensor Calibration Techniques for Aerospace & Defence</h3>
+          <span class="mt-6 inline-block text-xs font-mono text-text-muted group-hover:text-text-primary">READ MORE →</span>
+        </a>
+        <a href="https://tempsens.com/blog/" class="bg-white p-6 border border-rule rounded hover:border-accent-red block group">
+          <div class="flex justify-between text-micro text-accent-red font-mono"><span>APPLICATION</span><span>JUL 2026</span></div>
+          <h3 class="mt-3 text-base font-light group-hover:text-accent-red">Optimising Thermal Profiling in Glass & Steel Manufacturing</h3>
+          <span class="mt-6 inline-block text-xs font-mono text-text-muted group-hover:text-text-primary">READ MORE →</span>
+        </a>
+        <a href="https://tempsens.com/blog/" class="bg-white p-6 border border-rule rounded hover:border-accent-red block group">
+          <div class="flex justify-between text-micro text-accent-red font-mono"><span>INNOVATION</span><span>JUN 2026</span></div>
+          <h3 class="mt-3 text-base font-light group-hover:text-accent-red">Next-Generation Mineral Insulated Cables for Extreme Process Environments</h3>
+          <span class="mt-6 inline-block text-xs font-mono text-text-muted group-hover:text-text-primary">READ MORE →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 — FINAL CONVERSION SECTION -->
+  <section class="py-28 bg-bg-dark text-white text-center">
+    <div class="max-w-4xl mx-auto px-6">
+      <span class="text-micro text-accent-gold">HAVE A THERMAL CHALLENGE?</span>
+      <h2 class="mt-6 text-4xl sm:text-6xl font-light leading-tight">Let's engineer the right solution.</h2>
+      <p class="mt-6 text-text-muted text-lg max-w-xl mx-auto font-light">
+        Tell us what you're trying to measure, heat, monitor or control. Our team can help you identify the right technology, configuration and approach for your application.
+      </p>
+      <div class="mt-10 flex flex-wrap justify-center items-center gap-6">
+        <a href="https://tempsens.com/contact-us/" class="btn-dark">Talk to our team →</a>
+        <a href="https://tempsens.com/contact-us/" class="px-6 py-3 border border-white/30 text-white text-xs font-medium uppercase tracking-wider hover:border-white">Request a quote →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 — FINAL BRAND STATEMENT -->
+  <section class="py-20 bg-bg-dark text-white border-t border-white/10 text-center">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl sm:text-5xl font-light">Temperature is only the starting point.</h2>
+      <div class="mt-4">
+        <span class="text-micro text-accent-gold font-bold">TEMPSENS</span>
+        <p class="text-xs text-text-muted mt-1">Thermal engineering solutions for the processes that keep industry moving.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 — FOOTER MICROCOPY -->
+  <footer class="bg-bg-dark text-white border-t border-white/10 py-12">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-16">
+      <div class="pb-12 border-b border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+        <span class="text-2xl font-bold">TEMPSENS</span>
+        <span class="text-micro text-accent-gold">THERMAL ENGINEERING. ENGINEERED AROUND YOUR PROCESS.</span>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 py-12 text-xs text-white/60">
+        <div>
+          <span class="text-micro text-accent-gold block mb-3">COMPANY</span>
+          <div class="space-y-1.5"><a href="https://tempsens.com/about-us/" class="block hover:text-white">About Tempsens</a><a href="https://tempsens.com/about-us/" class="block hover:text-white">Our Story</a><a href="https://tempsens.com/about-us/" class="block hover:text-white">Global Presence</a><a href="https://tempsens.com/award-and-accreditation/" class="block hover:text-white">Recognition</a><a href="https://tempsens.com/careers/" class="block hover:text-white">Careers</a></div>
+        </div>
+        <div>
+          <span class="text-micro text-accent-gold block mb-3">PRODUCTS</span>
+          <div class="space-y-1.5"><a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="block hover:text-white">Temperature Sensing</a><a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="block hover:text-white">Non-Contact Sensing</a><a href="https://tempsens.com/ct/industrial-heaters/" class="block hover:text-white">Industrial Heating</a><a href="https://tempsens.com/ct/cables/" class="block hover:text-white">Cables & Wires</a><a href="https://tempsens.com/ct/cables/nickel-thermocouple-alloy/" class="block hover:text-white">Nickel Alloys</a><a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="block hover:text-white">Furnaces</a><a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="block hover:text-white">Calibration & Services</a></div>
+        </div>
+        <div>
+          <span class="text-micro text-accent-gold block mb-3">INDUSTRIES</span>
+          <div class="space-y-1.5"><a href="https://tempsens.com/industry/power-industry/" class="block hover:text-white">Power</a><a href="https://tempsens.com/industry/oil-gas/" class="block hover:text-white">Oil & Gas</a><a href="https://tempsens.com/industry/steel-industry/" class="block hover:text-white">Steel</a><a href="https://tempsens.com/industry/glass-industry/" class="block hover:text-white">Glass</a><a href="https://tempsens.com/industry/cement-industry/" class="block hover:text-white">Cement</a><a href="https://tempsens.com/industry/steel-industry/" class="block hover:text-white">Aluminum</a><a href="https://tempsens.com/industry/pharmaceutical-industry/" class="block hover:text-white">Pharmaceutical</a><a href="https://tempsens.com/industry/defence/" class="block hover:text-white">Defence & Aerospace</a><a href="https://tempsens.com/literature/" class="block hover:text-white">Research & Development</a></div>
+        </div>
+        <div>
+          <span class="text-micro text-accent-gold block mb-3">RESOURCES</span>
+          <div class="space-y-1.5"><a href="https://tempsens.com/blog/" class="block hover:text-white">Blog</a><a href="https://tempsens.com/blog/" class="block hover:text-white">News & Events</a><a href="https://tempsens.com/literature/" class="block hover:text-white">Literature</a><a href="https://tempsens.com/videos/" class="block hover:text-white">Videos</a><a href="https://tempsens.com/faq/" class="block hover:text-white">FAQ</a></div>
+        </div>
+        <div>
+          <span class="text-micro text-accent-gold block mb-3">CONTACT</span>
+          <div class="space-y-1.5"><a href="https://tempsens.com/contact-us/" class="block hover:text-white">Talk to our team →</a><a href="https://tempsens.com/contact-us/" class="block hover:text-white">Request a quote →</a><span class="block pt-2 font-mono">+91-9358835576</span></div>
+        </div>
+      </div>
+      <div class="pt-8 text-center text-xs font-mono text-white/40">© Tempsens. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
