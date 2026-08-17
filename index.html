@@ -64,241 +64,258 @@
     .ind-pill-card .collapsed-title { opacity: 1; transition: opacity 0.25s ease; }
     .ind-pill-card:hover .collapsed-title { opacity: 0; }
 
+
+    /* Aceternity-inspired moving border, adapted to standalone HTML/CSS. */
+    @property --moving-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+    @keyframes movingBorderSpin { to { --moving-angle: 360deg; } }
+    .moving-border-hover { position: relative; isolation: isolate; }
+    .moving-border-hover::before {
+      content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px;
+      background: conic-gradient(from var(--moving-angle), transparent 0 72%, #fcaf16 80%, #c42b2b 88%, transparent 96%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; pointer-events: none; z-index: 2;
+    }
+    .moving-border-hover:hover::before, .moving-border-hover:focus-visible::before { opacity: 1; animation: movingBorderSpin 1.8s linear infinite; }
+    .pill-card.moving-border-hover::before, .ind-pill-card.moving-border-hover::before, .sk76-stage.moving-border-hover::before { z-index: 40; padding: 2px; }
+    .event-row.moving-border-hover { border-radius: 22px; margin: 8px; transition: background-color .3s ease, transform .3s cubic-bezier(.16,1,.3,1); }
+    .event-row.moving-border-hover:hover { background: rgba(255,255,255,.72); transform: translateY(-3px); }
+    .event-row.moving-border-hover::before { z-index: 5; padding: 2px; }
+    @media (prefers-reduced-motion: reduce) { .moving-border-hover:hover::before, .moving-border-hover:focus-visible::before { animation: none; } }
+
+
+    /* Hero stack: preserve full source artwork on hover (reference images are landscape, ~16:9). */
+    .pill-card { background:#000; }
+    .pill-card > img {
+      object-fit: cover;
+      object-position: center;
+      padding: 0 !important;
+      transform: scale(1.001);
+      transition: object-fit .2s ease, transform .6s cubic-bezier(.16,1,.3,1), opacity .4s ease;
+    }
+    .pill-container:hover .pill-card { flex: .22; }
+    .pill-container .pill-card:hover { flex: 8 !important; }
+    .pill-card:hover > img {
+      object-fit: contain !important;
+      object-position: center !important;
+      padding: 0 !important;
+      transform: none;
+    }
+    .pill-card > .absolute.inset-0.bg-gradient-to-b {
+      transition: opacity .45s cubic-bezier(.16,1,.3,1);
+    }
+    .pill-card:hover > .absolute.inset-0.bg-gradient-to-b { opacity:.08; }
+    .pill-card:hover .expanded-content {
+      text-shadow: 0 2px 18px rgba(0,0,0,.9);
+    }
+    @media (min-width: 768px) {
+      .pill-container { width: min(52vw, 900px) !important; }
+    }
+    @media (max-width: 767px) {
+      .pill-container { overflow-x:auto; }
+      .pill-container:hover .pill-card { flex:1; }
+      .pill-container .pill-card:hover { flex:5 !important; min-width:82vw; }
+    }
     .cat-content-panel { display: none; }
     .cat-content-panel.active { display: block; }
   </style>
+
+<style>
+/* Skiper76 / Apple Feature Block adaptation for the four Tempsens product families. */
+.sk76-feature{width:100%;display:grid;grid-template-columns:42px 1fr 30px;gap:16px;align-items:start;text-align:left;padding:26px 4px;border-bottom:1px solid rgba(0,0,0,.10);transition:padding .45s cubic-bezier(.16,1,.3,1),opacity .3s ease}.sk76-feature:last-child{border-bottom:0}.sk76-feature:not(.active){opacity:.48}.sk76-feature:hover{opacity:.78}.sk76-feature.active{opacity:1;padding-top:34px;padding-bottom:34px}.sk76-index{font:500 10px 'JetBrains Mono',monospace;color:#C42B2B;padding-top:7px}.sk76-copy h3{font-size:clamp(20px,2vw,31px);font-weight:400;letter-spacing:-.035em;line-height:1.1}.sk76-detail{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .5s cubic-bezier(.16,1,.3,1),opacity .35s ease,margin .5s ease}.sk76-detail>*{overflow:hidden}.sk76-feature.active .sk76-detail{grid-template-rows:1fr;opacity:1;margin-top:16px}.sk76-detail p{font-size:13px;line-height:1.65;color:#6B6B6B;max-width:460px}.sk76-detail span{display:block;margin-top:12px;font:400 10px/1.7 'JetBrains Mono',monospace;color:#9A9A9A;text-transform:uppercase;letter-spacing:.06em}.sk76-plus{font-size:25px;font-weight:200;line-height:1;transition:transform .45s cubic-bezier(.16,1,.3,1),color .3s}.sk76-feature.active .sk76-plus{transform:rotate(45deg);color:#C42B2B}.sk76-slide{position:absolute;inset:0;opacity:0;transform:scale(1.035);transition:opacity .65s ease,transform 1s cubic-bezier(.16,1,.3,1);pointer-events:none}.sk76-slide.active{opacity:1;transform:scale(1);pointer-events:auto}.sk76-slide img{width:100%;height:100%;object-fit:cover}.sk76-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82),rgba(0,0,0,.06) 58%,rgba(0,0,0,.08))}.sk76-caption{position:absolute;left:clamp(24px,4vw,52px);right:clamp(24px,4vw,52px);bottom:clamp(30px,5vw,58px);color:white}.sk76-caption span{display:block;font:500 10px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#FCAF16}.sk76-caption strong{display:block;margin-top:12px;max-width:620px;font-size:clamp(28px,4vw,54px);line-height:1.04;letter-spacing:-.04em;font-weight:300}.sk76-progress{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.15)}.sk76-progress i{display:block;height:100%;width:25%;background:#FCAF16;transition:transform .55s cubic-bezier(.16,1,.3,1)}@media(max-width:1023px){.sk76-stage{order:-1}.sk76-feature{padding:20px 0}.sk76-feature.active{padding:26px 0}}@media(prefers-reduced-motion:reduce){.sk76-slide,.sk76-feature,.sk76-detail,.sk76-plus,.sk76-progress i{transition:none!important}}
+</style>
 </head>
 <body class="antialiased">
 
 
-<!-- APPLE-STYLE NAVBAR + SKIPER35-INSPIRED PRODUCT HOVER EXPAND -->
-  <header id="navbar" class="fixed top-0 left-0 right-0 z-50">
-    <div class="border-b border-black/10 bg-white/90 backdrop-blur-2xl supports-[backdrop-filter]:bg-white/80">
-      <div class="max-w-[1720px] mx-auto px-6 lg:px-12">
-        <nav class="h-16 flex items-center justify-between" aria-label="Tempsens primary navigation">
-        <!-- Logo -->
-<a href="https://tempsens.com/" class="flex items-center justify-start shrink-0">
-  <img
-    src="logo.png"
-    alt="Tempsens"
-    class="h-6 w-auto object-contain"
-  >
-</a>
-          <div class="hidden lg:flex items-center justify-center gap-7 text-[12.5px] font-semibold text-black/70">
-            <button class="nav-trigger py-5 hover:text-black transition-colors" data-target="mega-company">Company</button>
-            <button class="nav-trigger py-5 text-black product-trigger" data-target="mega-products">Products</button>
-            <button class="nav-trigger py-5 hover:text-black transition-colors" data-target="mega-industries">Industries</button>
-            <button class="nav-trigger py-5 hover:text-black transition-colors" data-target="mega-investors">Investors</button>
-            <button class="nav-trigger py-5 hover:text-black transition-colors" data-target="mega-resources">Resources</button>
-            <a href="https://tempsens.com/events/" class="py-5 hover:text-black transition-colors">Events</a>
+<!-- FULL TEMPSENS NAVIGATION -->
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50">
+  <div class="border-b border-black/10 bg-white/95 backdrop-blur-2xl">
+    <div class="max-w-[1720px] mx-auto px-6 lg:px-12">
+      <nav class="h-16 flex items-center justify-between gap-5" aria-label="Tempsens primary navigation">
+        <a href="https://tempsens.com/" class="shrink-0"><img src="logo.png" alt="Tempsens" class="h-6 w-auto"></a>
+        <div class="hidden lg:flex items-center gap-6 text-[12px] font-semibold text-black/70">
+          <button class="nav-trigger py-5" data-target="mega-company">Company</button>
+          <button class="nav-trigger py-5" data-target="mega-products">Products</button>
+          <button class="nav-trigger py-5" data-target="mega-industries">Industries</button>
+          <button class="nav-trigger py-5" data-target="mega-investors">Investors</button>
+          <button class="nav-trigger py-5" data-target="mega-resources">Resources</button>
+          <a href="https://tempsens.com/events/" class="py-5 hover:text-black">Events</a>
+          <button class="nav-trigger py-5" data-target="mega-contact">Contact Us</button>
+        </div>
+        <div class="hidden lg:flex items-center gap-2">
+          <button id="search-toggle" class="nav-icon" aria-label="Search"><span class="text-lg">⌕</span></button>
+          <div class="relative">
+            <button id="language-toggle" class="nav-icon px-3 w-auto gap-2" aria-expanded="false">EN <span class="text-[9px]">⌄</span></button>
+            <div id="language-menu" class="hidden absolute right-0 top-12 w-52 rounded-2xl bg-white border border-black/10 shadow-2xl p-2 text-xs">
+              <a class="lang-item" href="https://tempsens.com/">English</a><a class="lang-item" href="https://tempsens.com/id/">Bahasa Indonesia</a><a class="lang-item" href="https://tempsens.com/pl/">Polski</a><a class="lang-item" href="https://tempsens.com/de/">Deutsch</a><a class="lang-item" href="https://tempsens.com/ko/">한국어</a><a class="lang-item" href="https://tempsens.com/es/">Español</a><a class="lang-item" href="https://tempsens.com/ae/">UAE</a><a class="lang-item" href="https://tempsens.com/ms/">Bahasa Melayu</a>
+            </div>
           </div>
-
-          <div class="hidden lg:flex items-center gap-3">
-            <a href="https://tempsens.com/contact-us/" class="px-4 py-2 rounded-full border border-black/15 text-[11px] font-semibold text-black hover:border-black/40 transition-colors">Contact</a>
-            <a href="https://tempsens.com/contact-us/" class="px-4 py-2 rounded-full bg-black text-white text-[11px] font-semibold hover:bg-accent-red transition-colors">Request Quote</a>
-          </div>
-
-          <button id="mobile-menu-btn" class="lg:hidden h-10 w-10 rounded-full border border-black/15 grid place-items-center" aria-label="Toggle navigation" aria-expanded="false">
-            <span class="text-xl leading-none">≡</span>
-          </button>
-        </nav>
-      </div>
+        </div>
+        <button id="mobile-menu-btn" class="lg:hidden nav-icon" aria-label="Toggle navigation">☰</button>
+      </nav>
     </div>
+  </div>
 
-    <!-- Desktop mega dropdown -->
-    <div id="mega-dropdown" class="hidden absolute top-16 left-0 right-0 px-4 lg:px-8 pointer-events-none">
-      <div class="max-w-[1500px] mx-auto pointer-events-auto">
-
-        <!-- Products: Skiper35 hover-expand interaction adapted into an Apple-style curved white card -->
-        <div id="mega-products" class="mega-content hidden nav-card bg-white rounded-[34px] border border-black/10 shadow-[0_28px_80px_rgba(0,0,0,0.16)] overflow-hidden">
-          <div class="px-8 pt-7 pb-4 border-b border-black/8">
-            <div class="flex items-center justify-between gap-4">
-              <span class="text-[10px] uppercase tracking-[0.18em] font-bold text-accent-red">Products</span>
-              <a href="https://tempsens.com/" class="text-[11px] font-semibold text-black/55 hover:text-accent-red transition-colors">View all products →</a>
-            </div>
-
-            <!-- Major categories: horizontal, hover to switch -->
-            <div class="product-category-row mt-5 flex items-center justify-between gap-1 overflow-x-auto" role="tablist" aria-label="Product categories">
-              <button class="product-cat active" data-product="contact" role="tab">Contact Sensing</button>
-              <button class="product-cat" data-product="noncontact" role="tab">Non-Contact Sensing</button>
-              <button class="product-cat" data-product="heating" role="tab">Electrical Heating</button>
-              <button class="product-cat" data-product="cables" role="tab">Cables & Alloys</button>
-              <button class="product-cat" data-product="furnaces" role="tab">Furnaces & Systems</button>
-              <button class="product-cat" data-product="calibration" role="tab">Calibration & Services</button>
-            </div>
-          </div>
-
-          <div class="relative min-h-[285px] px-8 pt-7 pb-8 bg-white">
-            <div class="product-panel active" data-panel="contact">
-              <div class="product-grid">
-                <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="product-tile"><span>Thermocouples & RTDs</span>→</a>
-                <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="product-tile"><span>Thermowells & Sheaths</span>→</a>
-                <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="product-tile"><span>Gauges</span>→</a>
-                <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="product-tile"><span>Transmitters & Indicators</span>→</a>
-              </div>
-            </div>
-
-            <div class="product-panel" data-panel="noncontact">
-              <div class="product-grid">
-                <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="product-tile"><span>Fixed Infrared Pyrometers</span><b>→</b></a>
-                <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="product-tile"><span>Portable Pyrometers</span><b>→</b></a>
-                <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="product-tile"><span>Thermal Imagers</span><b>→</b></a>
-                <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="product-tile"><span>Furnace Cameras</span><b>→</b></a>
-              </div>
-            </div>
-
-            <div class="product-panel" data-panel="heating">
-              <div class="product-grid">
-                <a href="https://tempsens.com/ct/industrial-heaters/" class="product-tile"><span>Component Heaters</span><b>→</b></a>
-                <a href="https://tempsens.com/ct/industrial-heaters/" class="product-tile"><span>Tubular & Immersion Heaters</span><b>→</b></a>
-                <a href="https://tempsens.com/ct/industrial-heaters/" class="product-tile"><span>Process & Air Heaters</span><b>→</b></a>
-                <a href="https://tempsens.com/ct/industrial-heaters/" class="product-tile"><span>Heating Jackets & Tapes</span><b>→</b></a>
-              </div>
-            </div>
-
-            <div class="product-panel" data-panel="cables">
-              <div class="product-grid">
-                <a href="https://tempsens.com/ct/cables/" class="product-tile"><span>Thermocouple Cables</span><b>→</b></a>
-                <a href="https://tempsens.com/ct/cables/" class="product-tile"><span>Extension Wires</span><b>→</b></a>
-                <a href="https://tempsens.com/ct/cables/" class="product-tile"><span>MI Insulated Cables</span><b>→</b></a>
-                <a href="https://tempsens.com/ct/cables/nickel-thermocouple-alloy/" class="product-tile"><span>Nickel & Special Alloys</span><b>→</b></a>
-              </div>
-            </div>
-
-            <div class="product-panel" data-panel="furnaces">
-              <div class="product-grid">
-                <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="product-tile"><span>Laboratory Furnaces</span><b>→</b></a>
-                <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="product-tile"><span>Box & Tube Furnaces</span><b>→</b></a>
-                <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="product-tile"><span>Heat Treatment Units</span><b>→</b></a>
-                <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="product-tile"><span>Vacuum & Pit Furnaces</span><b>→</b></a>
-              </div>
-            </div>
-
-            <div class="product-panel" data-panel="calibration">
-              <div class="product-grid">
-                <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="product-tile"><span>Temperature Calibrators</span><b>→</b></a>
-                <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="product-tile"><span>Dry Block Calibrators</span><b>→</b></a>
-                <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="product-tile"><span>Reference Standards</span><b>→</b></a>
-                <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="product-tile"><span>NABL Calibration</span><b>→</b></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="mega-company" class="mega-content hidden nav-card simple-mega">
-          <div><span class="mega-label">Company</span></div>
-          <div class="simple-links"><a href="https://tempsens.com/about-us/">About Tempsens →</a><a href="https://tempsens.com/about-us/">Manufacturing Facilities →</a><a href="https://tempsens.com/award-and-accreditation/">Quality & Certifications →</a></div>
-        </div>
-        <div id="mega-industries" class="mega-content hidden nav-card simple-mega">
-          <div><span class="mega-label">Industries</span></div>
-          <div class="simple-links"><a href="https://tempsens.com/industry/steel-industry/">Steel →</a><a href="https://tempsens.com/industry/cement-industry/">Cement →</a><a href="https://tempsens.com/industry/oil-gas/">Petrochemical →</a><a href="https://tempsens.com/industry/power-industry/">Power →</a><a href="https://tempsens.com/industry/defence/">Nuclear & Defence →</a><a href="https://tempsens.com/industry/glass-industry/">Glass →</a></div>
-        </div>
-        <div id="mega-investors" class="mega-content hidden nav-card simple-mega">
-          <div><span class="mega-label">Investors</span></div>
-          <div class="simple-links"><a href="https://tempsens.com/investors/">Annual Reports →</a><a href="https://tempsens.com/investors/">Corporate Governance →</a><a href="https://tempsens.com/investors/">Shareholder Disclosures →</a></div>
-        </div>
-        <div id="mega-resources" class="mega-content hidden nav-card simple-mega">
-          <div><span class="mega-label">Resources</span></div>
-          <div class="simple-links"><a href="https://tempsens.com/literature/">Product Catalogues →</a><a href="https://tempsens.com/literature/">Application Notes →</a><a href="https://tempsens.com/blog/">Technical Blog →</a><a href="https://tempsens.com/videos/">Videos →</a></div>
+  <div id="mega-dropdown" class="hidden absolute top-16 left-0 right-0 px-4 lg:px-8 pt-2 pointer-events-none">
+    <div class="max-w-[1600px] mx-auto pointer-events-auto">
+      <div id="mega-company" class="mega-content hidden mega-shell">
+        <div class="mega-heading"><span>Company</span><h3>Inside Tempsens</h3></div>
+        <div class="company-grid-new">
+          <a class="image-menu-card" href="https://tempsens.com/about-us/"><img src="https://tempsens.com/wp-content/uploads/2025/09/about-header.png"><b>About Us</b><small>Discover Tempsens and its history</small></a>
+          <div class="image-menu-card"><img src="https://tempsens.com/wp-content/uploads/2025/09/media-header.png"><b>Media</b><small>Featured across leading platforms</small></div>
+          <div class="image-menu-card"><img src="https://tempsens.com/wp-content/uploads/2025/09/mgmt-header.png"><b>Management</b><div class="mini-links"><a href="https://tempsens.com/board-of-directors/">Board of Directors →</a><a href="https://tempsens.com/key-person/">KMP/SMP →</a></div></div>
+          <a class="image-menu-card" href="https://tempsens.com/csr/"><img src="https://tempsens.com/wp-content/uploads/2025/09/csr-header.png"><b>CSR</b><small>Education, sustainability and community</small></a>
+          <a class="image-menu-card" href="https://tempsens.com/award-and-accreditation/"><img src="https://tempsens.com/wp-content/uploads/2025/09/awards-img.jpg"><b>Award & Accreditation</b><small>Recognition for innovation and sustainability</small></a>
         </div>
       </div>
-    </div>
 
-    <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-black/10 px-6 py-5 shadow-xl">
-      <div class="grid gap-3 text-sm font-semibold">
-        <a href="https://tempsens.com/about-us/">Company</a><a href="https://tempsens.com/">Products</a><a href="#industries">Industries</a><a href="https://tempsens.com/investors/">Investors</a><a href="https://tempsens.com/blog/">Resources</a><a href="https://tempsens.com/events/">Events</a><a href="https://tempsens.com/contact-us/" class="mt-2 rounded-full bg-black text-white text-center py-3">Request Quote</a>
+      <div id="mega-products" class="mega-content hidden mega-shell mega-scroll nav-sk76-shell">
+        <div class="mega-heading"><span>Products</span><h3>Explore by product family</h3></div>
+        <div class="nav-sk76-wrap">
+          <div class="nav-sk76-list" role="tablist" aria-label="Product categories">
+            <div class="nav-sk76-feature active" data-nav-product="contact" data-default-image="Contact Sensing.jpeg" data-default-title="Contact Sensing" data-default-copy="Direct temperature measurement for industrial processes." role="tab" tabindex="0" aria-selected="true">
+              <span class="nav-sk76-index">01</span>
+              <span class="nav-sk76-copy">
+                <strong>Contact Sensing</strong>
+                <span class="nav-sk76-detail">
+                  <em>Direct temperature measurement for industrial processes.</em>
+                  <span class="nav-sk76-products">
+                    <a href="https://tempsens.com/ct/temperature-sensing-solutions/thermocouples/" data-preview-title="Thermocouples" data-preview-copy="Contact temperature sensors for demanding process applications." data-image="Contact Sensing.jpeg" data-position="center">Thermocouples</a>
+                    <a href="https://tempsens.com/ct/temperature-sensing-solutions/resistance-temperature-detector/" data-preview-title="Resistance Temperature Detectors" data-preview-copy="Stable, accurate resistance-based temperature measurement." data-image="Contact Sensing.jpeg" data-position="40% center">RTDs</a>
+                    <a href="https://tempsens.com/ct/temperature-sensing-solutions/thermowells-and-accessories/" data-preview-title="Thermowells & Accessories" data-preview-copy="Protective assemblies engineered around process conditions." data-image="Contact Sensing.jpeg" data-position="60% center">Thermowells & Accessories</a>
+                    <a href="https://tempsens.com/ct/temperature-sensing-solutions/gauges/" data-preview-title="Temperature & Pressure Gauges" data-preview-copy="Local indication for industrial temperature and pressure." data-image="Contact Sensing.jpeg" data-position="right center">Gauges</a>
+                  </span>
+                </span>
+              </span>
+              <span class="nav-sk76-plus">+</span>
+            </div>
+
+            <div class="nav-sk76-feature" data-nav-product="noncontact" data-default-image="Non Contact Sensing.jpeg" data-default-title="Non Contact Sensing" data-default-copy="Remote thermal measurement and visualization." role="tab" tabindex="0" aria-selected="false">
+              <span class="nav-sk76-index">02</span>
+              <span class="nav-sk76-copy">
+                <strong>Non Contact Sensing</strong>
+                <span class="nav-sk76-detail">
+                  <em>Remote thermal measurement and visualization.</em>
+                  <span class="nav-sk76-products">
+                    <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" data-preview-title="Infrared Pyrometers" data-preview-copy="Fast non-contact temperature measurement for moving and high-temperature targets." data-image="Non Contact Sensing.jpeg" data-position="left center">Pyrometers</a>
+                    <a href="https://tempsens.com/ct/temperature-sensing-solutions/thermal-imagers/" data-preview-title="Thermal Imagers" data-preview-copy="Thermal visualization for monitoring, diagnostics and process insight." data-image="Non Contact Sensing.jpeg" data-position="center">Thermal Imagers</a>
+                    <a href="https://tempsens.com/ct/temperature-sensing-solutions/furnace-monitoring-cameras/" data-preview-title="Furnace Monitoring Cameras" data-preview-copy="High-temperature furnace viewing for critical process observation." data-image="Non Contact Sensing.jpeg" data-position="65% center">Furnace Monitoring Cameras</a>
+                    <a href="https://tempsens.com/ct/temperature-sensing-solutions/heat-flux-sensors/" data-preview-title="Heat Flux Sensors" data-preview-copy="Measure thermal energy transfer across demanding applications." data-image="Non Contact Sensing.jpeg" data-position="right center">Heat Flux Sensors</a>
+                  </span>
+                </span>
+              </span>
+              <span class="nav-sk76-plus">+</span>
+            </div>
+
+            <div class="nav-sk76-feature" data-nav-product="heating" data-default-image="Electric Heating Solutions.jpeg" data-default-title="Electrical Heating Solutions" data-default-copy="Industrial heating for components, processes and furnaces." role="tab" tabindex="0" aria-selected="false">
+              <span class="nav-sk76-index">03</span>
+              <span class="nav-sk76-copy">
+                <strong>Electrical Heating Solutions</strong>
+                <span class="nav-sk76-detail">
+                  <em>Industrial heating for components, processes and furnaces.</em>
+                  <span class="nav-sk76-products">
+                    <a href="https://tempsens.com/ct/industrial-heaters/immersion-heater/" data-preview-title="Immersion Heaters" data-preview-copy="Direct heating solutions for liquids and process media." data-image="Electric Heating Solutions.jpeg" data-position="left center">Immersion Heaters</a>
+                    <a href="https://tempsens.com/ct/industrial-heaters/processheaters/" data-preview-title="Process Heaters" data-preview-copy="Engineered heat delivery for demanding process applications." data-image="Electric Heating Solutions.jpeg" data-position="center">Process Heaters</a>
+                    <a href="https://tempsens.com/ct/industrial-heaters/cartridge-heaters/" data-preview-title="Cartridge Heaters" data-preview-copy="Compact high-watt-density heating for tooling and equipment." data-image="Electric Heating Solutions.jpeg" data-position="62% center">Cartridge Heaters</a>
+                    <a href="https://tempsens.com/ct/industrial-heaters/furnace-heaters/" data-preview-title="Furnace Heaters" data-preview-copy="Heating elements designed for industrial furnace environments." data-image="Electric Heating Solutions.jpeg" data-position="right center">Furnace Heaters</a>
+                  </span>
+                </span>
+              </span>
+              <span class="nav-sk76-plus">+</span>
+            </div>
+
+            <div class="nav-sk76-feature" data-nav-product="cables" data-default-image="cable.png" data-default-title="Cables" data-default-copy="Specialised cables, conductors and alloys for reliable transmission." role="tab" tabindex="0" aria-selected="false">
+              <span class="nav-sk76-index">04</span>
+              <span class="nav-sk76-copy">
+                <strong>Cables</strong>
+                <span class="nav-sk76-detail">
+                  <em>Specialised cables, conductors and alloys for reliable transmission.</em>
+                  <span class="nav-sk76-products">
+                    <a href="https://tempsens.com/ct/cables/thermocouple-cables/" data-preview-title="Thermocouple Cables" data-preview-copy="Signal cable engineered for thermocouple measurement circuits." data-image="cable.png" data-position="left center">Thermocouple Cables</a>
+                    <a href="https://tempsens.com/ct/cables/rtd-cables/" data-preview-title="RTD Cables" data-preview-copy="Reliable signal transmission for resistance temperature detectors." data-image="cable.png" data-position="38% center">RTD Cables</a>
+                    <a href="https://tempsens.com/ct/cables/mineral-insulated-cables/" data-preview-title="Mineral Insulated Cables" data-preview-copy="Rugged mineral-insulated cable for elevated temperature and harsh service." data-image="cable.png" data-position="66% center">Mineral Insulated Cables</a>
+                    <a href="https://tempsens.com/ct/cables/heat-tracing-solutions/" data-preview-title="Heat Trace Cable" data-preview-copy="Controlled heat tracing for pipes, vessels and process lines." data-image="cable.png" data-position="right center">Heat Trace Cable</a>
+                  </span>
+                </span>
+              </span>
+              <span class="nav-sk76-plus">+</span>
+            </div>
+          </div>
+
+          <div class="nav-sk76-stage moving-border-hover" aria-live="polite">
+            <img id="nav-product-preview-image" class="nav-sk76-preview-image" src="Contact Sensing.jpeg" alt="Contact Sensing">
+            <div class="nav-sk76-shade"></div>
+            <div class="nav-sk76-caption">
+              <span id="nav-product-preview-kicker">01 / CONTACT SENSING</span>
+              <b id="nav-product-preview-title">Contact Sensing</b>
+              <p id="nav-product-preview-copy">Direct temperature measurement for industrial processes.</p>
+              <a id="nav-product-preview-link" href="https://tempsens.com/ct/temperature-sensing-solutions/">Explore category →</a>
+            </div>
+            <div class="nav-sk76-progress"><i></i></div>
+          </div>
+        </div>
       </div>
+
+      <div id="mega-industries" class="mega-content hidden mega-shell"><div class="mega-heading"><span>Industries</span><h3>Applications across industry</h3></div><div class="industry-nav-grid">
+        <a href="https://tempsens.com/industry/steel-industry/"><b>Steel</b><small>Temperature monitoring for harsh metal processes.</small></a><a href="https://tempsens.com/industry/oil-gas/"><b>Petro Chemical</b><small>Monitoring temperature, pressure and reactions.</small></a><a href="https://tempsens.com/industry/defence/"><b>Defence & Nuclear</b><small>Precision for critical systems.</small></a><a href="https://tempsens.com/industry/power-industry/"><b>Power</b><small>Safety, equipment protection and efficiency.</small></a><a href="https://tempsens.com/industry/glass-industry/"><b>Glass</b><small>Melting, forming and cooling process control.</small></a><a href="https://tempsens.com/industry/plastic/"><b>Plastic</b><small>Sensing, heating and specialised cable solutions.</small></a><a href="https://tempsens.com/industry/pharmaceutical-industry/"><b>Pharmaceutical</b><small>High precision and sanitary measurement.</small></a><a href="https://tempsens.com/industry/cement-industry/"><b>Cement</b><small>Process monitoring for optimal production.</small></a>
+      </div></div>
+
+      <div id="mega-investors" class="mega-content hidden mega-shell mega-scroll"><div class="mega-heading"><span>Investors</span><h3>Investor information</h3></div><div class="investor-cols">
+        <div><h4>Financial Information</h4><a href="https://tempsens.com/investors/annual-report-and-results/">Annual Report and Results</a><a href="https://tempsens.com/investors/annual-return/">Annual Return</a><a href="https://tempsens.com/investors/creditor/">Creditor</a><a href="https://tempsens.com/investors/our-group-companies/">Our Group Companies</a></div>
+        <div><h4>Corporate Governance</h4><a href="https://tempsens.com/investors/policies/">Policies</a><a href="https://tempsens.com/investors/drhp/">DRHP</a><a href="https://tempsens.com/investors/rhp/">RHP</a><a href="https://tempsens.com/investors/abridged-prospectus/">Abridged Prospectus</a><a href="https://tempsens.com/investors/material-contracts-and-material-documents/">Material Contracts and Documents</a><a href="https://tempsens.com/investors/notice-to-investor/">Notice to Investor</a><a href="https://tempsens.com/investors/industry-report/">Industry Report</a></div>
+        <div><h4>Governance Documents</h4><a href="https://tempsens.com/investors/memorandum-of-association-and-articles-of-association/">MOA & AOA</a><a href="https://tempsens.com/investors/credit-ratings/">Credit Ratings</a><a href="https://tempsens.com/investors/terms-and-conditions-of-appointment-of-independent-directors/">Independent Director Terms</a><a href="https://tempsens.com/investors/composition-of-various-committees-of-the-board-of-directors/">Board Committees</a><a href="https://tempsens.com/investors/e-mail-address-for-grievance-redressal-and-other-relevant-details/">Grievance Redressal</a><a href="https://tempsens.com/investors/contact-information-of-the-designated-officials/">Designated Officials</a><a href="https://tempsens.com/investors/employee-benefit-scheme-documents/">Employee Benefit Scheme</a></div>
+        <div><h4>Investor Grievance</h4><a href="https://tempsens.com/investors/key-managerial-person/">Key Managerial Person</a><a href="https://tempsens.com/investors/company-secretary/">Company Secretary</a><a href="https://tempsens.com/investors/registrar-and-transfer-agent/">RTA</a></div>
+      </div></div>
+
+      <div id="mega-resources" class="mega-content hidden mega-shell"><div class="mega-heading"><span>Resources</span><h3>Knowledge & tools</h3></div><div class="industry-nav-grid five"><a href="https://tempsens.com/blog/"><b>Blogs</b><small>Technical insights and updates.</small></a><a href="https://tempsens.com/literature/"><b>Literature</b><small>Brochures and product resources.</small></a><a href="https://tempsens.com/softwares/"><b>Software</b><small>Calculation and configuration tools.</small></a><a href="https://tempsens.com/faq/"><b>FAQ</b><small>Answers to common questions.</small></a><a href="https://tempsens.com/videos/"><b>Videos</b><small>Facilities, products and applications.</small></a></div></div>
+      <div id="mega-contact" class="mega-content hidden mega-shell compact-mega"><div class="mega-heading"><span>Contact</span><h3>Connect with Tempsens</h3></div><div class="contact-nav-grid"><a href="https://tempsens.com/contact-us/">Contact Us →</a><a href="https://tempsens.com/careers/">Careers →</a><a href="https://tempsens.com/become-a-distributor/">Become a Distributor →</a></div></div>
     </div>
-  </header>
+  </div>
 
-  <style>
-    /* Navbar interaction is Skiper35-inspired: horizontal items expand/switch on hover,
-       adapted for this standalone HTML/Tailwind page rather than React + Framer Motion. */
-    #mega-dropdown { padding-top: 10px; }
-    .nav-card { animation: navCardIn .28s cubic-bezier(.16,1,.3,1) both; }
-    @keyframes navCardIn { from { opacity:0; transform:translateY(-8px) scale(.985); } to { opacity:1; transform:none; } }
+  <div id="search-panel" class="hidden absolute top-16 left-0 right-0 bg-white border-b border-black/10 shadow-xl px-6 py-5"><form action="https://tempsens.com/" method="get" class="max-w-4xl mx-auto flex gap-3"><input name="s" type="search" placeholder="Search Tempsens products, industries, resources…" class="flex-1 rounded-full border border-black/15 px-5 py-3 text-sm outline-none focus:border-accent-gold"><button class="rounded-full bg-black text-white px-6 text-xs font-semibold">Search</button></form></div>
+  <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-black/10 max-h-[calc(100vh-64px)] overflow-y-auto px-6 py-5 shadow-xl"><div class="grid gap-4 text-sm font-semibold"><a href="https://tempsens.com/about-us/">Company</a><a href="https://tempsens.com/ct/temperature-sensing-solutions/">Products</a><a href="https://tempsens.com/industry/steel-industry/">Industries</a><a href="https://tempsens.com/investors/">Investors</a><a href="https://tempsens.com/blog/">Resources</a><a href="https://tempsens.com/events/">Events</a><a href="https://tempsens.com/contact-us/">Contact Us</a><a href="https://tempsens.com/careers/">Careers</a><a href="https://tempsens.com/become-a-distributor/">Become a Distributor</a></div></div>
+</header>
+<style>
+.nav-trigger{transition:color .2s}.nav-trigger:hover{color:#000}.nav-icon{height:38px;width:38px;border:1px solid rgba(0,0,0,.12);border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}.mega-shell{background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:28px;box-shadow:0 28px 80px rgba(0,0,0,.16);padding:26px;animation:navIn .25s cubic-bezier(.16,1,.3,1)}@keyframes navIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}.mega-scroll{max-height:calc(100vh - 92px);overflow:auto}.mega-heading{display:flex;align-items:end;justify-content:space-between;border-bottom:1px solid #eee;padding-bottom:14px;margin-bottom:18px}.mega-heading span{font:700 10px 'JetBrains Mono';letter-spacing:.16em;text-transform:uppercase;color:#c42b2b}.mega-heading h3{font-size:20px;font-weight:500}.company-grid-new{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.image-menu-card{border:1px solid #eee;border-radius:18px;padding:10px;display:flex;flex-direction:column;gap:6px}.image-menu-card img{height:100px;width:100%;object-fit:cover;border-radius:12px}.image-menu-card b{font-size:12px}.image-menu-card small{font-size:10px;color:#777}.mini-links{display:grid;gap:4px;font-size:10px}.product-columns-full{display:grid;grid-template-columns:1.15fr 1.15fr .7fr;gap:28px}.group-title{display:block;font-size:13px;font-weight:700;margin-bottom:12px}.link-cols{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.link-cols>div,.investor-cols>div{display:flex;flex-direction:column}.link-cols a,.investor-cols a{font-size:10.5px;color:#666;padding:5px 0;transition:.2s}.link-cols a:hover,.investor-cols a:hover{color:#c42b2b;transform:translateX(2px)}.industry-nav-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.industry-nav-grid.five{grid-template-columns:repeat(5,1fr)}.industry-nav-grid a{border:1px solid #eee;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px}.industry-nav-grid b{font-size:12px}.industry-nav-grid small{font-size:10px;color:#777;line-height:1.5}.investor-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}.investor-cols h4{font-size:12px;font-weight:700;margin-bottom:8px}.compact-mega{max-width:900px;margin-left:auto}.contact-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.contact-nav-grid a{border:1px solid #eee;border-radius:16px;padding:18px;font-size:12px;font-weight:600}.lang-item{display:block;padding:9px 11px;border-radius:10px}.lang-item:hover{background:#f5f3ef}@media(max-width:1200px){.company-grid-new{grid-template-columns:repeat(3,1fr)}}
+/* Skiper76-inspired Products mega menu */
+.nav-sk76-shell{padding:22px!important;overflow:hidden}.nav-sk76-wrap{display:grid;grid-template-columns:minmax(360px,.82fr) minmax(520px,1.18fr);gap:22px;min-height:470px}.nav-sk76-list{align-self:stretch;display:flex;flex-direction:column;justify-content:center}.nav-sk76-feature{width:100%;display:grid;grid-template-columns:36px 1fr 24px;gap:14px;text-align:left;align-items:start;padding:19px 4px;border-bottom:1px solid rgba(0,0,0,.09);opacity:.45;transition:opacity .25s ease,padding .42s cubic-bezier(.16,1,.3,1),transform .32s cubic-bezier(.16,1,.3,1)}.nav-sk76-feature:last-child{border-bottom:0}.nav-sk76-feature:hover{opacity:.78;transform:translateX(3px)}.nav-sk76-feature.active{opacity:1;padding-top:26px;padding-bottom:26px}.nav-sk76-index{font:500 9px 'JetBrains Mono',monospace;color:#c42b2b;padding-top:6px}.nav-sk76-copy{min-width:0}.nav-sk76-copy strong{display:block;font-size:clamp(18px,1.55vw,27px);font-weight:400;letter-spacing:-.035em;line-height:1.08}.nav-sk76-detail{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .45s cubic-bezier(.16,1,.3,1),opacity .28s ease,margin .45s ease}.nav-sk76-detail>*{overflow:hidden}.nav-sk76-feature.active .nav-sk76-detail{grid-template-rows:1fr;opacity:1;margin-top:11px}.nav-sk76-detail em{display:block;font-style:normal;font-size:11px;line-height:1.5;color:#666}.nav-sk76-detail small{display:block;margin-top:8px;font:400 8.5px/1.55 'JetBrains Mono',monospace;letter-spacing:.045em;text-transform:uppercase;color:#999}.nav-sk76-plus{font-size:23px;font-weight:200;line-height:1;transition:transform .42s cubic-bezier(.16,1,.3,1),color .25s}.nav-sk76-feature.active .nav-sk76-plus{transform:rotate(45deg);color:#c42b2b}.nav-sk76-stage{position:relative;min-height:470px;border-radius:22px;overflow:hidden;background:#111}.nav-sk76-stage::before{z-index:30!important;padding:2px!important}.nav-sk76-slide{position:absolute;inset:0;opacity:0;transform:scale(1.035);transition:opacity .55s ease,transform .9s cubic-bezier(.16,1,.3,1);pointer-events:none}.nav-sk76-slide.active{opacity:1;transform:scale(1);pointer-events:auto}.nav-sk76-slide img{width:100%;height:100%;object-fit:cover}.nav-sk76-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.83),rgba(0,0,0,.08) 58%,rgba(0,0,0,.04))}.nav-sk76-caption{position:absolute;left:28px;right:28px;bottom:28px;color:#fff}.nav-sk76-caption span{display:block;font:500 9px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#fcaf16}.nav-sk76-caption b{display:block;margin-top:9px;max-width:520px;font-size:clamp(24px,2.5vw,40px);line-height:1.03;letter-spacing:-.04em;font-weight:300}.nav-sk76-caption a{display:inline-block;margin-top:15px;font:500 9px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#fff}.nav-sk76-caption a:hover{color:#fcaf16}.nav-sk76-progress{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.18);z-index:12}.nav-sk76-progress i{display:block;width:25%;height:100%;background:#fcaf16;transition:transform .5s cubic-bezier(.16,1,.3,1)}@media(max-width:1200px){.nav-sk76-wrap{grid-template-columns:.9fr 1.1fr}.nav-sk76-stage{min-height:430px}.nav-sk76-feature{padding:15px 2px}.nav-sk76-feature.active{padding-top:20px;padding-bottom:20px}}@media(prefers-reduced-motion:reduce){.nav-sk76-feature,.nav-sk76-detail,.nav-sk76-plus,.nav-sk76-slide,.nav-sk76-progress i{transition:none!important}}
+.nav-sk76-feature{cursor:default}.nav-sk76-products{display:flex!important;flex-wrap:wrap;gap:6px 7px;margin-top:10px;overflow:visible!important}.nav-sk76-products a{display:inline-flex;align-items:center;min-height:27px;padding:6px 9px;border:1px solid rgba(0,0,0,.1);border-radius:999px;background:#fff;color:#222;font:500 8px/1 'JetBrains Mono',monospace;letter-spacing:.035em;text-transform:uppercase;transition:background .22s ease,border-color .22s ease,transform .22s ease,color .22s ease}.nav-sk76-products a:hover,.nav-sk76-products a:focus{background:#fcaf16;border-color:#fcaf16;color:#111;transform:translateY(-1px);outline:none}.nav-sk76-feature.active{background:linear-gradient(90deg,rgba(252,175,22,.07),transparent 72%);border-radius:16px;padding-left:10px;padding-right:10px}.nav-sk76-stage{box-shadow:0 16px 50px rgba(0,0,0,.12)}
 
-    .product-category-row { scrollbar-width:none; }
-    .product-category-row::-webkit-scrollbar { display:none; }
-    .product-cat {
-      position:relative; flex:1 0 auto; min-width:max-content; padding:10px 14px 13px;
-      border-radius:999px; color:rgba(0,0,0,.58); font-size:11.5px; font-weight:600;
-      transition:color .25s ease, background .25s ease, transform .25s ease;
-    }
-    .product-cat::after { content:""; position:absolute; left:18px; right:18px; bottom:5px; height:2px; border-radius:10px; background:#ED3237; transform:scaleX(0); transition:transform .25s cubic-bezier(.16,1,.3,1); }
-    .product-cat:hover { color:#000; background:#FFF8EC; transform:translateY(-1px); }
-    .product-cat.active { color:#000; background:#FFF8EC; }
-    .product-cat.active::after { transform:scaleX(1); }
+/* Nested Skiper76 product navigation: category hover reveals products; product hover drives side preview. */
+.nav-sk76-shell{padding:22px!important;overflow:hidden}
+.nav-sk76-wrap{display:grid;grid-template-columns:minmax(420px,.9fr) minmax(560px,1.1fr);gap:24px;min-height:520px}
+.nav-sk76-list{display:flex;flex-direction:column;justify-content:center}
+.nav-sk76-feature{position:relative;overflow:hidden;cursor:default}
+.nav-sk76-feature.active{background:linear-gradient(90deg,rgba(252,175,22,.075),rgba(252,175,22,0) 76%);border-radius:18px;padding-left:12px;padding-right:12px}
+.nav-sk76-products{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:14px;overflow:visible!important}
+.nav-sk76-products a{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:34px;padding:8px 11px;border:1px solid rgba(0,0,0,.10);border-radius:12px;background:rgba(255,255,255,.86);color:#1a1a1a;font:500 8.5px/1.25 'JetBrains Mono',monospace;letter-spacing:.025em;text-transform:uppercase;transition:background .24s ease,border-color .24s ease,transform .28s cubic-bezier(.16,1,.3,1),color .24s ease,box-shadow .24s ease}
+.nav-sk76-products a::after{content:'→';margin-left:8px;color:#c42b2b;transform:translateX(-2px);opacity:.55;transition:transform .25s ease,opacity .25s ease}
+.nav-sk76-products a:hover,.nav-sk76-products a:focus{background:#fcaf16;border-color:#fcaf16;color:#111;transform:translateX(4px);box-shadow:0 8px 18px rgba(0,0,0,.09);outline:none}
+.nav-sk76-products a:hover::after,.nav-sk76-products a:focus::after{transform:translateX(2px);opacity:1}
+.nav-sk76-stage{position:relative;min-height:520px;border-radius:24px;overflow:hidden;background:#0c0c0c;box-shadow:0 18px 54px rgba(0,0,0,.14)}
+.nav-sk76-preview-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.01);opacity:1;transition:opacity .22s ease,transform .7s cubic-bezier(.16,1,.3,1),object-position .45s ease}
+.nav-sk76-stage.is-changing .nav-sk76-preview-image{opacity:.18;transform:scale(1.035)}
+.nav-sk76-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.08),rgba(0,0,0,.1) 44%,rgba(0,0,0,.55)),linear-gradient(to top,rgba(0,0,0,.88),rgba(0,0,0,.08) 62%)}
+.nav-sk76-caption{position:absolute;left:32px;right:32px;bottom:32px;color:#fff;z-index:3;transition:transform .35s cubic-bezier(.16,1,.3,1),opacity .25s ease}
+.nav-sk76-stage.is-changing .nav-sk76-caption{transform:translateY(8px);opacity:.35}
+.nav-sk76-caption span{display:block;font:500 9px 'JetBrains Mono',monospace;letter-spacing:.14em;color:#fcaf16;text-transform:uppercase}
+.nav-sk76-caption b{display:block;margin-top:10px;max-width:560px;font-size:clamp(27px,2.8vw,44px);line-height:1.02;letter-spacing:-.045em;font-weight:300}
+.nav-sk76-caption p{margin-top:10px;max-width:520px;font-size:11px;line-height:1.55;color:rgba(255,255,255,.72)}
+.nav-sk76-caption a{display:inline-block;margin-top:16px;font:500 9px 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#fff}
+.nav-sk76-caption a:hover{color:#fcaf16}
+@media(max-width:1200px){.nav-sk76-wrap{grid-template-columns:minmax(360px,.95fr) minmax(470px,1.05fr);min-height:470px}.nav-sk76-stage{min-height:470px}.nav-sk76-products{grid-template-columns:1fr}}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.btn-primary,.btn-dark,.nav-trigger,.nav-icon,.mega-shell .image-menu-card,.mega-shell .industry-nav-grid a,.mega-shell .contact-nav-grid a,.mega-shell .product-column-title,.mega-shell .group-title,.mega-shell .header-option-menu-item,header a[class*=\"rounded-full\"],a[class*=\"border\"][class*=\"px-\"],.pill-card,.ind-pill-card,.event-row,.sk76-stage').forEach(el=>el.classList.add('moving-border-hover'));const header=document.getElementById('navbar'),drop=document.getElementById('mega-dropdown'),panels=[...document.querySelectorAll('.mega-content')],triggers=[...document.querySelectorAll('.nav-trigger')];let timer;const open=id=>{clearTimeout(timer);panels.forEach(p=>p.classList.toggle('hidden',p.id!==id));drop.classList.remove('hidden')};triggers.forEach(t=>{t.addEventListener('mouseenter',()=>open(t.dataset.target));t.addEventListener('focus',()=>open(t.dataset.target));t.addEventListener('click',()=>open(t.dataset.target))});header.addEventListener('mouseleave',()=>timer=setTimeout(()=>drop.classList.add('hidden'),140));drop.addEventListener('mouseenter',()=>clearTimeout(timer));const mb=document.getElementById('mobile-menu-btn'),mm=document.getElementById('mobile-menu');mb.addEventListener('click',()=>mm.classList.toggle('hidden'));const st=document.getElementById('search-toggle'),sp=document.getElementById('search-panel');st.addEventListener('click',()=>{sp.classList.toggle('hidden');drop.classList.add('hidden')});const lt=document.getElementById('language-toggle'),lm=document.getElementById('language-menu');lt.addEventListener('click',e=>{e.stopPropagation();lm.classList.toggle('hidden');lt.setAttribute('aria-expanded',String(!lm.classList.contains('hidden')))});document.addEventListener('click',e=>{if(!lm.contains(e.target)&&e.target!==lt)lm.classList.add('hidden')});
+const navProductFeatures=[...document.querySelectorAll('.nav-sk76-feature')],navProductProgress=document.querySelector('.nav-sk76-progress i'),navPreviewStage=document.querySelector('.nav-sk76-stage'),navPreviewImage=document.getElementById('nav-product-preview-image'),navPreviewKicker=document.getElementById('nav-product-preview-kicker'),navPreviewTitle=document.getElementById('nav-product-preview-title'),navPreviewCopy=document.getElementById('nav-product-preview-copy'),navPreviewLink=document.getElementById('nav-product-preview-link');
+const categoryMeta={contact:{label:'01 / CONTACT SENSING',href:'https://tempsens.com/ct/temperature-sensing-solutions/'},noncontact:{label:'02 / NON CONTACT SENSING',href:'https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/'},heating:{label:'03 / ELECTRICAL HEATING',href:'https://tempsens.com/ct/industrial-heaters/'},cables:{label:'04 / CABLES',href:'https://tempsens.com/ct/cables/'}};
+let navPreviewTimer;
+const setNavPreview=(data)=>{if(!navPreviewStage||!navPreviewImage)return;clearTimeout(navPreviewTimer);navPreviewStage.classList.add('is-changing');navPreviewTimer=setTimeout(()=>{navPreviewImage.src=data.image;navPreviewImage.alt=data.title;navPreviewImage.style.objectPosition=data.position||'center';navPreviewKicker.textContent=data.kicker;navPreviewTitle.textContent=data.title;navPreviewCopy.textContent=data.copy||'';navPreviewLink.href=data.href||'#';navPreviewLink.textContent=data.linkText||'Explore product →';navPreviewStage.classList.remove('is-changing')},115)};
+const switchNavProduct=(feature)=>{const name=feature.dataset.navProduct,idx=navProductFeatures.indexOf(feature),meta=categoryMeta[name];navProductFeatures.forEach(x=>{const on=x===feature;x.classList.toggle('active',on);x.setAttribute('aria-selected',String(on))});if(navProductProgress&&idx>-1)navProductProgress.style.transform=`translateX(${idx*100}%)`;setNavPreview({image:feature.dataset.defaultImage,title:feature.dataset.defaultTitle,copy:feature.dataset.defaultCopy,kicker:meta.label,href:meta.href,linkText:'Explore category →'})};
+navProductFeatures.forEach(feature=>{feature.addEventListener('mouseenter',()=>switchNavProduct(feature));feature.addEventListener('focus',()=>switchNavProduct(feature));feature.addEventListener('click',e=>{if(e.target.closest('.nav-sk76-products a'))return;switchNavProduct(feature)});feature.querySelectorAll('.nav-sk76-products a').forEach(product=>{const showProduct=()=>{const meta=categoryMeta[feature.dataset.navProduct];setNavPreview({image:product.dataset.image||feature.dataset.defaultImage,position:product.dataset.position||'center',title:product.dataset.previewTitle||product.textContent.trim(),copy:product.dataset.previewCopy||'',kicker:`${meta.label} / PRODUCT`,href:product.href,linkText:'Explore product →'})};product.addEventListener('mouseenter',showProduct);product.addEventListener('focus',showProduct)})});
+});
+</script>
 
-    .product-panel { display:none; opacity:0; transform:translateY(8px); }
-    .product-panel.active { display:block; animation:productPanelIn .32s cubic-bezier(.16,1,.3,1) forwards; }
-    @keyframes productPanelIn { to { opacity:1; transform:none; } }
-    .product-panel-title { text-align:center; font-size:25px; line-height:1.15; font-weight:600; letter-spacing:-.025em; color:#000; }
-    .product-panel-kicker { text-align:center; margin-top:7px; font-size:11px; color:rgba(0,0,0,.52); }
-    .product-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-top:26px; }
-    .product-tile { min-height:112px; border:1px solid rgba(0,0,0,.09); border-radius:24px; padding:18px; display:flex; align-items:flex-end; justify-content:space-between; gap:14px; background:#fff; font-size:12px; font-weight:600; color:#000; transition:all .3s cubic-bezier(.16,1,.3,1); }
-    .product-tile b { color:#ED3237; font-size:18px; font-weight:400; transition:transform .3s cubic-bezier(.16,1,.3,1); }
-    .product-tile:hover { background:#FBB12F; border-color:#FBB12F; transform:translateY(-5px); box-shadow:0 14px 30px rgba(0,0,0,.10); }
-    .product-tile:hover b { color:#000; transform:translateX(4px); }
-
-    .simple-mega { background:#fff; border:1px solid rgba(0,0,0,.1); border-radius:30px; box-shadow:0 28px 80px rgba(0,0,0,.16); padding:28px 32px; display:grid; grid-template-columns:1fr 2fr; gap:36px; }
-    .simple-mega.hidden { display:none; }
-    .mega-label { color:#ED3237; text-transform:uppercase; letter-spacing:.16em; font-size:10px; font-weight:700; }
-    .simple-mega h3 { margin-top:7px; font-size:22px; font-weight:600; letter-spacing:-.02em; }
-    .simple-links { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; align-content:center; }
-    .simple-links a { padding:15px 16px; border-radius:18px; border:1px solid rgba(0,0,0,.08); font-size:11px; font-weight:600; transition:all .25s ease; }
-    .simple-links a:hover { background:#FFF8EC; border-color:#FBB12F; transform:translateY(-2px); }
-
-    @media (max-width:1100px) { .product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-  </style>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const navbar = document.getElementById('navbar');
-      const triggers = document.querySelectorAll('.nav-trigger');
-      const megaDropdown = document.getElementById('mega-dropdown');
-      const megaContents = document.querySelectorAll('.mega-content');
-      const productCats = document.querySelectorAll('.product-cat');
-      const productPanels = document.querySelectorAll('.product-panel');
-      const mobileBtn = document.getElementById('mobile-menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      let closeTimer;
-
-      function openMega(targetId) {
-        clearTimeout(closeTimer);
-        megaContents.forEach(content => content.classList.toggle('hidden', content.id !== targetId));
-        megaDropdown.classList.remove('hidden');
-      }
-      function scheduleClose() {
-        closeTimer = setTimeout(() => megaDropdown.classList.add('hidden'), 120);
-      }
-
-      triggers.forEach(trigger => {
-        trigger.addEventListener('mouseenter', () => openMega(trigger.dataset.target));
-        trigger.addEventListener('focus', () => openMega(trigger.dataset.target));
-      });
-      navbar.addEventListener('mouseleave', scheduleClose);
-      megaDropdown.addEventListener('mouseenter', () => clearTimeout(closeTimer));
-
-      function switchProduct(name) {
-        productCats.forEach(cat => cat.classList.toggle('active', cat.dataset.product === name));
-        productPanels.forEach(panel => panel.classList.toggle('active', panel.dataset.panel === name));
-      }
-      productCats.forEach(cat => {
-        cat.addEventListener('mouseenter', () => switchProduct(cat.dataset.product));
-        cat.addEventListener('focus', () => switchProduct(cat.dataset.product));
-        cat.addEventListener('click', () => switchProduct(cat.dataset.product));
-      });
-
-      mobileBtn.addEventListener('click', () => {
-        const isOpen = !mobileMenu.classList.contains('hidden');
-        mobileMenu.classList.toggle('hidden', isOpen);
-        mobileBtn.setAttribute('aria-expanded', String(!isOpen));
-      });
-    });
-  </script>
-  
   <!-- UNCHANGED HERO -->
   <section class="relative min-h-[90vh] lg:min-h-screen flex items-end bg-bg-dark overflow-hidden pt-28 pb-12 md:pb-16">
     <div class="absolute inset-0 z-0">
@@ -313,7 +330,7 @@
         <div class="w-full md:w-auto flex justify-end ml-auto">
           <div class="pill-container flex gap-2 md:gap-3 h-[520px] md:h-[calc(100vh-180px)] max-h-[800px] w-full md:w-[380px] lg:w-[420px] xl:w-[460px]">
             <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="pill-card relative overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/20 shadow-2xl block group backdrop-blur-md">
-              <img src="Contact Sensing.jpeg" class="absolute inset-0 w-full h-full object-cover group-hover:object-contain group-hover:p-1.5 transition-all duration-500 ease-out">
+              <img src="Contact Sensing.jpeg" class="absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-out">
               <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/85"></div>
               <div class="absolute inset-0 p-4 md:p-5 flex flex-col justify-between z-10">
                 <span class="text-[10px] font-mono text-white/90 bg-black/40 px-2.5 py-0.5 rounded-full border border-white/20 w-max">01</span>
@@ -322,7 +339,7 @@
               </div>
             </a>
             <a href="https://tempsens.com/ct/temperature-sensing-solutions/pyrometers/" class="pill-card relative overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/20 shadow-2xl block group backdrop-blur-md">
-              <img src="Non Contact Sensing.jpeg" class="absolute inset-0 w-full h-full object-cover group-hover:object-contain group-hover:p-1.5 transition-all duration-500 ease-out">
+              <img src="Non Contact Sensing.jpeg" class="absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-out">
               <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/85"></div>
               <div class="absolute inset-0 p-4 md:p-5 flex flex-col justify-between z-10">
                 <span class="text-[10px] font-mono text-white/90 bg-black/40 px-2.5 py-0.5 rounded-full border border-white/20 w-max">02</span>
@@ -331,7 +348,7 @@
               </div>
             </a>
             <a href="https://tempsens.com/ct/industrial-heaters/" class="pill-card relative overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/20 shadow-2xl block group backdrop-blur-md">
-              <img src="Electric Heating Solutions.jpeg" class="absolute inset-0 w-full h-full object-cover group-hover:object-contain group-hover:p-1.5 transition-all duration-500 ease-out">
+              <img src="Electric Heating Solutions.jpeg" class="absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-out">
               <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/85"></div>
               <div class="absolute inset-0 p-4 md:p-5 flex flex-col justify-between z-10">
                 <span class="text-[10px] font-mono text-white/90 bg-black/40 px-2.5 py-0.5 rounded-full border border-white/20 w-max">03</span>
@@ -340,7 +357,7 @@
               </div>
             </a>
             <a href="https://tempsens.com/ct/industrial-heaters/industrial-and-rd-furnaces/" class="pill-card relative overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/20 shadow-2xl block group backdrop-blur-md">
-              <img src="Lab & Ind Furnace.jpeg" class="absolute inset-0 w-full h-full object-cover group-hover:object-contain group-hover:p-1.5 transition-all duration-500 ease-out">
+              <img src="Lab & Ind Furnace.jpeg" class="absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-out">
               <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/85"></div>
               <div class="absolute inset-0 p-4 md:p-5 flex flex-col justify-between z-10">
                 <span class="text-[10px] font-mono text-white/90 bg-black/40 px-2.5 py-0.5 rounded-full border border-white/20 w-max">04</span>
@@ -349,7 +366,7 @@
               </div>
             </a>
             <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="pill-card relative overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/20 shadow-2xl block group backdrop-blur-md">
-              <img src="temperature calibrator.jpeg" class="absolute inset-0 w-full h-full object-cover group-hover:object-contain group-hover:p-1.5 transition-all duration-500 ease-out">
+              <img src="temperature calibrator.jpeg" class="absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-out">
               <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/85"></div>
               <div class="absolute inset-0 p-4 md:p-5 flex flex-col justify-between z-10">
                 <span class="text-[10px] font-mono text-white/90 bg-black/40 px-2.5 py-0.5 rounded-full border border-white/20 w-max">05</span>
@@ -358,7 +375,7 @@
               </div>
             </a>
             <a href="https://tempsens.com/ct/cables/" class="pill-card relative overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/20 shadow-2xl block group backdrop-blur-md">
-              <img src="cable.png" class="absolute inset-0 w-full h-full object-cover group-hover:object-contain group-hover:p-1.5 transition-all duration-500 ease-out">
+              <img src="cable.png" class="absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-out">
               <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/85"></div>
               <div class="absolute inset-0 p-4 md:p-5 flex flex-col justify-between z-10">
                 <span class="text-[10px] font-mono text-white/90 bg-black/40 px-2.5 py-0.5 rounded-full border border-white/20 w-max">06</span>
@@ -373,137 +390,74 @@
     </div>
   </section>
 
-  <!-- 01 — THE OPENING STATEMENT -->
-  <section class="py-24 bg-bg-primary border-b border-rule">
-    <div class="max-w-[1440px] mx-auto px-6 lg:px-16">
-      <span class="text-micro text-accent-gold">THERMAL ENGINEERING</span>
-      <h2 class="mt-6 text-[36px] sm:text-[54px] lg:text-[72px] font-light leading-[1.08] text-text-primary max-w-5xl tracking-tight">
-        When temperature matters, precision matters more.
-      </h2>
-      <p class="mt-8 text-xl text-text-secondary max-w-3xl font-light">
-        From sensing and measurement to heating, specialised cables and thermal processing, Tempsens engineers solutions for the temperatures that keep industries moving.
-      </p>
-      <div class="mt-8 space-y-1 text-sm font-mono text-text-muted">
-        <p>Built around engineering expertise.</p>
-        <p>Designed around the process.</p>
-        <p>Made for the conditions that matter.</p>
-      </div>
-      <div class="mt-12">
-        <a href="#verticals" class="btn-primary">Explore our capabilities →</a>
-      </div>
-    </div>
-  </section>
 
-  <!-- 02 — WHAT TEMPSENS ACTUALLY DOES -->
-  <section class="py-24 bg-bg-primary" id="verticals">
-    <div class="max-w-[1440px] mx-auto px-6 lg:px-16">
-      <span class="text-micro text-accent-gold">ONE ENGINEERING PARTNER</span>
-      <h2 class="mt-4 text-4xl sm:text-5xl font-light text-text-primary">
-        We don't just measure temperature.<br>
-        <span class="text-text-secondary font-light">We engineer the systems around it.</span>
-      </h2>
-      <p class="mt-8 text-text-secondary max-w-3xl leading-relaxed">
-        Temperature sits at the heart of thousands of industrial processes. Getting it right means more than selecting a sensor. It means understanding the application, the material, the environment, the heat, the process — and what happens when any of them change. That is where Tempsens comes in.
-      </p>
-      <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-bg-warm p-8 border border-rule hover:border-accent-red transition-colors flex flex-col justify-between">
-          <div>
-            <span class="text-micro text-accent-red font-bold">01 — TEMPERATURE SENSING</span>
-            <h3 class="mt-4 text-xl font-light">Know what is happening.</h3>
-            <p class="mt-3 text-text-muted text-sm leading-relaxed">Contact and non-contact temperature measurement for demanding industrial and research applications.</p>
-          </div>
-          <a href="https://tempsens.com/ct/temperature-sensing-solutions/" class="mt-8 text-micro text-accent-red font-bold inline-block">Explore temperature sensing →</a>
+<style>
+  .build-image{opacity:0;transform:scale(1.035);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1)}.build-image.active{opacity:1;transform:scale(1)}
+  .build-tab{opacity:.55;transition:opacity .3s ease,border-color .3s ease}.build-tab.active,.build-tab:hover{opacity:1;border-color:#FCAF16}
+  .product-explorer-item{opacity:.48;transition:opacity .3s ease,transform .35s cubic-bezier(.16,1,.3,1)}.product-explorer-item:hover,.product-explorer-item.active{opacity:1;transform:translateX(7px)}.product-explorer-item .product-sub{max-height:0;opacity:0;overflow:hidden;transition:max-height .45s cubic-bezier(.16,1,.3,1),opacity .3s ease}.product-explorer-item.active .product-sub,.product-explorer-item:hover .product-sub{max-height:95px;opacity:1}
+  .manufacturing-stage{opacity:.45;transition:opacity .35s ease,transform .35s ease}.manufacturing-stage.is-active{opacity:1;transform:translateX(5px)}.manufacturing-stage.is-active .stage-dot{background:#FCAF16;border-color:#FCAF16;box-shadow:0 0 0 7px rgba(252,175,22,.12)}
+  .proof-track::-webkit-scrollbar{display:none}.proof-panel{transition:background .4s ease}.proof-panel:hover{background:#F5F3EF}
+  @media(max-width:767px){.ind-pill-container{overflow-x:auto!important}.ind-pill-card{min-width:72px}.ind-pill-container:hover .ind-pill-card{flex:1}.ind-pill-container .ind-pill-card:hover{flex:4!important}}
+</style>
+
+  <!-- 01 — WHAT WE BUILD -->
+  <section class="py-24 lg:py-32 bg-bg-primary border-b border-rule" id="what-we-build">
+    <div class="max-w-[1720px] mx-auto px-6 lg:px-12">
+      <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-14 lg:gap-20 items-end">
+        <div>
+          <span class="text-micro text-accent-gold">THERMAL ENGINEERING</span>
+          <h2 class="mt-5 text-[42px] sm:text-[58px] lg:text-[76px] font-light leading-[1.02] tracking-[-0.045em] max-w-4xl">Solutions built around temperature.</h2>
+          <p class="mt-7 text-base sm:text-lg text-text-secondary max-w-2xl font-light leading-relaxed">From temperature sensing and electrical heating to specialised cables, Tempsens brings together the technologies that help industries measure, monitor and manage thermal processes.</p>
+          <a href="#products" class="mt-9 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.12em] group">Explore solutions <span class="transition-transform duration-300 group-hover:translate-x-2">→</span></a>
         </div>
-        <div class="bg-bg-warm p-8 border border-rule hover:border-accent-red transition-colors flex flex-col justify-between">
-          <div>
-            <span class="text-micro text-accent-red font-bold">02 — ELECTRICAL HEATING</span>
-            <h3 class="mt-4 text-xl font-light">Control what happens next.</h3>
-            <p class="mt-3 text-text-muted text-sm leading-relaxed">Industrial heating solutions engineered around the process, application and operating environment.</p>
+        <div class="build-visual relative min-h-[520px] lg:min-h-[620px] overflow-hidden rounded-[36px] bg-neutral-950 border border-black/10">
+          <img src="Contact Sensing.jpeg" class="build-image active absolute inset-0 w-full h-full object-cover" data-build-image="0" alt="Tempsens temperature sensing products">
+          <img src="Electric Heating Solutions.jpeg" class="build-image absolute inset-0 w-full h-full object-cover" data-build-image="1" alt="Tempsens electrical heating products">
+          <img src="cable.png" class="build-image absolute inset-0 w-full h-full object-cover" data-build-image="2" alt="Tempsens specialised cables">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/15 to-transparent"></div>
+          <div class="absolute inset-x-0 bottom-0 p-7 sm:p-9">
+            <div class="build-tabs grid sm:grid-cols-3 gap-2">
+              <button class="build-tab active text-left border-t border-white/25 pt-4" data-build="0"><span class="text-[10px] font-mono text-accent-gold">01</span><strong class="block mt-2 text-white text-base font-medium">Temperature Sensing</strong><span class="block mt-2 text-white/60 text-xs leading-relaxed">Contact and non-contact solutions for industrial temperature measurement.</span></button>
+              <button class="build-tab text-left border-t border-white/25 pt-4" data-build="1"><span class="text-[10px] font-mono text-accent-gold">02</span><strong class="block mt-2 text-white text-base font-medium">Electrical Heating</strong><span class="block mt-2 text-white/60 text-xs leading-relaxed">Heating solutions engineered for demanding industrial applications.</span></button>
+              <button class="build-tab text-left border-t border-white/25 pt-4" data-build="2"><span class="text-[10px] font-mono text-accent-gold">03</span><strong class="block mt-2 text-white text-base font-medium">Specialised Cables</strong><span class="block mt-2 text-white/60 text-xs leading-relaxed">Cables, conductors and alloys built for reliable thermal and electrical performance.</span></button>
+            </div>
           </div>
-          <a href="https://tempsens.com/ct/industrial-heaters/" class="mt-8 text-micro text-accent-red font-bold inline-block">Explore heating solutions →</a>
-        </div>
-        <div class="bg-bg-warm p-8 border border-rule hover:border-accent-red transition-colors flex flex-col justify-between">
-          <div>
-            <span class="text-micro text-accent-red font-bold">03 — SPECIALISED CABLES</span>
-            <h3 class="mt-4 text-xl font-light">Make the signal travel.</h3>
-            <p class="mt-3 text-text-muted text-sm leading-relaxed">Specialised cables, conductors and thermocouple alloys engineered for reliable temperature measurement and electrical applications.</p>
-          </div>
-          <a href="https://tempsens.com/ct/cables/" class="mt-8 text-micro text-accent-red font-bold inline-block">Explore cables →</a>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- 02 — PRODUCTS — Skiper76-inspired Apple Feature Block -->
+  <section class="py-24 lg:py-32 bg-bg-warm overflow-hidden" id="products">
+    <div class="max-w-[1720px] mx-auto px-6 lg:px-12">
+      <span class="text-micro text-accent-gold">OUR PRODUCTS</span>
+      <h2 class="mt-5 text-[40px] sm:text-[56px] lg:text-[72px] font-light leading-[1.04] tracking-[-0.04em] max-w-5xl">The right technology for every thermal challenge.</h2>
 
+      <div class="sk76-products mt-14 lg:mt-20 grid lg:grid-cols-[.82fr_1.18fr] gap-8 lg:gap-14 items-stretch">
+        <div class="sk76-feature-list border-y border-black/10">
+          <button class="sk76-feature active" data-product="contact" aria-pressed="true">
+            <span class="sk76-index">01</span><div class="sk76-copy"><h3>Contact Sensing</h3><div class="sk76-detail"><p>Direct measurement solutions engineered for industrial processes and equipment.</p><span>Thermocouples · RTDs · Thermowells · Gauges · Accessories · Fiber Optic · Wireless · Clamp Sensors</span></div></div><span class="sk76-plus">+</span>
+          </button>
+          <button class="sk76-feature" data-product="noncontact" aria-pressed="false">
+            <span class="sk76-index">02</span><div class="sk76-copy"><h3>Non Contact Sensing</h3><div class="sk76-detail"><p>Remote temperature measurement and thermal visualization for demanding applications.</p><span>Pyrometers · Thermal Imagers · Furnace Monitoring Cameras · Heat Flux Sensors · Solutions</span></div></div><span class="sk76-plus">+</span>
+          </button>
+          <button class="sk76-feature" data-product="heating" aria-pressed="false">
+            <span class="sk76-index">03</span><div class="sk76-copy"><h3>Electrical Heating Solutions</h3><div class="sk76-detail"><p>Heating technologies for components, processes, furnaces and thermal systems.</p><span>Component Heaters · Process Heaters · Furnace Heaters · Heat Tracing · Comfort Heating</span></div></div><span class="sk76-plus">+</span>
+          </button>
+          <button class="sk76-feature" data-product="cables" aria-pressed="false">
+            <span class="sk76-index">04</span><div class="sk76-copy"><h3>Cables</h3><div class="sk76-detail"><p>Specialised constructions for dependable signal transmission and electrical performance.</p><span>Cables &amp; Wires · Mineral Insulated Cables · Thermocouple Cables · RTD Cables · Nickel-Based Alloys</span></div></div><span class="sk76-plus">+</span>
+          </button>
+        </div>
 
-  <!-- 04 — THE CUSTOM ENGINEERING SECTION -->
-  <section class="py-24 bg-bg-warm">
-    <div class="max-w-[1440px] mx-auto px-6 lg:px-16">
-      <span class="text-micro text-accent-gold">WHEN STANDARD ISN'T ENOUGH</span>
-      <h2 class="mt-4 text-4xl sm:text-6xl font-light text-text-primary">
-        Your process isn't standard.<br>
-        <span class="text-accent-red">Our solution shouldn't be either.</span>
-      </h2>
-      <p class="mt-6 text-text-secondary max-w-3xl leading-relaxed">
-        Industrial environments rarely follow a catalogue. Temperature, pressure, vibration, material, space, installation and process conditions can all change what the right solution looks like. Tempsens works with customers to develop thermal solutions around those realities.
-      </p>
-      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white p-6 border border-rule shadow-sm">
-          <span class="text-micro text-accent-gold block mb-1">01</span>
-          <h3 class="text-2xl font-bold">UNDERSTAND</h3>
-          <p class="text-xs text-text-muted mt-1">The application.</p>
-        </div>
-        <div class="bg-white p-6 border border-rule shadow-sm">
-          <span class="text-micro text-accent-gold block mb-1">02</span>
-          <h3 class="text-2xl font-bold">ENGINEER</h3>
-          <p class="text-xs text-text-muted mt-1">The solution.</p>
-        </div>
-        <div class="bg-white p-6 border border-rule shadow-sm">
-          <span class="text-micro text-accent-gold block mb-1">03</span>
-          <h3 class="text-2xl font-bold">DELIVER</h3>
-          <p class="text-xs text-text-muted mt-1">For the process.</p>
+        <div class="sk76-stage relative min-h-[520px] lg:min-h-[700px] rounded-[34px] overflow-hidden bg-neutral-950">
+          <div class="sk76-slide active" data-slide="contact"><img src="Contact Sensing.jpeg" alt="Tempsens contact sensing products"><div class="sk76-overlay"></div><div class="sk76-caption"><span>01 / CONTACT SENSING</span><strong>Measure at the point that matters.</strong></div></div>
+          <div class="sk76-slide" data-slide="noncontact"><img src="Non Contact Sensing.jpeg" alt="Tempsens non contact sensing products"><div class="sk76-overlay"></div><div class="sk76-caption"><span>02 / NON CONTACT SENSING</span><strong>See temperature without contact.</strong></div></div>
+          <div class="sk76-slide" data-slide="heating"><img src="Electric Heating Solutions.jpeg" alt="Tempsens electrical heating products"><div class="sk76-overlay"></div><div class="sk76-caption"><span>03 / ELECTRICAL HEATING</span><strong>Put heat exactly where the process needs it.</strong></div></div>
+          <div class="sk76-slide" data-slide="cables"><img src="cable.png" alt="Tempsens specialised cables"><div class="sk76-overlay"></div><div class="sk76-caption"><span>04 / CABLES</span><strong>Carry signal and power with confidence.</strong></div></div>
+          <div class="sk76-progress"><i></i></div>
         </div>
       </div>
-      <div class="mt-10">
-        <a href="https://tempsens.com/contact-us/" class="btn-primary">Talk to an engineer →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 05 — MANUFACTURING / BACKWARD INTEGRATION -->
-  <section class="py-24 bg-bg-primary border-t border-rule">
-    <div class="max-w-[1440px] mx-auto px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <span class="text-micro text-accent-gold">BUILT FROM WITHIN</span>
-        <h2 class="mt-4 text-4xl sm:text-5xl font-light text-text-primary">
-          More control.<br>
-          <span class="text-text-secondary font-light">Fewer compromises.</span>
-        </h2>
-        <p class="mt-6 text-text-secondary leading-relaxed">
-          Some of the most critical parts of a thermal solution are made long before the finished product reaches the customer. Tempsens' backward-integrated manufacturing capabilities give the company control across key stages of production — from alloy melting and wire drawing to fabrication, assembly and calibration.
-        </p>
-        <div class="mt-8">
-          <a href="https://tempsens.com/about-us/" class="btn-primary">See how we manufacture →</a>
-        </div>
-      </div>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="p-6 bg-bg-warm border border-rule rounded">
-          <span class="text-micro text-accent-red font-bold">ALLOY</span>
-          <p class="mt-2 text-xs text-text-secondary">Control begins with the material.</p>
-        </div>
-        <div class="p-6 bg-bg-warm border border-rule rounded">
-          <span class="text-micro text-accent-red font-bold">WIRE</span>
-          <p class="mt-2 text-xs text-text-secondary">Precision continues through manufacturing.</p>
-        </div>
-        <div class="p-6 bg-bg-warm border border-rule rounded">
-          <span class="text-micro text-accent-red font-bold">ASSEMBLY</span>
-          <p class="mt-2 text-xs text-text-secondary">Components become application-ready solutions.</p>
-        </div>
-        <div class="p-6 bg-bg-warm border border-rule rounded">
-          <span class="text-micro text-accent-red font-bold">CALIBRATION</span>
-          <p class="mt-2 text-xs text-text-secondary">Performance is verified before it reaches the process.</p>
-        </div>
-      </div>
+      <a href="https://tempsens.com/" class="mt-10 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.12em] group">View all products <span class="transition-transform duration-300 group-hover:translate-x-2">→</span></a>
     </div>
   </section>
 
@@ -654,257 +608,66 @@
     </div>
   </section>
 
-  <!-- 07 — THE GLOBAL SECTION -->
-  <section class="py-24 bg-bg-dark text-white">
-    <div class="max-w-[1440px] mx-auto px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <span class="text-micro text-accent-gold">GLOBAL BY DESIGN</span>
-        <h2 class="mt-4 text-4xl sm:text-5xl font-light">Engineered in one place. Supporting processes everywhere.</h2>
-        <p class="mt-6 text-text-muted leading-relaxed font-light">
-          Tempsens has built a global manufacturing and operating presence to support customers across markets and applications. With manufacturing facilities across India, Indonesia, UAE, South Korea and other global locations, the organisation combines local support with international reach.
-        </p>
-        <div class="mt-8">
-          <a href="https://tempsens.com/about-us/" class="btn-dark">Explore our global presence →</a>
-        </div>
-      </div>
-      <div class="space-y-6">
-        <div class="p-6 bg-bg-charcoal border border-white/10 rounded flex items-center gap-6">
-          <div class="text-stat text-accent-gold">80</div>
-          <div><h3 class="text-xs font-mono font-bold">COUNTRIES</h3><p class="text-xs text-text-muted mt-0.5">Around the globe</p></div>
-        </div>
-        <div class="p-6 bg-bg-charcoal border border-white/10 rounded flex items-center gap-6">
-          <div class="text-stat text-accent-gold">15</div>
-          <div><h3 class="text-xs font-mono font-bold">MANUFACTURING UNITS</h3><p class="text-xs text-text-muted mt-0.5">Across the global Tempsens group</p></div>
-        </div>
-        <div class="p-6 bg-bg-charcoal border border-white/10 rounded flex items-center gap-6">
-          <div class="text-stat text-accent-gold text-3xl font-bold">07</div>
-          <div><h3 class="text-xs font-mono font-bold">GLOBAL LOCATIONS</h3><p class="text-xs text-text-muted mt-0.5">Across key markets</p></div>
+
+
+  <!-- 04 — ENGINEERING + MANUFACTURING -->
+  <section class="py-24 lg:py-32 bg-bg-primary border-b border-rule" id="engineering">
+    <div class="max-w-[1720px] mx-auto px-6 lg:px-12">
+      <div class="grid lg:grid-cols-2 gap-14 lg:gap-20">
+        <div><span class="text-micro text-accent-gold">ENGINEERED IN-HOUSE</span><h2 class="mt-5 text-[42px] sm:text-[58px] lg:text-[72px] font-light leading-[1.02] tracking-[-0.04em]">From material to finished solution.</h2><p class="mt-7 text-text-secondary max-w-2xl leading-relaxed">Tempsens combines engineering expertise with manufacturing capabilities across temperature sensing, heating, cables and thermal systems.</p><p class="mt-7 text-sm text-text-muted max-w-xl leading-relaxed">Engineering decisions made early can shape performance later. Keeping expertise and manufacturing capability close helps Tempsens develop solutions around demanding applications.</p><a href="https://tempsens.com/about-us/" class="mt-9 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.12em] group">Explore Tempsens <span class="transition-transform duration-300 group-hover:translate-x-2">→</span></a></div>
+        <div class="manufacturing-sequence relative border-t border-b border-black/10">
+          <div class="manufacturing-line absolute left-[18px] sm:left-[26px] top-12 bottom-12 w-px bg-black/10"><span id="manufacturingProgress" class="absolute top-0 left-0 w-px bg-accent-gold h-0 transition-[height] duration-700"></span></div>
+          <div class="manufacturing-stage py-8 pl-14 sm:pl-20 relative" data-stage><span class="stage-dot absolute left-[13px] sm:left-[21px] top-10 w-3 h-3 rounded-full border border-black/30 bg-bg-primary"></span><span class="text-micro text-accent-red">01 — MATERIAL</span><p class="mt-2 text-sm text-text-secondary">Alloy melting and material preparation begin the verified Udaipur manufacturing chain.</p></div>
+          <div class="manufacturing-stage py-8 pl-14 sm:pl-20 relative border-t border-black/10" data-stage><span class="stage-dot absolute left-[13px] sm:left-[21px] top-10 w-3 h-3 rounded-full border border-black/30 bg-bg-primary"></span><span class="text-micro text-accent-red">02 — MANUFACTURING</span><p class="mt-2 text-sm text-text-secondary">Wire drawing and fabrication turn materials into controlled components.</p></div>
+          <div class="manufacturing-stage py-8 pl-14 sm:pl-20 relative border-t border-black/10" data-stage><span class="stage-dot absolute left-[13px] sm:left-[21px] top-10 w-3 h-3 rounded-full border border-black/30 bg-bg-primary"></span><span class="text-micro text-accent-red">03 — ASSEMBLY</span><p class="mt-2 text-sm text-text-secondary">Components are assembled into application-ready thermal products and systems.</p></div>
+          <div class="manufacturing-stage py-8 pl-14 sm:pl-20 relative border-t border-black/10" data-stage><span class="stage-dot absolute left-[13px] sm:left-[21px] top-10 w-3 h-3 rounded-full border border-black/30 bg-bg-primary"></span><span class="text-micro text-accent-red">04 — TESTING</span><p class="mt-2 text-sm text-text-secondary">Calibration and verification support consistent performance before deployment.</p></div>
+          <div class="manufacturing-stage py-8 pl-14 sm:pl-20 relative border-t border-black/10" data-stage><span class="stage-dot absolute left-[13px] sm:left-[21px] top-10 w-3 h-3 rounded-full border border-black/30 bg-bg-primary"></span><span class="text-micro text-accent-red">05 — SOLUTION</span><p class="mt-2 text-sm text-text-secondary">The finished solution is configured around the application requirement.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 08 — THE NUMBERS -->
-  <section class="py-20 bg-bg-primary border-y border-rule">
-    <div class="max-w-[1440px] mx-auto px-6 lg:px-16">
-      <span class="text-micro text-accent-gold">BUILT OVER TIME</span>
-      <h2 class="mt-4 text-4xl font-light text-text-primary mb-12">Experience is measured in more than years.</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="p-6 bg-bg-warm border border-rule rounded">
-          <div class="text-stat">35</div>
-          <span class="text-micro text-accent-red font-bold block mt-2">YEARS EXPERIENCE</span>
-          <p class="text-xs text-text-muted mt-2">Decades spent understanding temperature, materials, processes and industrial applications.</p>
-        </div>
-        <div class="p-6 bg-bg-warm border border-rule rounded">
-          <div class="text-stat">12</div>
-          <span class="text-micro text-accent-red font-bold block mt-2">PATENTS</span>
-          <p class="text-xs text-text-muted mt-2">A continuing investment in engineering and innovation.</p>
-        </div>
-        <div class="p-6 bg-bg-warm border border-rule rounded">
-          <div class="text-stat">3,800+</div>
-          <span class="text-micro text-accent-red font-bold block mt-2">CUSTOMERS WORLDWIDE</span>
-          <p class="text-xs text-text-muted mt-2">Trusted across industrial and technical applications.</p>
+  <!-- 05 — GLOBAL SUPPORT -->
+  <section class="py-24 lg:py-32 bg-bg-dark text-white overflow-hidden" id="global">
+    <div class="max-w-[1720px] mx-auto px-6 lg:px-12">
+      <div class="grid lg:grid-cols-[0.82fr_1.18fr] gap-14 lg:gap-20 items-center">
+        <div><span class="text-micro text-accent-gold">GLOBAL PRESENCE</span><h2 class="mt-5 text-[42px] sm:text-[58px] lg:text-[72px] font-light leading-[1.02] tracking-[-0.04em]">Wherever the process is, support should be close.</h2><p class="mt-7 text-white/55 leading-relaxed max-w-xl">Tempsens operates through a global manufacturing and support network serving customers across international markets. Together with its subsidiaries and joint ventures, the company reports 11 manufacturing units globally.</p><div class="mt-10 flex items-end gap-5"><div class="text-[88px] sm:text-[120px] font-extralight leading-none tracking-[-0.07em] text-accent-gold"><span class="roll-number" data-target="75" data-suffix="+">0</span></div><p class="pb-3 text-xs text-white/50 max-w-[220px]">Countries reached through sales/export presence between April 2022 and March 2025.</p></div><a href="https://tempsens.com/about-us/" class="mt-9 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.12em] group">Explore our global presence <span class="transition-transform duration-300 group-hover:translate-x-2">→</span></a></div>
+        <div class="relative min-h-[520px] rounded-[36px] border border-white/10 bg-white/[0.025] overflow-hidden p-7 sm:p-10">
+          <div class="absolute inset-0 opacity-40" style="background-image:radial-gradient(circle at center,rgba(255,255,255,.14) 1px,transparent 1px);background-size:28px 28px"></div>
+          <svg viewBox="0 0 1000 520" class="relative z-10 w-full h-full min-h-[440px]" aria-label="Tempsens global presence map" role="img"><path d="M88 188 C170 118 251 124 323 163 C379 195 429 185 484 145 C566 83 665 86 730 123 C805 164 879 170 940 226 C884 255 847 301 806 333 C744 381 650 373 600 332 C537 280 470 286 410 334 C349 383 252 375 197 325 C150 281 123 227 88 188Z" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.4"/><g fill="#FCAF16"><circle cx="568" cy="202" r="6"/><circle cx="625" cy="211" r="6"/><circle cx="728" cy="226" r="6"/><circle cx="836" cy="213" r="6"/><circle cx="280" cy="218" r="6"/></g><g stroke="#FCAF16" stroke-opacity=".35"><line x1="568" y1="202" x2="625" y2="211"/><line x1="625" y1="211" x2="728" y2="226"/><line x1="728" y1="226" x2="836" y2="213"/><line x1="568" y1="202" x2="280" y2="218"/></g></svg>
+          <div class="relative z-10 mt-2 grid grid-cols-2 sm:grid-cols-4 gap-3 text-[10px] font-mono uppercase tracking-[0.12em] text-white/55"><span>Manufacturing</span><span>Offices</span><span>Regional support</span><span>Customer markets</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 09 — THE DIFFERENCE -->
-  <section class="py-24 bg-bg-primary">
-    <div class="max-w-[1440px] mx-auto px-6 lg:px-16">
-      <span class="text-micro text-accent-gold">WHY TEMPSENS</span>
-      <h2 class="mt-4 text-4xl sm:text-5xl font-light text-text-primary max-w-4xl">
-        The difference is what happens between the specification and the solution.
-      </h2>
-      <p class="mt-6 text-text-secondary max-w-3xl leading-relaxed">
-        A catalogue can tell you what a product is. Engineering tells you whether it will work. Tempsens combines manufacturing capability, application knowledge and thermal expertise to move from a requirement to a solution built around the process.
-      </p>
-      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="p-6 bg-bg-warm border border-rule rounded">
-          <span class="text-micro text-accent-red font-bold block mb-2">01</span>
-          <h3 class="font-bold text-base">ENGINEERING DEPTH</h3>
-          <p class="text-xs text-text-muted mt-2">Technical expertise across temperature sensing, heating, cables and thermal systems.</p>
-        </div>
-        <div class="p-6 bg-bg-warm border border-rule rounded">
-          <span class="text-micro text-accent-red font-bold block mb-2">02</span>
-          <h3 class="font-bold text-base">MANUFACTURING CONTROL</h3>
-          <p class="text-xs text-text-muted mt-2">Key manufacturing capabilities brought closer together under one organisation.</p>
-        </div>
-        <div class="p-6 bg-bg-warm border border-rule rounded">
-          <span class="text-micro text-accent-red font-bold block mb-2">03</span>
-          <h3 class="font-bold text-base">APPLICATION UNDERSTANDING</h3>
-          <p class="text-xs text-text-muted mt-2">Solutions shaped around actual operating environments, not just product specifications.</p>
-        </div>
-        <div class="p-6 bg-bg-warm border border-rule rounded">
-          <span class="text-micro text-accent-red font-bold block mb-2">04</span>
-          <h3 class="font-bold text-base">GLOBAL REACH</h3>
-          <p class="text-xs text-text-muted mt-2">International manufacturing and customer support across multiple markets.</p>
-        </div>
-      </div>
+  <!-- 06 — PROOF -->
+  <section class="py-24 lg:py-32 bg-bg-primary overflow-hidden" id="proof">
+    <div class="max-w-[1720px] mx-auto px-6 lg:px-12"><span class="text-micro text-accent-gold">TEMPSENS BY THE NUMBERS</span><h2 class="mt-5 text-[42px] sm:text-[58px] lg:text-[72px] font-light leading-[1.04] tracking-[-0.04em]">Built on experience. Proven in industry.</h2></div>
+    <div class="mt-16 proof-track flex overflow-x-auto snap-x snap-mandatory border-y border-black/10" style="scrollbar-width:none">
+      <div class="proof-panel snap-start min-w-[86vw] sm:min-w-[62vw] lg:min-w-[40vw] px-6 lg:px-12 py-16 border-r border-black/10"><div class="proof-number text-[26vw] sm:text-[17vw] lg:text-[12vw] leading-[.82] font-extralight tracking-[-0.075em]"><span class="roll-number" data-target="35" data-suffix="+">0</span></div><p class="mt-9 text-micro text-accent-red">YEARS OF EXPERIENCE IN THE THERMAL INDUSTRY</p></div>
+      <div class="proof-panel snap-start min-w-[86vw] sm:min-w-[62vw] lg:min-w-[40vw] px-6 lg:px-12 py-16 border-r border-black/10"><div class="proof-number text-[26vw] sm:text-[17vw] lg:text-[12vw] leading-[.82] font-extralight tracking-[-0.075em]"><span class="roll-number" data-target="12">0</span></div><p class="mt-9 text-micro text-accent-red">PATENTS</p></div>
+      <div class="proof-panel snap-start min-w-[86vw] sm:min-w-[62vw] lg:min-w-[40vw] px-6 lg:px-12 py-16 border-r border-black/10"><div class="proof-number text-[26vw] sm:text-[17vw] lg:text-[12vw] leading-[.82] font-extralight tracking-[-0.075em]"><span class="roll-number" data-target="3800" data-format="comma">0</span></div><p class="mt-9 text-micro text-accent-red">CUSTOMERS WORLDWIDE</p></div>
     </div>
   </section>
 
-  <!-- 10 — CALIBRATION / PRECISION -->
-  <section class="py-24 bg-bg-warm">
-    <div class="max-w-[1440px] mx-auto px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <span class="text-micro text-accent-gold">MEASURE WITH CONFIDENCE</span>
-        <h2 class="mt-4 text-4xl sm:text-5xl font-light text-text-primary">
-          Precision doesn't end when the sensor is installed.
-        </h2>
-        <p class="mt-6 text-text-secondary leading-relaxed">
-          Reliable temperature measurement depends on more than the instrument itself. Calibration, reference standards, thermal profiling and verification help ensure that what the process measures is what the process is actually experiencing.
-        </p>
-        <div class="mt-8">
-          <a href="https://tempsens.com/ct/temperature-sensing-solutions/temperature-calibration-and-services/" class="btn-primary">Explore calibration & services →</a>
-        </div>
-      </div>
-      <div class="bg-white p-8 border border-rule rounded shadow-sm">
-        <span class="text-micro text-accent-red font-bold block mb-4">SERVICE LIST</span>
-        <div class="grid grid-cols-2 gap-3 text-xs font-mono text-text-primary">
-          <div class="p-3 bg-bg-warm rounded">• Temperature Calibrators</div>
-          <div class="p-3 bg-bg-warm rounded">• Reference Sensors</div>
-          <div class="p-3 bg-bg-warm rounded">• Precision Thermometers</div>
-          <div class="p-3 bg-bg-warm rounded">• Reference Units</div>
-          <div class="p-3 bg-bg-warm rounded">• Thermal Profiling</div>
-          <div class="p-3 bg-bg-warm rounded">• Calibration Services</div>
-        </div>
-      </div>
+  <!-- 07 — EVENTS + NEWS -->
+  <section class="py-24 lg:py-32 bg-bg-warm border-t border-rule" id="news">
+    <div class="max-w-[1720px] mx-auto px-6 lg:px-12"><span class="text-micro text-accent-gold">FROM TEMPSENS</span><h2 class="mt-5 text-[42px] sm:text-[58px] lg:text-[72px] font-light leading-[1.04] tracking-[-0.04em]">Meet us where the industry moves.</h2>
+      <div class="mt-14 overflow-x-auto pb-3"><div class="flex min-w-max border-y border-black/10">
+        <a href="https://tempsens.com/ae/news/india-energy-week-2026/" class="event-row w-[360px] sm:w-[440px] p-7 border-r border-black/10 group"><span class="text-micro text-accent-red">EVENT</span><h3 class="mt-5 text-2xl font-medium">India Energy Week 2026</h3><dl class="mt-10 grid grid-cols-2 gap-5 text-xs"><div><dt class="text-text-muted mb-1">LOCATION</dt><dd>Goa / India</dd></div><div><dt class="text-text-muted mb-1">PUBLISHED</dt><dd>10 Dec 2025</dd></div></dl><span class="mt-10 inline-block text-xs font-semibold group-hover:translate-x-2 transition-transform">EXPLORE EVENT →</span></a>
+        <a href="https://tempsens.com/ae/news/aset-2025/" class="event-row w-[360px] sm:w-[440px] p-7 border-r border-black/10 group"><span class="text-micro text-accent-red">EVENT</span><h3 class="mt-5 text-2xl font-medium">ASET 2025</h3><dl class="mt-10 grid grid-cols-2 gap-5 text-xs"><div><dt class="text-text-muted mb-1">LOCATION</dt><dd>Thiruvananthapuram / India</dd></div><div><dt class="text-text-muted mb-1">DATE</dt><dd>19–20 Dec 2025</dd></div></dl><span class="mt-10 inline-block text-xs font-semibold group-hover:translate-x-2 transition-transform">EXPLORE EVENT →</span></a>
+        <a href="https://tempsens.com/ae/news/industrial-expo-2025/" class="event-row w-[360px] sm:w-[440px] p-7 group"><span class="text-micro text-accent-red">EVENT</span><h3 class="mt-5 text-2xl font-medium">Industrial Expo 2025</h3><dl class="mt-10 grid grid-cols-2 gap-5 text-xs"><div><dt class="text-text-muted mb-1">LOCATION</dt><dd>Dahej, Gujarat / India</dd></div><div><dt class="text-text-muted mb-1">DATE</dt><dd>12–14 Nov 2025</dd></div></dl><span class="mt-10 inline-block text-xs font-semibold group-hover:translate-x-2 transition-transform">EXPLORE EVENT →</span></a>
+      </div></div>
+
     </div>
   </section>
 
-  <!-- 11 — BLOG & TECHNICAL ARTICLES SECTION -->
-  <section class="py-24 bg-bg-primary border-t border-rule" id="blog-section">
-    <div class="max-w-[1440px] mx-auto px-6 lg:px-16">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-        <div>
-          <span class="text-micro text-accent-gold">INSIGHTS & ENGINEERING BLOG</span>
-          <h2 class="mt-4 text-4xl sm:text-5xl font-light text-text-primary">
-            Perspectives on thermal innovation.
-          </h2>
-          <p class="mt-4 text-text-secondary max-w-2xl leading-relaxed">
-            Discover the latest technical articles, industrial application guides, and thermal engineering breakthroughs from Tempsens R&D labs.
-          </p>
-        </div>
-        <div>
-          <a href="https://tempsens.com/blog/" class="btn-primary">Browse All Articles →</a>
-        </div>
-      </div>
+  <!-- 08 — RESOURCES -->
+  <section class="py-24 lg:py-32 bg-bg-primary" id="resources"><div class="max-w-[1720px] mx-auto px-6 lg:px-12"><span class="text-micro text-accent-gold">KNOWLEDGE</span><h2 class="mt-5 text-[42px] sm:text-[58px] lg:text-[72px] font-light leading-[1.04] tracking-[-0.04em] max-w-5xl">Explore the thinking behind the technology.</h2><div class="mt-16 grid md:grid-cols-3 border-y border-black/10 divide-y md:divide-y-0 md:divide-x divide-black/10"><a href="https://tempsens.com/blog/" class="py-9 md:px-8 first:pl-0 group"><span class="text-micro text-accent-red">BLOGS</span><p class="mt-5 text-text-secondary text-sm max-w-sm">Technical insights, applications and industry perspectives.</p><span class="mt-10 inline-block text-xs font-semibold group-hover:translate-x-2 transition-transform">Read our blogs →</span></a><a href="https://tempsens.com/literature/" class="py-9 md:px-8 group"><span class="text-micro text-accent-red">LITERATURE</span><p class="mt-5 text-text-secondary text-sm max-w-sm">Product information, technical documentation and downloadable resources.</p><span class="mt-10 inline-block text-xs font-semibold group-hover:translate-x-2 transition-transform">Explore literature →</span></a><a href="https://tempsens.com/videos/" class="py-9 md:px-8 group"><span class="text-micro text-accent-red">VIDEOS</span><p class="mt-5 text-text-secondary text-sm max-w-sm">See Tempsens products, technologies and applications in action.</p><span class="mt-10 inline-block text-xs font-semibold group-hover:translate-x-2 transition-transform">Watch videos →</span></a></div></div></section>
 
-      <!-- Blog Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <!-- Blog Card 1 -->
-        <article class="bg-bg-warm border border-rule hover:border-accent-gold rounded-2xl overflow-hidden group transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-xl">
-          <div>
-            <div class="relative h-56 overflow-hidden bg-neutral-900">
-              <img src="Non Contact Sensing.jpeg" alt="Pyrometry in Molten Glass" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <span class="absolute top-4 left-4 bg-accent-gold text-black text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow">
-                APPLICATION NOTE
-              </span>
-            </div>
-            <div class="p-6">
-              <div class="text-[11px] font-mono text-text-muted mb-2">5 MIN READ • AUG 2026</div>
-              <h3 class="text-xl font-semibold text-text-primary group-hover:text-accent-red transition-colors leading-snug">
-                Single Color vs Two Color Pyrometers: Which One Actually Works for Your Process?
-              </h3>
-              <p class="mt-3 text-xs text-text-secondary leading-relaxed">
-                How non-contact infrared thermal imaging eliminates signal drift and improves accuracy across extreme 1600°C furnace environments.
-              </p>
-            </div>
-          </div>
-          <div class="px-6 pb-6 pt-2">
-            <a href="https://tempsens.com/blog/single-color-vs-two-color-pyrometers-which-one-actually-works-for-your-process/" class="text-xs font-mono font-bold text-accent-red group-hover:text-accent-gold transition-colors inline-flex items-center gap-1">
-              Read Technical Article →
-            </a>
-          </div>
-        </article>
-
-        <!-- Blog Card 2 -->
-        <article class="bg-bg-warm border border-rule hover:border-accent-gold rounded-2xl overflow-hidden group transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-xl">
-          <div>
-            <div class="relative h-56 overflow-hidden bg-neutral-900">
-              <img src="temperature calibrator.jpeg" alt="Thermocouple Calibration" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <span class="absolute top-4 left-4 bg-accent-gold text-black text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow">
-                CALIBRATION GUIDE
-              </span>
-            </div>
-            <div class="p-6">
-              <div class="text-[11px] font-mono text-text-muted mb-2">7 MIN READ • JUL 2026</div>
-              <h3 class="text-xl font-semibold text-text-primary group-hover:text-accent-red transition-colors leading-snug">
-                NABL & ISO/IEC 17025 Standard Calibration for Thermocouples
-              </h3>
-              <p class="mt-3 text-xs text-text-secondary leading-relaxed">
-                A comprehensive breakdown of primary reference standards, dry-block calibrators, and error margins in process temperature measurement.
-              </p>
-            </div>
-          </div>
-          <div class="px-6 pb-6 pt-2">
-            <a href="https://tempsens.com/blog/" class="text-xs font-mono font-bold text-accent-red group-hover:text-accent-gold transition-colors inline-flex items-center gap-1">
-              Read Calibration Guide →
-            </a>
-          </div>
-        </article>
-
-        <!-- Blog Card 3 -->
-        <article class="bg-bg-warm border border-rule hover:border-accent-gold rounded-2xl overflow-hidden group transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-xl">
-          <div>
-            <div class="relative h-56 overflow-hidden bg-neutral-900">
-              <img src="Thermal.png" alt="MI Cables in Aerospace" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <span class="absolute top-4 left-4 bg-accent-gold text-black text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow">
-                MATERIAL SCIENCE
-              </span>
-            </div>
-            <div class="p-6">
-              <div class="text-[11px] font-mono text-text-muted mb-2">6 MIN READ • JUN 2026</div>
-              <h3 class="text-xl font-semibold text-text-primary group-hover:text-accent-red transition-colors leading-snug">
-                Mineral Insulated (MI) Cables for High-Vibration Defense Applications
-              </h3>
-              <p class="mt-3 text-xs text-text-secondary leading-relaxed">
-                Engineering high-purity MgO insulated thermocouple cables that survive severe mechanical vibration and nuclear radiation environments.
-              </p>
-            </div>
-          </div>
-          <div class="px-6 pb-6 pt-2">
-            <a href="https://tempsens.com/blog/" class="text-xs font-mono font-bold text-accent-red group-hover:text-accent-gold transition-colors inline-flex items-center gap-1">
-              Read Engineering Study →
-            </a>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- 13 — FINAL CONVERSION SECTION -->
-  <section class="py-28 bg-bg-dark text-white text-center">
-    <div class="max-w-4xl mx-auto px-6">
-      <span class="text-micro text-accent-gold">HAVE A THERMAL CHALLENGE?</span>
-      <h2 class="mt-6 text-4xl sm:text-6xl font-light leading-tight">Let's engineer the right solution.</h2>
-      <p class="mt-6 text-text-muted text-lg max-w-xl mx-auto font-light">
-        Tell us what you're trying to measure, heat, monitor or control. Our team can help you identify the right technology, configuration and approach for your application.
-      </p>
-      <div class="mt-10 flex flex-wrap justify-center items-center gap-6">
-        <a href="https://tempsens.com/contact-us/" class="btn-dark">Talk to our team →</a>
-        <a href="https://tempsens.com/contact-us/" class="px-6 py-3 border border-white/30 text-white text-xs font-medium uppercase tracking-wider hover:border-white">Request a quote →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 14 — FINAL BRAND STATEMENT -->
-  <section class="py-20 bg-bg-dark text-white border-t border-white/10 text-center">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-3xl sm:text-5xl font-light">Temperature is only the starting point.</h2>
-      <div class="mt-4">
-        <span class="text-micro text-accent-gold font-bold">TEMPSENS</span>
-        <p class="text-xs text-text-muted mt-1">Thermal engineering solutions for the processes that keep industry moving.</p>
-      </div>
-    </div>
-  </section>
-
+  <!-- 09 — FINAL CONTACT -->
+  <section class="relative min-h-[680px] flex items-end bg-bg-dark text-white overflow-hidden" id="contact"><img src="Thermal.png" alt="Tempsens industrial thermal application" class="absolute inset-0 w-full h-full object-cover opacity-70"><div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/55 to-black/15"></div><div class="relative z-10 max-w-[1720px] mx-auto px-6 lg:px-12 w-full py-20 lg:py-24"><span class="text-micro text-accent-gold">HAVE A REQUIREMENT?</span><h2 class="mt-5 text-[48px] sm:text-[68px] lg:text-[86px] font-light leading-none tracking-[-0.05em]">Let’s talk temperature.</h2><p class="mt-7 text-white/65 max-w-xl text-base sm:text-lg font-light leading-relaxed">Tell us what you need to measure, heat, monitor or control. Our team can help identify the right thermal solution for your application.</p><div class="mt-10 flex flex-wrap gap-4"><a href="https://tempsens.com/contact-us/" class="btn-dark">Contact us →</a><a href="https://tempsens.com/contact-us/" class="px-6 py-3 border border-white/35 text-white text-xs font-medium uppercase tracking-wider hover:bg-white hover:text-black transition-all">Request a quote →</a></div></div></section>
   <!-- 15 — FOOTER MICROCOPY -->
   <footer class="bg-bg-dark text-white border-t border-white/10 py-12">
     <div class="max-w-[1440px] mx-auto px-6 lg:px-16">
@@ -937,6 +700,28 @@
       <div class="pt-8 text-center text-xs font-mono text-white/40">© Tempsens. All rights reserved.</div>
     </div>
   </footer>
+
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const buildTabs=[...document.querySelectorAll('.build-tab')], buildImgs=[...document.querySelectorAll('.build-image')];
+  let buildIndex=0, buildTimer;
+  const showBuild=i=>{buildIndex=i;buildTabs.forEach((x,n)=>x.classList.toggle('active',n===i));buildImgs.forEach((x,n)=>x.classList.toggle('active',n===i));};
+  const restartBuild=()=>{clearInterval(buildTimer);buildTimer=setInterval(()=>showBuild((buildIndex+1)%3),4800)};
+  buildTabs.forEach((b,i)=>{['mouseenter','focus','click'].forEach(ev=>b.addEventListener(ev,()=>{showBuild(i);restartBuild()}))});restartBuild();
+
+  const sk76Features=[...document.querySelectorAll('.sk76-feature')],sk76Slides=[...document.querySelectorAll('.sk76-slide')],sk76Progress=document.querySelector('.sk76-progress i');
+  const activateSk76=(key)=>{const idx=sk76Features.findIndex(x=>x.dataset.product===key);sk76Features.forEach(x=>{const on=x.dataset.product===key;x.classList.toggle('active',on);x.setAttribute('aria-pressed',String(on))});sk76Slides.forEach(x=>x.classList.toggle('active',x.dataset.slide===key));if(sk76Progress&&idx>-1)sk76Progress.style.transform=`translateX(${idx*100}%)`};
+  sk76Features.forEach(x=>{x.addEventListener('click',()=>activateSk76(x.dataset.product));x.addEventListener('mouseenter',()=>activateSk76(x.dataset.product));x.addEventListener('focus',()=>activateSk76(x.dataset.product))});
+
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const animateNumber=el=>{if(el.dataset.done)return;el.dataset.done='1';const target=Number(el.dataset.target||0),suffix=el.dataset.suffix||'',comma=el.dataset.format==='comma';if(reduced){el.textContent=(comma?target.toLocaleString('en-US'):target)+suffix;return}const duration=1500,start=performance.now();const tick=now=>{const t=Math.min(1,(now-start)/duration),e=1-Math.pow(1-t,4),v=Math.round(target*e);el.textContent=(comma?v.toLocaleString('en-US'):v)+suffix;if(t<1)requestAnimationFrame(tick)};requestAnimationFrame(tick)};
+  const numObs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)animateNumber(e.target)}),{threshold:.42});document.querySelectorAll('.roll-number').forEach(n=>numObs.observe(n));
+
+  const stages=[...document.querySelectorAll('[data-stage]')],progress=document.getElementById('manufacturingProgress');
+  const stageObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('is-active')});const active=stages.filter(s=>s.classList.contains('is-active')).length;if(progress)progress.style.height=((active/Math.max(stages.length,1))*100)+'%';},{threshold:.55});stages.forEach(s=>stageObs.observe(s));
+});
+</script>
 
 </body>
 </html>
